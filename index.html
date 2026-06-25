@@ -24,7 +24,9 @@
   }
 
   /* ===== RESET & BASE ===== */
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -49,8 +51,8 @@
   .hero {
     position: relative;
     width: 100%;
-    height: 100svh;
-    max-height: 560px;
+    height: 70vh;
+    max-height: 420px;
     overflow: hidden;
     background: var(--coal);
   }
@@ -87,7 +89,7 @@
     inset: 0;
     display: flex;
     align-items: flex-end;
-    padding-bottom: 5rem;
+    padding-bottom: 3rem;
   }
   .slide:nth-child(1) .slide-fallback { background: linear-gradient(135deg, #3a1208, #1a0a0a); }
   .slide:nth-child(2) .slide-fallback { background: linear-gradient(135deg, #1a1208, #2a1a08); }
@@ -106,7 +108,7 @@
     left: 0;
     right: 0;
     z-index: 2;
-    padding: 1.5rem 2rem 4rem;
+    padding: 1rem 1.2rem 2.5rem;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   }
 
@@ -114,9 +116,9 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 700;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--gold);
     margin-bottom: 0.5rem;
@@ -124,51 +126,58 @@
   .slide-eyebrow::before {
     content: '';
     display: block;
-    width: 24px;
+    width: 20px;
     height: 2px;
     background: var(--gold);
   }
 
   .slide-headline {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 8vw, 3.2rem);
+    font-size: clamp(1.5rem, 6vw, 2.2rem);
     font-weight: 900;
     color: #fff;
     line-height: 1.1;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
     letter-spacing: -0.5px;
   }
 
   .slide-sub {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: rgba(255, 255, 255, 0.75);
     font-weight: 400;
-    line-height: 1.5;
+    line-height: 1.4;
   }
 
-  /* Logo Bar */
+  /* Logo Bar - MOBIL OPTIMIZE */
   .hero-logo {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     z-index: 10;
-    padding: 1.5rem 2rem;
+    padding: 1rem 1.2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
   }
 
   .hero-logo-text {
     font-family: 'Playfair Display', serif;
-    font-size: 1.6rem;
+    font-size: 1.3rem;
     font-weight: 900;
     color: #fff;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
   }
   .hero-logo-text span {
     color: var(--gold);
+  }
+
+  .hero-logo-restaurant {
+    font-size: 0.7rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
   }
 
   /* Arrow Buttons */
@@ -180,10 +189,10 @@
     background: rgba(0, 0, 0, 0.5);
     border: none;
     color: #fff;
-    width: 44px;
-    height: 44px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
-    font-size: 24px;
+    font-size: 18px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -195,22 +204,22 @@
     background: var(--gold);
     color: var(--coal);
   }
-  .slide-arrow-l { left: 1rem; }
-  .slide-arrow-r { right: 1rem; }
+  .slide-arrow-l { left: 0.5rem; }
+  .slide-arrow-r { right: 0.5rem; }
 
   /* Dots */
   .slide-dots {
     position: absolute;
-    bottom: 1.5rem;
+    bottom: 1rem;
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
     display: flex;
-    gap: 8px;
+    gap: 6px;
   }
   .slide-dot {
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.4);
     cursor: pointer;
@@ -219,8 +228,8 @@
   }
   .slide-dot.active {
     background: var(--gold);
-    width: 24px;
-    border-radius: 4px;
+    width: 18px;
+    border-radius: 3px;
   }
 
   /* Progress Bar */
@@ -243,15 +252,17 @@
   /* ===== BRAND BAR ===== */
   .menu-brand {
     background: var(--coal);
-    padding: 1.2rem 2rem 1rem;
+    padding: 1rem 1.2rem 0.8rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
   .brand-name {
     font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 800;
     color: #fff;
     letter-spacing: 0.5px;
@@ -260,11 +271,17 @@
     color: var(--gold);
   }
   .brand-tag {
-    font-size: 0.75rem;
+    font-size: 0.65rem;
     color: rgba(255, 255, 255, 0.5);
-    letter-spacing: 1.5px;
+    letter-spacing: 1px;
     text-transform: uppercase;
-    margin-top: 0.25rem;
+    margin-top: 0.2rem;
+  }
+  .brand-kdv {
+    font-size: 0.6rem;
+    color: rgba(255, 255, 255, 0.3);
+    text-align: right;
+    letter-spacing: 0.5px;
   }
 
   /* ===== NAV TABS ===== */
@@ -274,7 +291,7 @@
     z-index: 100;
     background: var(--coal);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   }
   .nav-tabs {
     display: flex;
@@ -282,7 +299,7 @@
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
     padding: 0 0.5rem;
-    gap: 4px;
+    gap: 2px;
   }
   .nav-tabs::-webkit-scrollbar {
     display: none;
@@ -291,9 +308,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
-    padding: 12px 16px;
-    font-size: 0.75rem;
+    gap: 4px;
+    padding: 8px 10px;
+    font-size: 0.65rem;
     font-weight: 500;
     letter-spacing: 0.5px;
     color: rgba(255, 255, 255, 0.5);
@@ -304,7 +321,7 @@
     font-family: 'Inter', sans-serif;
     transition: var(--transition);
     position: relative;
-    border-radius: 8px;
+    border-radius: 6px;
   }
   .nav-tab:hover {
     color: rgba(255, 255, 255, 0.8);
@@ -318,9 +335,9 @@
     content: '';
     position: absolute;
     bottom: 0;
-    left: 16px;
-    right: 16px;
-    height: 2px;
+    left: 10px;
+    right: 10px;
+    height: 1.5px;
     background: var(--gold);
     transform: scaleX(0);
     transition: var(--transition);
@@ -329,22 +346,22 @@
     transform: scaleX(1);
   }
   .tab-icon-wrap {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.08);
     display: flex;
     align-items: center;
     justify-content: center;
     transition: var(--transition);
-    font-size: 20px;
+    font-size: 16px;
   }
   .nav-tab.active .tab-icon-wrap {
     background: rgba(201, 168, 76, 0.2);
   }
   .tab-icon-wrap img {
-    width: 22px;
-    height: 22px;
+    width: 18px;
+    height: 18px;
     object-fit: contain;
     filter: brightness(0) invert(0.6);
     transition: var(--transition);
@@ -356,7 +373,7 @@
   /* ===== CATEGORY SECTIONS ===== */
   .category-section {
     display: none;
-    padding: 1.5rem 1.2rem 4rem;
+    padding: 1rem 1rem 2.5rem;
     background: var(--cream);
     min-height: 60vh;
     animation: fadeIn 0.4s ease;
@@ -376,18 +393,18 @@
   }
 
   .sub-category {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
   .sub-title {
     display: flex;
     align-items: center;
-    gap: 12px;
-    font-size: 0.85rem;
+    gap: 8px;
+    font-size: 0.75rem;
     font-weight: 700;
     color: var(--red);
     text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 1.2rem;
+    letter-spacing: 1.5px;
+    margin-bottom: 1rem;
     font-family: 'Inter', sans-serif;
   }
   .sub-title::after {
@@ -397,22 +414,23 @@
     background: linear-gradient(to right, rgba(214, 40, 40, 0.4), transparent);
   }
 
-  /* ===== MENU ITEM ===== */
+  /* ===== MENU ITEM - MOBIL OPTIMIZE ==== */
   .menu-item {
     display: flex;
     align-items: center;
-    gap: 16px;
-    padding: 14px;
+    gap: 12px;
+    padding: 10px;
     background: #fff;
-    border-radius: 16px;
-    margin-bottom: 12px;
+    border-radius: 12px;
+    margin-bottom: 10px;
     box-shadow: var(--shadow-sm);
     transition: var(--transition);
     cursor: default;
     border: 1px solid rgba(0, 0, 0, 0.05);
+    flex-wrap: wrap;
   }
   .menu-item:hover {
-    transform: translateY(-2px);
+    transform: translateY(-1px);
     box-shadow: var(--shadow-md);
     border-color: rgba(201, 168, 76, 0.3);
   }
@@ -422,33 +440,33 @@
   }
 
   .item-image {
-    width: 100px;
-    height: 100px;
-    border-radius: 12px;
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
     object-fit: cover;
     background: #f0ece5;
     display: block;
     flex-shrink: 0;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   }
 
   .item-info {
     flex: 1;
-    min-width: 0;
+    min-width: calc(100% - 120px);
   }
   .item-info h3 {
     font-family: 'Inter', sans-serif;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 600;
     color: var(--text);
-    margin-bottom: 4px;
-    line-height: 1.3;
+    margin-bottom: 3px;
+    line-height: 1.2;
     letter-spacing: 0.2px;
   }
   .item-info p {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     color: var(--muted);
-    line-height: 1.5;
+    line-height: 1.4;
     font-weight: 400;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -456,165 +474,189 @@
     overflow: hidden;
   }
 
-  /* Fiyat Stili - ÖNEMLİ! */
+  /* Fiyat Stili - MOBIL OPTIMIZE */
   .item-price {
     font-family: 'Roboto Mono', monospace;
-    font-size: 1.15rem;
+    font-size: 0.95rem;
     font-weight: 700;
     color: var(--red);
     flex-shrink: 0;
     text-align: right;
     white-space: nowrap;
-    letter-spacing: 0.5px;
-    line-height: 1.2;
+    letter-spacing: 0.3px;
+    line-height: 1.1;
+    width: 100%;
+    margin-top: 6px;
+    order: 3;
   }
 
   /* ===== FOOTER ===== */
   .menu-footer {
     text-align: center;
-    padding: 2rem 1.5rem 3rem;
-    font-size: 0.8rem;
+    padding: 1.5rem 1rem 2rem;
+    font-size: 0.7rem;
     color: rgba(255, 255, 255, 0.4);
     background: var(--coal);
     letter-spacing: 0.5px;
-    line-height: 1.8;
+    line-height: 1.6;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   /* ===== RESPONSIVE ===== */
   @media (min-width: 480px) {
     .hero {
-      max-height: 70vh;
+      height: 75vh;
+      max-height: 480px;
+    }
+    .slide-content {
+      padding: 1.5rem 1.8rem 3.5rem;
+    }
+    .hero-logo {
+      padding: 1.2rem 1.8rem;
+    }
+    .hero-logo-text {
+      font-size: 1.5rem;
+    }
+    .item-image {
+      width: 90px;
+      height: 90px;
+    }
+    .item-price {
+      font-size: 1rem;
+      margin-top: 0;
+      order: 2;
+    }
+    .menu-item {
+      flex-wrap: nowrap;
+      gap: 14px;
+    }
+    .item-info {
+      min-width: 0;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .hero {
+      height: 80vh;
+      max-height: 560px;
+    }
+    .category-section {
+      padding: 1.5rem 2rem 4rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .nav-tab {
+      padding: 12px 16px;
+      font-size: 0.75rem;
+    }
+    .tab-icon-wrap {
+      width: 36px;
+      height: 36px;
+    }
+    .item-image {
+      width: 100px;
+      height: 100px;
+    }
+    .menu-item {
+      gap: 16px;
+      padding: 12px;
+    }
+    .item-info h3 {
+      font-size: 1rem;
+    }
+    .item-price {
+      font-size: 1.1rem;
+    }
+    .sub-title {
+      font-size: 0.85rem;
+      gap: 10px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .category-section {
+      padding: 2rem 2.5rem 5rem;
+    }
+    .menu-item {
+      border-radius: 16px;
+      padding: 14px;
     }
     .item-image {
       width: 110px;
       height: 110px;
-    }
-    .slide-content {
-      padding: 2rem 3rem 5rem;
-    }
-  }
-  @media (min-width: 768px) {
-    .hero {
-      max-height: 80vh;
-    }
-    .category-section {
-      padding: 2rem 2.5rem 5rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .nav-tab {
-      padding: 14px 20px;
-      font-size: 0.85rem;
-    }
-    .item-image {
-      width: 120px;
-      height: 120px;
-    }
-    .menu-item {
-      gap: 20px;
-      padding: 16px;
-    }
-    .item-info h3 {
-      font-size: 1.1rem;
+      border-radius: 12px;
     }
     .item-price {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
     }
   }
-  @media (min-width: 1024px) {
-    .category-section {
-      padding: 2.5rem 3rem 6rem;
-    }
-    .menu-item {
-      border-radius: 20px;
-      padding: 20px;
-    }
-    .item-image {
-      width: 140px;
-      height: 140px;
-      border-radius: 14px;
-    }
-  }
+
   @media (prefers-reduced-motion: reduce) {
     .slides-track {
       transition: none;
     }
-    .menu-item, .nav-tab {
+    .menu-item,
+    .nav-tab {
       transition: none;
     }
   }
-</style>
+  </style>
 </head>
+
 <body>
 
-<!-- ══ HERO CAROUSEL ══ -->
+<!-- HERO CAROUSEL -->
 <div class="hero" id="heroSlider">
-
   <div class="hero-logo">
     <div class="hero-logo-text">ÇÖPS<span>.</span></div>
-    <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);">Restaurant</div>
+    <div class="hero-logo-restaurant">Restaurant</div>
   </div>
 
   <div class="slides-track" id="slidesTrack">
-
-    <!-- Slayt 1 — Resimli -->
     <div class="slide">
-      <img src="img/logo.jpg" alt="Çöpşiş" class="slide-img"
-           onerror="this.style.display='none'">
+      <img src="img/logo.jpg" alt="Çöpşiş" class="slide-img" onerror="this.style.display='none'">
       <div class="slide-overlay"></div>
       <div class="slide-content">
         <div class="slide-eyebrow">Ege'nin Lezzeti</div>
-        
         <div class="slide-sub">Taze Malzeme · Odun Ateşi · Geleneksel Tarif</div>
       </div>
     </div>
-
-    
     <div class="slide">
       <div class="slide-fallback"></div>
       <div class="slide-overlay"></div>
       <div class="slide-content">
         <div class="slide-eyebrow">Özel Menüler</div>
-        <div class="slide-headline">Ailenizle<br>Paylaşın.</div>
+        <div class="slide-headline">Ailenizle Paylaşın.</div>
         <div class="slide-sub">Geniş porsiyonlar · Tüm damak tatları için</div>
       </div>
     </div>
-
-   
     <div class="slide">
       <div class="slide-fallback"></div>
       <div class="slide-overlay"></div>
       <div class="slide-content">
         <div class="slide-eyebrow">En Çok Sevilen</div>
-       <div class="slide-headline">Et Şişte<br>Ustalık.</div>
+        <div class="slide-headline">Et Şişte Ustalık.</div>
         <div class="slide-sub">Gizli baharat karışımı · Günlük marine</div>
       </div>
     </div>
-
   </div>
 
   <button class="slide-arrow slide-arrow-l" id="slidePrev">&#8249;</button>
   <button class="slide-arrow slide-arrow-r" id="slideNext">&#8250;</button>
 
   <div class="slide-dots" id="slideDots"></div>
-
   <div class="hero-progress">
     <div class="hero-progress-bar" id="progressBar"></div>
   </div>
-
 </div>
-<!-- ══ /HERO ══ -->
 
 <!-- Marka bar -->
 <div class="menu-brand">
   <div>
     <div class="brand-name">ÇÖPS Restaurant</div>
-    <div class="brand-tag">Ege'nin Meşhur Et &amp; Tavuk Lezzetleri</div>
+    <div class="brand-tag">Ege'nin Meşhur Et & Tavuk Lezzetleri</div>
   </div>
-  <div style="font-size:10px;color:rgba(255,255,255,.25);text-align:right;letter-spacing:.5px;">
-    Fiyatlara<br>KDV dahildir
-  </div>
+  <div class="brand-kdv">Fiyatlara KDV dahildir</div>
 </div>
 
 <!-- NAV TABS -->
@@ -656,14 +698,14 @@
   <div class="sub-category">
     <div class="sub-title">Başlangıçlar</div>
     <div class="menu-item">
-      <img src="img/mercimek.jpg"  class="item-image" />
-      <div class="item-info"><h3>Merimek Çorbası</h3></div>
-      <span class="item-price">110₺  / 80₺</span>
+      <img src="img/mercimek.jpg" class="item-image" />
+      <div class="item-info"><h3>Mercimek Çorbası</h3></div>
+      <span class="item-price">110₺ / 80₺</span>
     </div>
     <div class="menu-item">
-      <img src="img/TAVUK SUYU.jpg"  class="item-image" />
+      <img src="img/TAVUK SUYU.jpg" class="item-image" />
       <div class="item-info"><h3>Tavuk Suyu</h3></div>
-      <span class="item-price">135₺  / 100₺</span>
+      <span class="item-price">135₺ / 100₺</span>
     </div>
     <div class="menu-item">
       <img src="img/SALATA.jpg" alt="Mevsim Salatası" class="item-image" />
@@ -680,7 +722,7 @@
     <div class="sub-title">Sıcak Başlangıçlar</div>
     <div class="menu-item">
       <img src="img/sogan-halkasi.jpg" alt="Çıtır Soğan Halkası" class="item-image" />
-      <div class="item-info"><h3>Çıtır Soğan Halkası</h3><p>3'lü 5'li 8'li</p></div>
+      <div class="item-info"><h3>Çıtır Soğan Halkası</h3><p>3'lü / 5'li / 8'li</p></div>
       <span class="item-price">50₺ / 80₺ / 110₺</span>
     </div>
     <div class="menu-item">
@@ -782,7 +824,7 @@
     </div>
     <div class="menu-item">
       <img src="img/Adsız_tasarım_(10).jpg" alt="Barbekü Soslu Tavuk" class="item-image" />
-      <div class="item-info"><h3>Barbekü Soslu Tavuk</h3><p>200gr barbekü soslu tavuk yeşil ve kırmızı biberle, pesto soslu makarna ve salata ile</p></div>
+      <div class="item-info"><h3>Barbekü Soslu Tavuk</h3><p>200gr barbekü soslu tavuk, yeşil ve kırmızı biberle, pesto soslu makarna ve salata ile</p></div>
       <span class="item-price">385₺</span>
     </div>
     <div class="menu-item">
@@ -876,41 +918,40 @@
     <div class="sub-title">Ana Yemekler</div>
     <div class="menu-item">
       <img src="img/patateslicocuk.jpeg" alt="Patatesli Çocuk Tabağı" class="item-image" />
-      <div class="item-info"><h3>Patatesli Çocuk Tabağı</h3><p>4 adet çöpşiş, 1 adet kasap köfte, patates ,oyuncak ve içecek ile</p></div>
+      <div class="item-info"><h3>Patatesli Çocuk Tabağı</h3><p>4 adet çöpşiş, 1 adet kasap köfte, patates, oyuncak ve içecek ile</p></div>
       <span class="item-price">320₺</span>
     </div>
     <div class="menu-item">
       <img src="img/makarnalicocuk.jpeg" alt="Makarnalı Çocuk Menü" class="item-image" />
-      <div class="item-info"><h3>Makarnalı Çocuk Menü</h3><p>4 adet çöpşiş, 1 adet kasap köfte, makarna , oyuncak ve içecek ile</p></div>
+      <div class="item-info"><h3>Makarnalı Çocuk Menü</h3><p>4 adet çöpşiş, 1 adet kasap köfte, makarna, oyuncak ve içecek ile</p></div>
       <span class="item-price">320₺</span>
     </div>
- 
- <div class="menu-item">
-      <img src="img/kasapcocukmakarnali.jpeg" alt="Makarnalı Çocuk Menü" class="item-image" />
+    <div class="menu-item">
+      <img src="img/kasapcocukmakarnali.jpeg" alt="Makarnalı Kasap Çocuk Menü" class="item-image" />
       <div class="item-info">
         <h3>Makarnalı Kasap Çocuk Menü</h3>
-        <p> 2 adet kasap köfte, makarna ,oyuncak ve içecek ile</p></div>
+        <p>2 adet kasap köfte, makarna, oyuncak ve içecek ile</p>
+      </div>
       <span class="item-price">320₺</span>
     </div>
     <div class="menu-item">
-      <img src="img/kasapcocuk.jpeg" alt="Makarnalı Çocuk Menü" class="item-image" />
+      <img src="img/kasapcocuk.jpeg" alt="Patatesli Kasap Çocuk Menü" class="item-image" />
       <div class="item-info">
         <h3>Patatesli Kasap Çocuk Menü</h3>
-        <p> 2 adet kasap köfte, patates, oyuncak ve içecek ile</p></div>
+        <p>2 adet kasap köfte, patates, oyuncak ve içecek ile</p>
+      </div>
       <span class="item-price">320₺</span>
     </div>
     <div class="menu-item">
-      <img src="img/burger-cops.jpg" alt="Makarnalı Çocuk Menü" class="item-image" />
+      <img src="img/burger-cops.jpg" alt="Çocuk Burger" class="item-image" />
       <div class="item-info">
         <h3>Çocuk Burger</h3>
-        <p> Yeşillik ve sos , patates ,içecek, oyuncak ile beraber </p></div>
+        <p>Yeşillik ve sos, patates, içecek, oyuncak ile beraber</p>
+      </div>
       <span class="item-price">320₺</span>
     </div>
   </div>
- 
-   
-  </div>
-
+</div>
 
 <!-- İÇECEK -->
 <div id="icecek" class="category-section">
@@ -928,21 +969,20 @@
     </div>
     <div class="menu-item">
       <img src="img/kola.jpg" alt="Meşrubatlar" class="item-image" />
-      <div class="item-info"><h3>Meşrubatlar</h3><p>Cola, Zero , Sprite, Fanta, Fuse Tea</p></div>
+      <div class="item-info"><h3>Meşrubatlar</h3><p>Cola, Zero, Sprite, Fanta, Fuse Tea</p></div>
       <span class="item-price">90₺</span>
     </div>
     <div class="menu-item">
-      <img src="img/soda.jpg" alt="Meşrubatlar" class="item-image" />
+      <img src="img/soda.jpg" alt="Soda" class="item-image" />
       <div class="item-info"><h3>Soda</h3></div>
       <span class="item-price">45₺</span>
     </div>
-     <div class="menu-item">
-      <img src="img/limonlusoda.png" alt="Meşrubatlar" class="item-image" />
+    <div class="menu-item">
+      <img src="img/limonlusoda.png" alt="Meyveli Soda" class="item-image" />
       <div class="item-info"><h3>Meyveli Soda</h3></div>
       <span class="item-price">50₺</span>
     </div>
   </div>
-  
 </div>
 
 <div class="menu-footer">
@@ -950,7 +990,7 @@
 </div>
 
 <script>
-  /* MENÜ SEKME GEÇİŞİ */
+  // MENÜ SEKME GEÇİŞİ
   document.querySelectorAll('.nav-tab').forEach(tab => {
     tab.addEventListener('click', () => {
       const id = tab.getAttribute('data-tab');
@@ -961,7 +1001,7 @@
     });
   });
 
-  /* CAROUSEL */
+  // CAROUSEL
   (function(){
     const track    = document.getElementById('slidesTrack');
     const slides   = Array.from(track.querySelectorAll('.slide'));
@@ -972,7 +1012,7 @@
     let cur = 0, timer = null, rafId = null, rafStart = null;
     let dragging = false, startX = 0, delta = 0;
 
-    /* Nokta butonları oluştur */
+    // Nokta butonları oluştur
     const dots = slides.map(function(_, i) {
       var b = document.createElement('button');
       b.className = 'slide-dot' + (i === 0 ? ' active' : '');
