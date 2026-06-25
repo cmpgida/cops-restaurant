@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Çöps Restaurant – Menü</title>
+  <style>
+  /* ===== GOOGLE FONTLAR ===== */
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800;900&family=Roboto+Mono:wght@700&display=swap');
+
+  /* ===== CSS DEĞİŞKENLERİ ===== */
+  :root {
+    --coal: #1a1a1a;
+    --red: #D62828;
+    --cream: #F9F3E8;
+    --gold: #C9A84C;
+    --text: #2d2d2d;
+    --muted: #888;
+    --light-gray: #f5f5f5;
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    line-height: 1.6;
+  }
+
+  /* ===== HERO CAROUSEL ===== */
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 100svh;
+    max-height: 560px;
+    overflow: hidden;
+    background: var(--coal);
+  }
+
+  .slides-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.65s cubic-bezier(0.77, 0, 0.175, 1);
+    will-change: transform;
+  }
+
+  .slide {
+    min-width: 100%;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .slide-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.95) contrast(1.05);
+  }
+
+  .slide-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 5rem;
+  }
+  .slide:nth-child(1) .slide-fallback { background: linear-gradient(135deg, #3a1208, #1a0a0a); }
+  .slide:nth-child(2) .slide-fallback { background: linear-gradient(135deg, #1a1208, #2a1a08); }
+  .slide:nth-child(3) .slide-fallback { background: linear-gradient(135deg, #0a1a2a, #0a0a1a); }
+
+  .slide-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 50%, transparent 100%);
+    z-index: 1;
+  }
+
+  .slide-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    padding: 1.5rem 2rem 4rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .slide-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+  .slide-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--gold);
+  }
+
+  .slide-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 8vw, 3.2rem);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.5px;
+  }
+
+  .slide-sub {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  /* Logo Bar */
+  .hero-logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent);
+  }
+
+  .hero-logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 1px;
+  }
+  .hero-logo-text span {
+    color: var(--gold);
+  }
+
+  /* Arrow Buttons */
+  .slide-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: #fff;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    backdrop-filter: blur(4px);
+  }
+  .slide-arrow:hover {
+    background: var(--gold);
+    color: var(--coal);
+  }
+  .slide-arrow-l { left: 1rem; }
+  .slide-arrow-r { right: 1rem; }
+
+  /* Dots */
+  .slide-dots {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    gap: 8px;
+  }
+  .slide-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    border: none;
+    transition: var(--transition);
+  }
+  .slide-dot.active {
+    background: var(--gold);
+    width: 24px;
+    border-radius: 4px;
+  }
+
+  /* Progress Bar */
+  .hero-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.15);
+  }
+  .hero-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold), var(--red));
+    width: 0%;
+    transition: width 0.1s linear;
+  }
+
+  /* ===== BRAND BAR ===== */
+  .menu-brand {
+    background: var(--coal);
+    padding: 1.2rem 2rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: 0.5px;
+  }
+  .brand-name span {
+    color: var(--gold);
+  }
+  .brand-tag {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-top: 0.25rem;
+  }
+
+  /* ===== NAV TABS ===== */
+  .nav-wrap {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--coal);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+  .nav-tabs {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 0.5rem;
+    gap: 4px;
+  }
+  .nav-tabs::-webkit-scrollbar {
+    display: none;
+  }
+  .nav-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 16px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    white-space: nowrap;
+    border: none;
+    background: transparent;
+    font-family: 'Inter', sans-serif;
+    transition: var(--transition);
+    position: relative;
+    border-radius: 8px;
+  }
+  .nav-tab:hover {
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.05);
+  }
+  .nav-tab.active {
+    color: var(--gold);
+    background: rgba(201, 168, 76, 0.1);
+  }
+  .nav-tab::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 16px;
+    right: 16px;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: var(--transition);
+  }
+  .nav-tab.active::after {
+    transform: scaleX(1);
+  }
+  .tab-icon-wrap {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    font-size: 20px;
+  }
+  .nav-tab.active .tab-icon-wrap {
+    background: rgba(201, 168, 76, 0.2);
+  }
+  .tab-icon-wrap img {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    filter: brightness(0) invert(0.6);
+    transition: var(--transition);
+  }
+  .nav-tab.active .tab-icon-wrap img {
+    filter: brightness(0) saturate(100%) invert(78%) sepia(40%) saturate(500%) hue-rotate(5deg);
+  }
+
+  /* ===== CATEGORY SECTIONS ===== */
+  .category-section {
+    display: none;
+    padding: 1.5rem 1.2rem 4rem;
+    background: var(--cream);
+    min-height: 60vh;
+    animation: fadeIn 0.4s ease;
+  }
+  .category-section.active {
+    display: block;
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .sub-category {
+    margin-bottom: 2rem;
+  }
+  .sub-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--red);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1.2rem;
+    font-family: 'Inter', sans-serif;
+  }
+  .sub-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, rgba(214, 40, 40, 0.4), transparent);
+  }
+
+  /* ===== MENU ITEM ===== */
+  .menu-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px;
+    background: #fff;
+    border-radius: 16px;
+    margin-bottom: 12px;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    cursor: default;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  .menu-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(201, 168, 76, 0.3);
+  }
+  .menu-item:active {
+    transform: scale(0.99);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .item-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 12px;
+    object-fit: cover;
+    background: #f0ece5;
+    display: block;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  .item-info {
+    flex: 1;
+    min-width: 0;
+  }
+  .item-info h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+    line-height: 1.3;
+    letter-spacing: 0.2px;
+  }
+  .item-info p {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.5;
+    font-weight: 400;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Fiyat Stili - ÖNEMLİ! */
+  .item-price {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--red);
+    flex-shrink: 0;
+    text-align: right;
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+  }
+
+  /* ===== FOOTER ===== */
+  .menu-footer {
+    text-align: center;
+    padding: 2rem 1.5rem 3rem;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.4);
+    background: var(--coal);
+    letter-spacing: 0.5px;
+    line-height: 1.8;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (min-width: 480px) {
+    .hero {
+      max-height: 70vh;
+    }
+    .item-image {
+      width: 110px;
+      height: 110px;
+    }
+    .slide-content {
+      padding: 2rem 3rem 5rem;
+    }
+  }
+  @media (min-width: 768px) {
+    .hero {
+      max-height: 80vh;
+    }
+    .category-section {
+      padding: 2rem 2.5rem 5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .nav-tab {
+      padding: 14px 20px;
+      font-size: 0.85rem;
+    }
+    .item-image {
+      width: 120px;
+      height: 120px;
+    }
+    .menu-item {
+      gap: 20px;
+      padding: 16px;
+    }
+    .item-info h3 {
+      font-size: 1.1rem;
+    }
+    .item-price {
+      font-size: 1.3rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .category-section {
+      padding: 2.5rem 3rem 6rem;
+    }
+    .menu-item {
+      border-radius: 20px;
+      padding: 20px;
+    }
+    .item-image {
+      width: 140px;
+      height: 140px;
+      border-radius: 14px;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .slides-track {
+      transition: none;
+    }
+    .menu-item, .nav-tab {
+      transition: none;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ HERO CAROUSEL ══ -->
+<div class="hero" id="heroSlider">
+
+  <div class="hero-logo">
+    <div class="hero-logo-text">ÇÖPS<span>.</span></div>
+    <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);">Restaurant</div>
+  </div>
+
+  <div class="slides-track" id="slidesTrack">
+
+    <!-- Slayt 1 — Resimli -->
+    <div class="slide">
+      <img src="img/logo.jpg" alt="Çöpşiş" class="slide-img"
+           onerror="this.style.display='none'">
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <div class="slide-eyebrow">Ege'nin Lezzeti</div>
+        
+        <div class="slide-sub">Taze Malzeme · Odun Ateşi · Geleneksel Tarif</div>
+      </div>
+    </div>
+
+    
+    <div class="slide">
+      <div class="slide-fallback"></div>
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <div class="slide-eyebrow">Özel Menüler</div>
+        <div class="slide-headline">Ailenizle<br>Paylaşın.</div>
+        <div class="slide-sub">Geniş porsiyonlar · Tüm damak tatları için</div>
+      </div>
+    </div>
+
+   
+    <div class="slide">
+      <div class="slide-fallback"></div>
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <div class="slide-eyebrow">En Çok Sevilen</div>
+       <div class="slide-headline">Et Şişte<br>Ustalık.</div>
+        <div class="slide-sub">Gizli baharat karışımı · Günlük marine</div>
+      </div>
+    </div>
+
+  </div>
+
+  <button class="slide-arrow slide-arrow-l" id="slidePrev">&#8249;</button>
+  <button class="slide-arrow slide-arrow-r" id="slideNext">&#8250;</button>
+
+  <div class="slide-dots" id="slideDots"></div>
+
+  <div class="hero-progress">
+    <div class="hero-progress-bar" id="progressBar"></div>
+  </div>
+
+</div>
+<!-- ══ /HERO ══ -->
+
+<!-- Marka bar -->
+<div class="menu-brand">
+  <div>
+    <div class="brand-name">ÇÖPS Restaurant</div>
+    <div class="brand-tag">Ege'nin Meşhur Et &amp; Tavuk Lezzetleri</div>
+  </div>
+  <div style="font-size:10px;color:rgba(255,255,255,.25);text-align:right;letter-spacing:.5px;">
+    Fiyatlara<br>KDV dahildir
+  </div>
+</div>
+
+<!-- NAV TABS -->
+<div class="nav-wrap">
+  <nav class="nav-tabs" id="navTabs">
+    <button class="nav-tab active" data-tab="baslangic">
+      <div class="tab-icon-wrap"><img src="img/icon-baslangic.png" alt="" onerror="this.outerHTML='🥗'"></div>
+      Başlangıç
+    </button>
+    <button class="nav-tab" data-tab="et">
+      <div class="tab-icon-wrap"><img src="img/icon-et.png" alt="" onerror="this.outerHTML='🥩'"></div>
+      Et
+    </button>
+    <button class="nav-tab" data-tab="tavuk">
+      <div class="tab-icon-wrap"><img src="img/icon-tavuk.png" alt="" onerror="this.outerHTML='🍗'"></div>
+      Tavuk
+    </button>
+    <button class="nav-tab" data-tab="kofte">
+      <div class="tab-icon-wrap"><img src="img/icon-kofte.png" alt="" onerror="this.outerHTML='🍢'"></div>
+      Köfte
+    </button>
+    <button class="nav-tab" data-tab="hamburger">
+      <div class="tab-icon-wrap"><img src="img/icon-hamburger.png" alt="" onerror="this.outerHTML='🍔'"></div>
+      Burger
+    </button>
+    <button class="nav-tab" data-tab="cocuk">
+      <div class="tab-icon-wrap"><img src="img/icon-cocuk.png" alt="" onerror="this.outerHTML='⭐'"></div>
+      Çocuk
+    </button>
+    <button class="nav-tab" data-tab="icecek">
+      <div class="tab-icon-wrap"><img src="img/icon-icecek.png" alt="" onerror="this.outerHTML='🥤'"></div>
+      İçecek
+    </button>
+  </nav>
+</div>
+
+<!-- BAŞLANGIÇLAR -->
+<div id="baslangic" class="category-section active">
+  <div class="sub-category">
+    <div class="sub-title">Başlangıçlar</div>
+    <div class="menu-item">
+      <img src="img/mercimek.jpg"  class="item-image" />
+      <div class="item-info"><h3>Merimek Çorbası</h3></div>
+      <span class="item-price">110₺  / 80₺</span>
+    </div>
+    <div class="menu-item">
+      <img src="img/TAVUK SUYU.jpg"  class="item-image" />
+      <div class="item-info"><h3>Tavuk Suyu</h3></div>
+      <span class="item-price">135₺  / 100₺</span>
+    </div>
+    <div class="menu-item">
+      <img src="img/SALATA.jpg" alt="Mevsim Salatası" class="item-image" />
+      <div class="item-info"><h3>Mevsim Salatası</h3><p>Taze sebzeler, nar ekşisi sos</p></div>
+      <span class="item-price">80₺</span>
+    </div>
+    <div class="menu-item">
+      <img src="img/yogurt.jpg" alt="Yoğurt" class="item-image" />
+      <div class="item-info"><h3>Yoğurt</h3><p>Güveçte yoğurt</p></div>
+      <span class="item-price">80₺</span>
+    </div>
+  </div>
+  <div class="sub-category">
+    <div class="sub-title">Sıcak Başlangıçlar</div>
+    <div class="menu-item">
+      <img src="img/sogan-halkasi.jpg" alt="Çıtır Soğan Halkası" class="item-image" />
+      <div class="item-info"><h3>Çıtır Soğan Halkası</h3><p>3'lü 5'li 8'li</p></div>
+      <span class="item-price">50₺ / 80₺ / 110₺</span>
+    </div>
+    <div class="menu-item">
+      <img src="img/CITIRTAVUK.png" class="item-image" />
+      <div class="item-info"><h3>Çıtır Tavuk</h3><p>3'lü Çıtır Tavuk</p></div>
+      <span class="item-price">120₺</span>
+    </div>
+    <div class="menu-item">
+      <img src="img/PEYNIRCUBUGU.png" class="item-image" />
+      <div class="item-info"><h3>Peynir Çubuğu</h3><p>4'lü Peynir Çubuğu</p></div>
+      <span class="item-price">200₺</span>
+    </div>
+    <div class="menu-item">
+      <img src="img/TAVUKTOPLARI.png" class="item-image" />
+      <div class="item-info"><h3>Tavuk Topları</h3><p>6'lı Tavuk Topları</p></div>
+      <span class="item-price">120₺</span>
+    </div>
+    <div class="menu-item">
+      <img src="img/FALAFEL.png" class="item-image" />
+      <div class="item-info"><h3>Falafel</h3><p>3'lü falafel</p></div>
+      <span class="item-price">120₺</span>
+    </div>
+    <div class="menu-item">
+      <img src="img/KOMBOTABAGI.png" class="item-image" />
+      <div class="item-info"><h3>Kombo Tabağı</h3><p>Patates, soğan halkası, çıtır tavuk, peynir çubuğu, tavuk topları, falafel</p></div>
+      <span class="item-price">280₺</span>
+    </div>
+    <div class="menu-item">
+      <img src="img/makarna.png" alt="Makarna" class="item-image" />
+      <div class="item-info"><h3>Makarna</h3><p>Büyük / Küçük</p></div>
+      <span class="item-price">80₺ / 65₺</span>
+    </div>
+  </div>
+</div>
+
+<!-- ET -->
+<div id="et" class="category-section">
+  <div class="sub-category">
+    <div class="sub-title">Dana Etleri</div>
+    <div class="menu-item">
+      <img src="img/karisikizgara.jpg" alt="Karışık Izgara Menü" class="item-image" />
+      <div class="item-info"><h3>Karışık Izgara Menü</h3><p>7 çöpşiş, 2 kaşarlı köfte, 2 kasap köfte, 1 şiş sucuk, garnitür, çorba ve içecek</p></div>
+      <span class="item-price">795₺</span>
+    </div>
+    <div class="menu-item">
+      <img src="img/cöpsis.jpeg" alt="Çöpşiş" class="item-image" />
+      <div class="item-info"><h3>Çöpşiş</h3><p>145g, yanında garnitür ile</p></div>
+      <span class="item-price">485₺</span>
+    </div>
+    <div class="menu-item">
+      <img src="img/cöpsis.jpeg" alt="Çöpşiş Special" class="item-image" />
+      <div class="item-info"><h3>Çöpşiş Special</h3><p>145g, yanında garnitür ve baharatlar ile</p></div>
+      <span class="item-price">485₺</span>
+    </div>
+    <div class="menu-item">
+      <img src="img/saslik.jpeg" alt="Dana Şaşlık" class="item-image" />
+      <div class="item-info"><h3>Dana Şaşlık</h3><p>200gr dana etinden şaşlık, garnitür ile</p></div>
+      <span class="item-price">600₺</span>
+    </div>
+    <div class="menu-item">
+      <img src="img/Adsız_tasarım_(6).jpg" alt="Antrekot" class="item-image" />
+      <div class="item-info"><h3>Antrekot</h3><p>200gr dana eti antrekot, garnitür ile</p></div>
+      <span class="item-price">600₺</span>
+    </div>
+    <div class="menu-item">
+      <img src="img/Adsız_tasarım_(5).jpg" alt="Sucuk Tabağı" class="item-image" />
+      <div class="item-info"><h3>Sucuk Tabağı</h3><p>150gr sucuk, garnitür ile</p></div>
+      <span class="item-price">425₺</span>
+    </div>
+  </div>
+</div>
+
+<!-- TAVUK -->
+<div id="tavuk" class="category-section">
+  <div class="sub-category">
+    <div class="sub-title">Izgara Tavuk</div>
+    <div class="menu-item">
+      <img src="img/Adsız_tasarım_(11).jpg" alt="Tavuk Şiş" class="item-image" />
+      <div class="item-info"><h3>Tavuk Şiş</h3><p>200gr tavuk şiş, pesto soslu makarna ve salata ile</p></div>
+      <span class="item-price">385₺</span>
+    </div>
+    <div class="menu-item">
+      <img src="img/Adsız_tasarım_(12).jpg" alt="Light Tavuk" class="item-image" />
+      <div class="item-info"><h3>Light Tavuk</h3><p>200gr light tavuk, yoğurt ve salata ile</p></div>
+      <span class="item-price">385₺</span>
+    </div>
+  </div>
+  <div class="sub-category">
+    <div class="sub-title">Tava</div>
+    <div class="menu-item">
+      <img src="img/Adsız_tasarım_(8).jpg" alt="Soya Soslu Tavuk" class="item-image" />
+      <div class="item-info"><h3>Soya Soslu Tavuk</h3><p>200gr soya soslu tavuk, pesto soslu makarna ve salata ile</p></div>
+      <span class="item-price">375₺</span>
+    </div>
+    <div class="menu-item">
+      <img src="img/Adsız_tasarım_(9).jpg" alt="Kremalı Kaşarlı Mantarlı Tavuk" class="item-image" />
+      <div class="item-info"><h3>Kremalı Kaşarlı Mantarlı Tavuk</h3><p>200gr kaşarlı mantarlı soslu tavuk, pesto soslu makarna ve salata ile</p></div>
+      <span class="item-price">385₺</span>
+    </div>
+    <div class="menu-item">
+      <img src="img/Adsız_tasarım_(10).jpg" alt="Barbekü Soslu Tavuk" class="item-image" />
+      <div class="item-info"><h3>Barbekü Soslu Tavuk</h3><p>200gr barbekü soslu tavuk yeşil ve kırmızı biberle, pesto soslu makarna ve salata ile</p></div>
+      <span class="item-price">385₺</span>
+    </div>
+    <div class="menu-item">
+      <img src="img/Adsız_tasarım_(13).jpg" alt="Kekikli Tavuk" class="item-image" />
+      <div class="item-info"><h3>Kekikli Tavuk</h3><p>200gr kekikli tavuk, pesto soslu makarna ve salata ile</p></div>
+      <span class="item-price">375₺</span>
+    </div>
+    <div class="menu-item">
+      <img src="img/Adsız_tasarım_(14).jpg" alt="Köri Soslu Tavuk" class="item-image" />
+      <div class="item-info"><h3>Köri Soslu Tavuk</h3><p>200gr körili tavuk, pesto soslu makarna ve salata ile</p></div>
+      <span class="item-price">375₺</span>
+    </div>
+    <div class="menu-item">
+      <img src="img/Adsız_tasarım_(15).jpg" alt="Acı Soslu Tavuk" class="item-image" />
+      <div class="item-info"><h3>Acı Soslu Tavuk</h3><p>200gr acılı tavuk, pesto soslu makarna ve salata ile</p></div>
+      <span class="item-price">375₺</span>
+    </div>
+  </div>
+</div>
+
+<!-- KÖFTE -->
+<div id="kofte" class="category-section">
+  <div class="sub-category">
+    <div class="sub-title">Köfteler</div>
+    <div class="menu-item">
+      <img src="img/Adsız_tasarım_(1).jpg" alt="Izgara Köfte" class="item-image" />
+      <div class="item-info"><h3>Izgara Köfte</h3><p>8 adet inegöl köfte, garnitür ile</p></div>
+      <span class="item-price">425₺</span>
+    </div>
+    <div class="menu-item">
+      <img src="img/Adsız_tasarım_(2).jpg" alt="Pideli Köfte" class="item-image" />
+      <div class="item-info"><h3>Pideli Köfte</h3><p>8 adet inegöl köfte, iskender sos, yoğurt ve garnitür ile</p></div>
+      <span class="item-price">445₺</span>
+    </div>
+    <div class="menu-item">
+      <img src="img/Adsız_tasarım_(4).jpg" alt="Kaşarlı Köfte" class="item-image" />
+      <div class="item-info"><h3>Kaşarlı Köfte</h3><p>4 adet kaşarlı köfte, garnitür ile</p></div>
+      <span class="item-price">425₺</span>
+    </div>
+    <div class="menu-item">
+      <img src="img/Adsız_tasarım_(7).jpg" alt="Kasap Köfte" class="item-image" />
+      <div class="item-info"><h3>Kasap Köfte</h3><p>4 adet kasap köfte, garnitür ile</p></div>
+      <span class="item-price">425₺</span>
+    </div>
+  </div>
+</div>
+
+<!-- BURGER -->
+<div id="hamburger" class="category-section">
+  <div class="sub-category">
+    <div class="sub-title">Klasik Burgerler</div>
+    <div class="menu-item">
+      <img src="img/burger-cops.jpg" alt="Çöps Burger" class="item-image" />
+      <div class="item-info"><h3>Çöps Burger</h3><p>100gr dana köfte, özel sos, marul, karamalize soğan, patates ile</p></div>
+      <span class="item-price">350₺</span>
+    </div>
+    <div class="menu-item">
+      <img src="img/burger-meksika.jpg" alt="Mexico Burger" class="item-image" />
+      <div class="item-info"><h3>Mexico Burger</h3><p>100gr dana köfte, acı sos, jalapeño, özel sos, marul, karamalize soğan, patates ile</p></div>
+      <span class="item-price">360₺</span>
+    </div>
+    <div class="menu-item">
+      <img src="img/burger-cheese.jpg" alt="Nefis Cheese Burger" class="item-image" />
+      <div class="item-info"><h3>Nefis Cheese Burger</h3><p>100gr dana köfte, burger peyniri, özel sos, marul, karamalize soğan, patates ile</p></div>
+      <span class="item-price">360₺</span>
+    </div>
+    <div class="menu-item">
+      <img src="img/burger-tavuk.jpg" alt="Terbiyeli Tavuk Burger" class="item-image" />
+      <div class="item-info"><h3>Terbiyeli Tavuk Burger</h3><p>100gr tavuk, özel sos, marul, karamalize soğan, domates, patates ile</p></div>
+      <span class="item-price">275₺</span>
+    </div>
+  </div>
+  <div class="sub-category">
+    <div class="sub-title">Özel Burgerler</div>
+    <div class="menu-item">
+      <img src="img/burger-sef.jpg" alt="Şef Burger" class="item-image" />
+      <div class="item-info"><h3>Şef Burger</h3><p>100gr dana köfte, burger peyniri, dana jambon, özel sos, marul, karamalize soğan, patates ile</p></div>
+      <span class="item-price">480₺</span>
+    </div>
+    <div class="menu-item">
+      <img src="img/burger-super.png" alt="Süper Burger" class="item-image" />
+      <div class="item-info"><h3>Süper Burger</h3><p>200gr dana köfte, çift burger peyniri, dana jambon, özel sos, marul, karamalize soğan, patates ile</p></div>
+      <span class="item-price">600₺</span>
+    </div>
+  </div>
+</div>
+
+<!-- ÇOCUK -->
+<div id="cocuk" class="category-section">
+  <div class="sub-category">
+    <div class="sub-title">Ana Yemekler</div>
+    <div class="menu-item">
+      <img src="img/patateslicocuk.jpeg" alt="Patatesli Çocuk Tabağı" class="item-image" />
+      <div class="item-info"><h3>Patatesli Çocuk Tabağı</h3><p>4 adet çöpşiş, 1 adet kasap köfte, patates ,oyuncak ve içecek ile</p></div>
+      <span class="item-price">320₺</span>
+    </div>
+    <div class="menu-item">
+      <img src="img/makarnalicocuk.jpeg" alt="Makarnalı Çocuk Menü" class="item-image" />
+      <div class="item-info"><h3>Makarnalı Çocuk Menü</h3><p>4 adet çöpşiş, 1 adet kasap köfte, makarna , oyuncak ve içecek ile</p></div>
+      <span class="item-price">320₺</span>
+    </div>
+ 
+ <div class="menu-item">
+      <img src="img/kasapcocukmakarnali.jpeg" alt="Makarnalı Çocuk Menü" class="item-image" />
+      <div class="item-info">
+        <h3>Makarnalı Kasap Çocuk Menü</h3>
+        <p> 2 adet kasap köfte, makarna ,oyuncak ve içecek ile</p></div>
+      <span class="item-price">320₺</span>
+    </div>
+    <div class="menu-item">
+      <img src="img/kasapcocuk.jpeg" alt="Makarnalı Çocuk Menü" class="item-image" />
+      <div class="item-info">
+        <h3>Patatesli Kasap Çocuk Menü</h3>
+        <p> 2 adet kasap köfte, patates, oyuncak ve içecek ile</p></div>
+      <span class="item-price">320₺</span>
+    </div>
+    <div class="menu-item">
+      <img src="img/burger-cops.jpg" alt="Makarnalı Çocuk Menü" class="item-image" />
+      <div class="item-info">
+        <h3>Çocuk Burger</h3>
+        <p> Yeşillik ve sos , patates ,içecek, oyuncak ile beraber </p></div>
+      <span class="item-price">320₺</span>
+    </div>
+  </div>
+ 
+   
+  </div>
+
+
+<!-- İÇECEK -->
+<div id="icecek" class="category-section">
+  <div class="sub-category">
+    <div class="sub-title">Soğuk İçecekler</div>
+    <div class="menu-item">
+      <img src="img/limonata.webp" alt="Limonata" class="item-image" />
+      <div class="item-info"><h3>Limonata</h3></div>
+      <span class="item-price">90₺</span>
+    </div>
+    <div class="menu-item">
+      <img src="img/i-_6_.jpg" alt="Ayran" class="item-image" />
+      <div class="item-info"><h3>Ayran</h3></div>
+      <span class="item-price">90₺</span>
+    </div>
+    <div class="menu-item">
+      <img src="img/kola.jpg" alt="Meşrubatlar" class="item-image" />
+      <div class="item-info"><h3>Meşrubatlar</h3><p>Cola, Zero , Sprite, Fanta, Fuse Tea</p></div>
+      <span class="item-price">90₺</span>
+    </div>
+    <div class="menu-item">
+      <img src="img/soda.jpg" alt="Meşrubatlar" class="item-image" />
+      <div class="item-info"><h3>Soda</h3></div>
+      <span class="item-price">45₺</span>
+    </div>
+     <div class="menu-item">
+      <img src="img/limonlusoda.png" alt="Meşrubatlar" class="item-image" />
+      <div class="item-info"><h3>Meyveli Soda</h3></div>
+      <span class="item-price">50₺</span>
+    </div>
+  </div>
+  
+</div>
+
+<div class="menu-footer">
+  <p>Fiyatlara KDV dahildir · Alerjen bilgisi için personelimize sorunuz</p>
+</div>
+
+<script>
+  /* MENÜ SEKME GEÇİŞİ */
+  document.querySelectorAll('.nav-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const id = tab.getAttribute('data-tab');
+      document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.category-section').forEach(s => s.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(id).classList.add('active');
+    });
+  });
+
+  /* CAROUSEL */
+  (function(){
+    const track    = document.getElementById('slidesTrack');
+    const slides   = Array.from(track.querySelectorAll('.slide'));
+    const dotsWrap = document.getElementById('slideDots');
+    const pbarEl   = document.getElementById('progressBar');
+    const N        = slides.length;
+    const DELAY    = 5000;
+    let cur = 0, timer = null, rafId = null, rafStart = null;
+    let dragging = false, startX = 0, delta = 0;
+
+    /* Nokta butonları oluştur */
+    const dots = slides.map(function(_, i) {
+      var b = document.createElement('button');
+      b.className = 'slide-dot' + (i === 0 ? ' active' : '');
+      b.setAttribute('aria-label', 'Slayt ' + (i + 1));
+      b.onclick = function(){ go(i); };
+      dotsWrap.appendChild(b);
+      return b;
+    });
+
+    function render() {
+      track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+      dots.forEach(function(d, i){ d.className = 'slide-dot' + (i === cur ? ' active' : ''); });
+    }
+
+    function go(i) {
+      cur = (i + N) % N;
+      render();
+      restartAuto();
+    }
+
+    function stopAuto() {
+      clearInterval(timer);
+      cancelAnimationFrame(rafId);
+      pbarEl.style.width = '0%';
+    }
+
+    function restartAuto() {
+      stopAuto();
+      rafStart = null;
+      function step(ts) {
+        if (!rafStart) rafStart = ts;
+        var pct = Math.min((ts - rafStart) / DELAY * 100, 100);
+        pbarEl.style.width = pct + '%';
+        if (pct < 100) rafId = requestAnimationFrame(step);
+      }
+      rafId = requestAnimationFrame(step);
+      timer = setInterval(function(){ go(cur + 1); }, DELAY);
+    }
+
+    document.getElementById('slidePrev').onclick = function(){ go(cur - 1); };
+    document.getElementById('slideNext').onclick = function(){ go(cur + 1); };
+
+    track.addEventListener('touchstart', function(e){
+      dragging = true; startX = e.touches[0].clientX; delta = 0; stopAuto();
+    }, { passive: true });
+
+    track.addEventListener('touchmove', function(e){
+      if (!dragging) return;
+      delta = e.touches[0].clientX - startX;
+      track.style.transform = 'translateX(calc(-' + (cur * 100) + '% + ' + delta + 'px))';
+    }, { passive: true });
+
+    track.addEventListener('touchend', function(){
+      if (!dragging) return;
+      dragging = false;
+      if (delta < -50)      go(cur + 1);
+      else if (delta > 50)  go(cur - 1);
+      else                  render();
+      restartAuto();
+    });
+
+    document.addEventListener('visibilitychange', function(){
+      if (document.hidden) stopAuto(); else restartAuto();
+    });
+
+    render();
+    restartAuto();
+  })();
+</script>
+
+</body>
+</html>
