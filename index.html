@@ -372,6 +372,28 @@
       .menu-item { border-radius: 16px; }
     }
 
+    /* İÇECEK — daha kompakt kartlar */
+    #icecek .item-image {
+      height: 130px;
+    }
+    #icecek .item-bottom {
+      padding: 10px 12px;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    #icecek .item-info h3 {
+      font-size: 0.88rem;
+    }
+    #icecek .item-price {
+      font-size: 0.9rem;
+    }
+    @media (min-width: 600px) {
+      #icecek .item-image { height: 140px; }
+    }
+    @media (min-width: 768px) {
+      #icecek .item-image { height: 150px; }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .slides-track, .menu-item, .nav-tab { transition: none; }
     }
