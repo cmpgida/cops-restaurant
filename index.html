@@ -250,68 +250,67 @@
     }
     .sub-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, rgba(214, 40, 40, 0.4), transparent); }
 
-    /* MENU ITEM - FIXED */
+    /* MENU ITEM — görsel üstte tam genişlik, bilgi + fiyat altta */
     .menu-item {
       display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 12px;
+      flex-direction: column;
       background: #fff;
-      border-radius: 12px;
-      margin-bottom: 10px;
+      border-radius: 14px;
+      margin-bottom: 14px;
       box-shadow: var(--shadow-sm);
       transition: var(--transition);
       cursor: default;
       border: 1px solid rgba(0, 0, 0, 0.05);
+      overflow: hidden;
     }
-    .menu-item:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); border-color: rgba(201, 168, 76, 0.3); }
+    .menu-item:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: rgba(201, 168, 76, 0.3); }
     .menu-item:active { transform: scale(0.99); box-shadow: var(--shadow-sm); }
+
+    /* Görsel tam genişlik, kart üstünde */
     .item-image {
-      width: 150px;
-      height: 150px;
-      border-radius: 10px;
+      width: 100%;
+      height: 190px;
       object-fit: cover;
-      background: #f0ece5;
       display: block;
+      background: #f0ece5;
       flex-shrink: 0;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    }
+
+    /* İsim + açıklama + fiyat alt bant */
+    .item-bottom {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
     }
     .item-info {
       flex: 1;
       min-width: 0;
-      display: flex;
-      flex-direction: column;
     }
     .item-info h3 {
       font-family: 'Inter', sans-serif;
       font-size: 0.95rem;
       font-weight: 600;
       color: var(--text);
-      margin-bottom: 4px;
+      margin-bottom: 3px;
       line-height: 1.2;
       letter-spacing: 0.2px;
     }
     .item-info p {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--muted);
       line-height: 1.4;
       font-weight: 400;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      margin-top: 2px;
     }
     .item-price {
       font-family: 'Roboto Mono', monospace;
-      font-size: 0.95rem;
+      font-size: 1rem;
       font-weight: 700;
       color: var(--red);
       white-space: nowrap;
       letter-spacing: 0.3px;
       line-height: 1.1;
-      margin-left: auto;
-      align-self: center;
+      flex-shrink: 0;
     }
 
     /* FOOTER */
@@ -326,45 +325,53 @@
       border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    /* RESPONSIVE - FIXED */
+    /* RESPONSIVE */
     @media (max-width: 480px) {
-      .menu-item { padding: 10px; }
-      .item-image { width: 70px; height: 70px; }
+      .item-image { height: 170px; }
+      .item-bottom { padding: 10px 12px; }
       .item-info h3 { font-size: 0.9rem; }
-      .item-info p { font-size: 0.75rem; }
-      .item-price { font-size: 0.9rem; }
+      .item-info p { font-size: 0.74rem; }
+      .item-price { font-size: 0.95rem; }
       .nav-tab { padding: 8px 10px; font-size: 0.65rem; min-width: 60px; }
       .hero { height: 60vh; max-height: 350px; }
       .slide-content { padding: 0.8rem 1rem 2rem; }
+      .category-section { padding: 0.8rem; }
     }
-    @media (min-width: 481px) and (max-width: 767px) {
-      .item-image { width: 85px; height: 85px; }
-      .menu-item { padding: 11px; }
-      .item-info h3 { font-size: 0.92rem; }
-      .item-price { font-size: 0.92rem; }
+
+    @media (min-width: 600px) {
+      .items-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      .items-grid .menu-item { margin-bottom: 0; }
+      .item-image { height: 200px; }
     }
+
     @media (min-width: 768px) {
       .hero { height: 75vh; max-height: 480px; }
       .slide-content { padding: 1.5rem 1.8rem 3.5rem; }
       .hero-logo { padding: 1.2rem 1.8rem; }
       .hero-logo-text { font-size: 1.5rem; }
-      .item-image { width: 90px; height: 90px; }
-      .item-price { font-size: 1rem; }
-      .menu-item { padding: 12px; }
+      .item-image { height: 210px; }
+      .item-price { font-size: 1.05rem; }
       .category-section { padding: 1.5rem 1.5rem 3rem; max-width: 900px; margin: 0 auto; }
       .nav-tab { padding: 12px 14px; font-size: 0.75rem; }
       .sub-title { font-size: 0.85rem; gap: 10px; }
     }
+
     @media (min-width: 1024px) {
       .hero { height: 80vh; max-height: 560px; }
-      .category-section { padding: 2rem 2rem 4rem; max-width: 1000px; }
-      .menu-item { border-radius: 16px; padding: 14px; }
-      .item-image { width: 100px; height: 100px; border-radius: 12px; }
-      .item-price { font-size: 1.1rem; }
+      .category-section { padding: 2rem 2rem 4rem; max-width: 1100px; }
+      .items-grid { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+      .item-image { height: 220px; }
       .item-info h3 { font-size: 1rem; }
+      .item-price { font-size: 1.1rem; }
       .nav-tab { padding: 12px 16px; }
       .tab-icon-wrap { width: 36px; height: 36px; }
+      .menu-item { border-radius: 16px; }
     }
+
     @media (prefers-reduced-motion: reduce) {
       .slides-track, .menu-item, .nav-tab { transition: none; }
     }
@@ -438,63 +445,56 @@
 <div id="baslangic" class="category-section active">
   <div class="sub-category">
     <div class="sub-title">Başlangıçlar</div>
-    <div class="menu-item">
-      <img src="img/mercimek.jpg" class="item-image" />
-      <div class="item-info"><h3>Mercimek Çorbası</h3></div>
-      <span class="item-price">110 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/TAVUK SUYU.jpg" class="item-image" />
-      <div class="item-info"><h3>Tavuk Suyu</h3></div>
-      <span class="item-price">135 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/SALATA.png" class="item-image" />
-      <div class="item-info"><h3>Mevsim Salatası</h3><p>Taze sebzeler, nar ekşisi sos</p></div>
-      <span class="item-price">80 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/yogurt.jpg" class="item-image" />
-      <div class="item-info"><h3>Yoğurt</h3><p>Güveçte yoğurt</p></div>
-      <span class="item-price">80 TL</span>
+    <div class="items-grid">
+      <div class="menu-item">
+        <img src="img/mercimek.jpg" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Mercimek Çorbası</h3></div><span class="item-price">110 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/TAVUK SUYU.jpg" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Tavuk Suyu</h3></div><span class="item-price">135 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/SALATA.png" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Mevsim Salatası</h3><p>Taze sebzeler, nar ekşisi sos</p></div><span class="item-price">80 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/yogurt.jpg" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Yoğurt</h3><p>Güveçte yoğurt</p></div><span class="item-price">80 TL</span></div>
+      </div>
     </div>
   </div>
   <div class="sub-category">
     <div class="sub-title">Sıcak Başlangıçlar</div>
-    <div class="menu-item">
-      <img src="img/SOGANHALKASI.png" class="item-image" />
-      <div class="item-info"><h3>Çıtır Soğan Halkası</h3><p>3'lü / 5'li / 8'li</p></div>
-      <span class="item-price">50 TL / 80 TL / 110 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/CITIRTAVUK.png" class="item-image" />
-      <div class="item-info"><h3>Çıtır Tavuk</h3><p>3'lü Çıtır Tavuk</p></div>
-      <span class="item-price">120 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/PEYNIRCUBUGU.png" class="item-image" />
-      <div class="item-info"><h3>Peynir Çubuğu</h3><p>4'lü Peynir Çubuğu</p></div>
-      <span class="item-price">200 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/TAVUKTOPLARI.png" class="item-image" />
-      <div class="item-info"><h3>Tavuk Topları</h3><p>6'lı Tavuk Topları</p></div>
-      <span class="item-price">120 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/FALAFEL.png" class="item-image" />
-      <div class="item-info"><h3>Falafel</h3><p>3'lü falafel</p></div>
-      <span class="item-price">120 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/KOMBOTABAGI.png" class="item-image" />
-      <div class="item-info"><h3>Kombo Tabağı</h3><p>Patates, soğan halkası, çıtır tavuk, peynir çubuğu, tavuk topları, falafel</p></div>
-      <span class="item-price">280 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/makarna.png" class="item-image" />
-      <div class="item-info"><h3>Makarna</h3><p>Büyük / Küçük</p></div>
-      <span class="item-price">80 TL / 65 TL</span>
+    <div class="items-grid">
+      <div class="menu-item">
+        <img src="img/SOGANHALKASI.png" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Çıtır Soğan Halkası</h3><p>3'lü / 5'li / 8'li</p></div><span class="item-price">50 / 80 / 110 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/CITIRTAVUK.png" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Çıtır Tavuk</h3><p>3'lü Çıtır Tavuk</p></div><span class="item-price">120 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/PEYNIRCUBUGU.png" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Peynir Çubuğu</h3><p>4'lü Peynir Çubuğu</p></div><span class="item-price">200 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/TAVUKTOPLARI.png" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Tavuk Topları</h3><p>6'lı Tavuk Topları</p></div><span class="item-price">120 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/FALAFEL.png" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Falafel</h3><p>3'lü falafel</p></div><span class="item-price">120 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/KOMBOTABAGI.png" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Kombo Tabağı</h3><p>Patates, soğan halkası, çıtır tavuk, peynir çubuğu, tavuk topları, falafel</p></div><span class="item-price">280 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/makarna.png" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Makarna</h3><p>Büyük / Küçük</p></div><span class="item-price">80 / 65 TL</span></div>
+      </div>
     </div>
   </div>
 </div>
@@ -503,35 +503,31 @@
 <div id="et" class="category-section">
   <div class="sub-category">
     <div class="sub-title">Dana Etleri</div>
-    <div class="menu-item">
-      <img src="img/karisikizgara.jpg" class="item-image" />
-      <div class="item-info"><h3>Karışık Izgara Menü</h3><p>(270gr-280gr) 7 adet çöpşiş, 2 kaşarlı köfte, 2 kasap köfte, 1 şiş sucuk, garnitür, çorba ve içecek</p></div>
-      <span class="item-price">795 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/cöpsis.jpeg" class="item-image" />
-      <div class="item-info"><h3>Çöpşiş</h3><p>145g, yanında garnitür ile</p></div>
-      <span class="item-price">485 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/cöpsis.jpeg" class="item-image" />
-      <div class="item-info"><h3>Çöpşiş Special</h3><p>145g, yanında garnitür ve baharatlar ile</p></div>
-      <span class="item-price">485 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/Adsız_tasarım_(3).jpg" class="item-image" />
-      <div class="item-info"><h3>Dana Şaşlık</h3><p>200gr dana etinden şaşlık, garnitür ile</p></div>
-      <span class="item-price">600 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/Adsız_tasarım_(6).jpg" class="item-image" />
-      <div class="item-info"><h3>Antrekot</h3><p>200gr dana eti antrekot, garnitür ile</p></div>
-      <span class="item-price">600 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/Adsız_tasarım_(5).jpg" class="item-image" />
-      <div class="item-info"><h3>Sucuk Tabağı</h3><p>150gr sucuk, garnitür ile</p></div>
-      <span class="item-price">425 TL</span>
+    <div class="items-grid">
+      <div class="menu-item">
+        <img src="img/karisikizgara.jpg" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Karışık Izgara Menü</h3><p>(270gr-280gr) 7 adet çöpşiş, 2 kaşarlı köfte, 2 kasap köfte, 1 şiş sucuk, garnitür, çorba ve içecek</p></div><span class="item-price">795 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/cöpsis.jpeg" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Çöpşiş</h3><p>145g, yanında garnitür ile</p></div><span class="item-price">485 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/cöpsis.jpeg" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Çöpşiş Special</h3><p>145g, yanında garnitür ve baharatlar ile</p></div><span class="item-price">485 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/Adsız_tasarım_(3).jpg" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Dana Şaşlık</h3><p>200gr dana etinden şaşlık, garnitür ile</p></div><span class="item-price">600 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/Adsız_tasarım_(6).jpg" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Antrekot</h3><p>200gr dana eti antrekot, garnitür ile</p></div><span class="item-price">600 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/Adsız_tasarım_(5).jpg" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Sucuk Tabağı</h3><p>150gr sucuk, garnitür ile</p></div><span class="item-price">425 TL</span></div>
+      </div>
     </div>
   </div>
 </div>
@@ -540,63 +536,56 @@
 <div id="tavuk" class="category-section">
   <div class="sub-category">
     <div class="sub-title">Izgara Tavuk</div>
-    <div class="menu-item">
-      <img src="img/Adsız_tasarım_(11).jpg" class="item-image" />
-      <div class="item-info"><h3>Tavuk Şiş</h3><p>200gr tavuk şiş, pesto soslu makarna ve salata ile</p></div>
-      <span class="item-price">385 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/Adsız_tasarım_(12).jpg" class="item-image" />
-      <div class="item-info"><h3>Light Tavuk</h3><p>200gr light tavuk, yoğurt ve salata ile</p></div>
-      <span class="item-price">385 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/karisiktavuk.jpeg" class="item-image" />
-      <div class="item-info"><h3>Karışık Tavuk Tabağı</h3><p>100gr light tavuk, 100gr tavuk şiş, 100gr soslu tavuk, pesto soslu makarna, salata ile</p></div>
-      <span class="item-price">545 TL</span>
+    <div class="items-grid">
+      <div class="menu-item">
+        <img src="img/Adsız_tasarım_(11).jpg" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Tavuk Şiş</h3><p>200gr tavuk şiş, pesto soslu makarna ve salata ile</p></div><span class="item-price">385 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/Adsız_tasarım_(12).jpg" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Light Tavuk</h3><p>200gr light tavuk, yoğurt ve salata ile</p></div><span class="item-price">385 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/karisiktavuk.jpeg" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Karışık Tavuk Tabağı</h3><p>100gr light tavuk, 100gr tavuk şiş, 100gr soslu tavuk, pesto soslu makarna, salata ile</p></div><span class="item-price">545 TL</span></div>
+      </div>
     </div>
   </div>
   <div class="sub-category">
     <div class="sub-title">Tava</div>
-    <div class="menu-item">
-      <img src="img/Adsız_tasarım_(15).jpg" class="item-image" />
-      <div class="item-info"><h3>Soya Soslu Tavuk</h3><p>200gr soya soslu tavuk, pesto soslu makarna ve salata ile</p></div>
-      <span class="item-price">375 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/Adsız_tasarım_(9).jpg" class="item-image" />
-      <div class="item-info"><h3>Kremalı Kaşarlı Mantarlı Tavuk</h3><p>200gr kaşarlı mantarlı soslu tavuk, pesto soslu makarna ve salata ile</p></div>
-      <span class="item-price">385 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/Adsız_tasarım_(10).jpg" class="item-image" />
-      <div class="item-info"><h3>Barbekü Soslu Tavuk</h3><p>200gr barbekü soslu tavuk, yeşil ve kırmızı biberle, pesto soslu makarna ve salata ile</p></div>
-      <span class="item-price">385 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/Adsız_tasarım_(13).jpg" class="item-image" />
-      <div class="item-info"><h3>Kekikli Tavuk</h3><p>200gr kekikli tavuk, pesto soslu makarna ve salata ile</p></div>
-      <span class="item-price">375 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/sweatchili.png" class="item-image" />
-      <div class="item-info"><h3>Sweet Chili Soslu Tavuk</h3><p>200gr sweet chili soslu tavuk, pesto soslu makarna ve salata ile</p></div>
-      <span class="item-price">375 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/acilikori.png" class="item-image" />
-      <div class="item-info"><h3>Acılı Körili Tavuk</h3><p>200gr acılı körili tavuk, pesto soslu makarna ve salata ile</p></div>
-      <span class="item-price">375 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/Adsız_tasarım_(14).jpg" class="item-image" />
-      <div class="item-info"><h3>Köri Soslu Tavuk</h3><p>200gr körili tavuk, pesto soslu makarna ve salata ile</p></div>
-      <span class="item-price">375 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/Adsız_tasarım_(8).jpg" class="item-image" />
-      <div class="item-info"><h3>Acı Soslu Tavuk</h3><p>200gr acılı tavuk, pesto soslu makarna ve salata ile</p></div>
-      <span class="item-price">375 TL</span>
+    <div class="items-grid">
+      <div class="menu-item">
+        <img src="img/Adsız_tasarım_(15).jpg" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Soya Soslu Tavuk</h3><p>200gr soya soslu tavuk, pesto soslu makarna ve salata ile</p></div><span class="item-price">375 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/Adsız_tasarım_(9).jpg" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Kremalı Kaşarlı Mantarlı Tavuk</h3><p>200gr kaşarlı mantarlı soslu tavuk, pesto soslu makarna ve salata ile</p></div><span class="item-price">385 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/Adsız_tasarım_(10).jpg" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Barbekü Soslu Tavuk</h3><p>200gr barbekü soslu tavuk, yeşil ve kırmızı biberle, pesto soslu makarna ve salata ile</p></div><span class="item-price">385 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/Adsız_tasarım_(13).jpg" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Kekikli Tavuk</h3><p>200gr kekikli tavuk, pesto soslu makarna ve salata ile</p></div><span class="item-price">375 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/sweatchili.png" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Sweet Chili Soslu Tavuk</h3><p>200gr sweet chili soslu tavuk, pesto soslu makarna ve salata ile</p></div><span class="item-price">375 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/acilikori.png" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Acılı Körili Tavuk</h3><p>200gr acılı körili tavuk, pesto soslu makarna ve salata ile</p></div><span class="item-price">375 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/Adsız_tasarım_(14).jpg" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Köri Soslu Tavuk</h3><p>200gr körili tavuk, pesto soslu makarna ve salata ile</p></div><span class="item-price">375 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/Adsız_tasarım_(8).jpg" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Acı Soslu Tavuk</h3><p>200gr acılı tavuk, pesto soslu makarna ve salata ile</p></div><span class="item-price">375 TL</span></div>
+      </div>
     </div>
   </div>
 </div>
@@ -605,25 +594,23 @@
 <div id="kofte" class="category-section">
   <div class="sub-category">
     <div class="sub-title">Köfteler</div>
-    <div class="menu-item">
-      <img src="img/Adsız_tasarım_(1).jpg" class="item-image" />
-      <div class="item-info"><h3>Izgara Köfte</h3><p>(130gr - 140gr) 8 adet inegöl köfte, garnitür ile</p></div>
-      <span class="item-price">425 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/Adsız_tasarım_(2).jpg" class="item-image" />
-      <div class="item-info"><h3>Pideli Köfte</h3><p>(130gr - 140gr) 8 adet inegöl köfte, iskender sos, yoğurt ve garnitür ile</p></div>
-      <span class="item-price">445 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/Adsız_tasarım_(4).jpg" class="item-image" />
-      <div class="item-info"><h3>Kaşarlı Köfte</h3><p>(130gr - 140gr) 4 adet kaşarlı köfte, garnitür ile</p></div>
-      <span class="item-price">425 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/Adsız_tasarım_(7).jpg" class="item-image" />
-      <div class="item-info"><h3>Kasap Köfte</h3><p>(130gr - 140gr) 4 adet kasap köfte, garnitür ile</p></div>
-      <span class="item-price">425 TL</span>
+    <div class="items-grid">
+      <div class="menu-item">
+        <img src="img/Adsız_tasarım_(1).jpg" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Izgara Köfte</h3><p>(130gr - 140gr) 8 adet inegöl köfte, garnitür ile</p></div><span class="item-price">425 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/Adsız_tasarım_(2).jpg" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Pideli Köfte</h3><p>(130gr - 140gr) 8 adet inegöl köfte, iskender sos, yoğurt ve garnitür ile</p></div><span class="item-price">445 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/Adsız_tasarım_(4).jpg" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Kaşarlı Köfte</h3><p>(130gr - 140gr) 4 adet kaşarlı köfte, garnitür ile</p></div><span class="item-price">425 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/Adsız_tasarım_(7).jpg" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Kasap Köfte</h3><p>(130gr - 140gr) 4 adet kasap köfte, garnitür ile</p></div><span class="item-price">425 TL</span></div>
+      </div>
     </div>
   </div>
 </div>
@@ -632,38 +619,36 @@
 <div id="hamburger" class="category-section">
   <div class="sub-category">
     <div class="sub-title">Klasik Burgerler</div>
-    <div class="menu-item">
-      <img src="img/burger-cops.jpg" class="item-image" />
-      <div class="item-info"><h3>Çöps Burger</h3><p>100gr dana köfte, özel sos, marul, karamalize soğan, patates ile</p></div>
-      <span class="item-price">350 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/burger-meksika.jpg" class="item-image" />
-      <div class="item-info"><h3>Mexico Burger</h3><p>100gr dana köfte, acı sos, jalapeño, özel sos, marul, karamalize soğan, patates ile</p></div>
-      <span class="item-price">360 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/burger-cheese.jpg" class="item-image" />
-      <div class="item-info"><h3>Nefis Cheese Burger</h3><p>100gr dana köfte, burger peyniri, özel sos, marul, karamalize soğan, patates ile</p></div>
-      <span class="item-price">360 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/burger-tavuk.jpg" class="item-image" />
-      <div class="item-info"><h3>Terbiyeli Tavuk Burger</h3><p>100gr tavuk, özel sos, marul, karamalize soğan, domates, patates ile</p></div>
-      <span class="item-price">275 TL</span>
+    <div class="items-grid">
+      <div class="menu-item">
+        <img src="img/burger-cops.jpg" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Çöps Burger</h3><p>100gr dana köfte, özel sos, marul, karamalize soğan, patates ile</p></div><span class="item-price">350 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/burger-meksika.jpg" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Mexico Burger</h3><p>100gr dana köfte, acı sos, jalapeño, özel sos, marul, karamalize soğan, patates ile</p></div><span class="item-price">360 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/burger-cheese.jpg" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Nefis Cheese Burger</h3><p>100gr dana köfte, burger peyniri, özel sos, marul, karamalize soğan, patates ile</p></div><span class="item-price">360 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/burger-tavuk.jpg" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Terbiyeli Tavuk Burger</h3><p>100gr tavuk, özel sos, marul, karamalize soğan, domates, patates ile</p></div><span class="item-price">275 TL</span></div>
+      </div>
     </div>
   </div>
   <div class="sub-category">
     <div class="sub-title">Özel Burgerler</div>
-    <div class="menu-item">
-      <img src="img/burger-sef.jpg" class="item-image" />
-      <div class="item-info"><h3>Şef Burger</h3><p>100gr dana köfte, burger peyniri, dana jambon, özel sos, marul, karamalize soğan, patates ile</p></div>
-      <span class="item-price">480 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/burger-super.png" class="item-image" />
-      <div class="item-info"><h3>Süper Burger</h3><p>200gr dana köfte, çift burger peyniri, dana jambon, özel sos, marul, karamalize soğan, patates ile</p></div>
-      <span class="item-price">600 TL</span>
+    <div class="items-grid">
+      <div class="menu-item">
+        <img src="img/burger-sef.jpg" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Şef Burger</h3><p>100gr dana köfte, burger peyniri, dana jambon, özel sos, marul, karamalize soğan, patates ile</p></div><span class="item-price">480 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/burger-super.png" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Süper Burger</h3><p>200gr dana köfte, çift burger peyniri, dana jambon, özel sos, marul, karamalize soğan, patates ile</p></div><span class="item-price">600 TL</span></div>
+      </div>
     </div>
   </div>
 </div>
@@ -672,35 +657,31 @@
 <div id="cocuk" class="category-section">
   <div class="sub-category">
     <div class="sub-title">Ana Yemekler</div>
-    <div class="menu-item">
-      <img src="img/patateslicocuk.jpeg" class="item-image" />
-      <div class="item-info"><h3>Patatesli Çocuk Tabağı</h3><p>4 adet çöpşiş, 1 adet kasap köfte, patates, oyuncak ve içecek ile</p></div>
-      <span class="item-price">320 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/makarnalicocuk.jpeg" class="item-image" />
-      <div class="item-info"><h3>Makarnalı Çocuk Menü</h3><p>4 adet çöpşiş, 1 adet kasap köfte, makarna, oyuncak ve içecek ile</p></div>
-      <span class="item-price">320 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/cöpsiscocuk.jpeg" class="item-image" />
-      <div class="item-info"><h3>Çöpşiş Çocuk Tabağı</h3><p>6 adet çöpşiş, patates kızartması, oyuncak ve içecek ile</p></div>
-      <span class="item-price">320 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/kasapcocukmakarnali.jpeg" class="item-image" />
-      <div class="item-info"><h3>Makarnalı Kasap Çocuk Menü</h3><p>2 adet kasap köfte, makarna, oyuncak ve içecek ile</p></div>
-      <span class="item-price">320 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/kasapcocuk.jpeg" class="item-image" />
-      <div class="item-info"><h3>Patatesli Kasap Çocuk Menü</h3><p>2 adet kasap köfte, patates, oyuncak ve içecek ile</p></div>
-      <span class="item-price">320 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/burger-cops.jpg" class="item-image" />
-      <div class="item-info"><h3>Çocuk Burger</h3><p>Yeşillik ve sos, patates, içecek, oyuncak ile beraber</p></div>
-      <span class="item-price">320 TL</span>
+    <div class="items-grid">
+      <div class="menu-item">
+        <img src="img/patateslicocuk.jpeg" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Patatesli Çocuk Tabağı</h3><p>4 adet çöpşiş, 1 adet kasap köfte, patates, oyuncak ve içecek ile</p></div><span class="item-price">320 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/makarnalicocuk.jpeg" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Makarnalı Çocuk Menü</h3><p>4 adet çöpşiş, 1 adet kasap köfte, makarna, oyuncak ve içecek ile</p></div><span class="item-price">320 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/cöpsiscocuk.jpeg" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Çöpşiş Çocuk Tabağı</h3><p>6 adet çöpşiş, patates kızartması, oyuncak ve içecek ile</p></div><span class="item-price">320 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/kasapcocukmakarnali.jpeg" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Makarnalı Kasap Çocuk Menü</h3><p>2 adet kasap köfte, makarna, oyuncak ve içecek ile</p></div><span class="item-price">320 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/kasapcocuk.jpeg" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Patatesli Kasap Çocuk Menü</h3><p>2 adet kasap köfte, patates, oyuncak ve içecek ile</p></div><span class="item-price">320 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/burger-cops.jpg" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Çocuk Burger</h3><p>Yeşillik ve sos, patates, içecek, oyuncak ile beraber</p></div><span class="item-price">320 TL</span></div>
+      </div>
     </div>
   </div>
 </div>
@@ -709,40 +690,35 @@
 <div id="icecek" class="category-section">
   <div class="sub-category">
     <div class="sub-title">Soğuk İçecekler</div>
-    <div class="menu-item">
-      <img src="img/limonata.webp" class="item-image" />
-      <div class="item-info"><h3>Limonata</h3></div>
-      <span class="item-price">90 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/i-_6_.jpg" class="item-image" />
-      <div class="item-info"><h3>Ayran</h3></div>
-      <span class="item-price">90 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/kola.jpg" class="item-image" />
-      <div class="item-info"><h3>Meşrubatlar</h3><p>Cola, Zero, Sprite, Fanta, Fuse Tea</p></div>
-      <span class="item-price">90 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/şalgam.jpg" class="item-image" />
-      <div class="item-info"><h3>Şalgam</h3><p>acılı , acısız</p></div>
-      <span class="item-price">60 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/soda.jpg" class="item-image" />
-      <div class="item-info"><h3>Soda</h3></div>
-      <span class="item-price">45 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/limonlusoda.png" class="item-image" />
-      <div class="item-info"><h3>Meyveli Soda</h3></div>
-      <span class="item-price">50 TL</span>
-    </div>
-    <div class="menu-item">
-      <img src="img/su.webp" class="item-image" />
-      <div class="item-info"><h3>Su</h3></div>
-      <span class="item-price">30 TL</span>
+    <div class="items-grid">
+      <div class="menu-item">
+        <img src="img/limonata.webp" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Limonata</h3></div><span class="item-price">90 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/i-_6_.jpg" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Ayran</h3></div><span class="item-price">90 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/kola.jpg" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Meşrubatlar</h3><p>Cola, Zero, Sprite, Fanta, Fuse Tea</p></div><span class="item-price">90 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/şalgam.jpg" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Şalgam</h3><p>acılı, acısız</p></div><span class="item-price">60 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/soda.jpg" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Soda</h3></div><span class="item-price">45 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/limonlusoda.png" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Meyveli Soda</h3></div><span class="item-price">50 TL</span></div>
+      </div>
+      <div class="menu-item">
+        <img src="img/su.webp" class="item-image" />
+        <div class="item-bottom"><div class="item-info"><h3>Su</h3></div><span class="item-price">30 TL</span></div>
+      </div>
     </div>
   </div>
 </div>
@@ -774,7 +750,6 @@
     let cur = 0, timer = null, rafId = null, rafStart = null;
     let dragging = false, startX = 0, delta = 0;
 
-    // Nokta butonları oluştur
     const dots = slides.map(function(_, i) {
       var b = document.createElement('button');
       b.className = 'slide-dot' + (i === 0 ? ' active' : '');
