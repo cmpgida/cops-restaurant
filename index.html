@@ -277,7 +277,7 @@
 
     .item-bottom {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 10px;
       padding: 12px 14px;
     }
@@ -299,6 +299,57 @@
       color: var(--muted);
       line-height: 1.4;
       font-weight: 400;
+      margin-bottom: 8px;
+    }
+
+    /* PORTION TOGGLE */
+    .portion-toggle {
+      display: inline-flex;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1.5px solid rgba(201, 168, 76, 0.35);
+      background: rgba(201, 168, 76, 0.06);
+      margin-top: 6px;
+    }
+    .portion-btn {
+      padding: 3px 10px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 0.3px;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: var(--transition);
+      white-space: nowrap;
+      line-height: 1.5;
+    }
+    .portion-btn.active {
+      background: var(--gold);
+      color: #fff;
+      border-radius: 20px;
+    }
+    .portion-btn:not(.active):hover {
+      color: var(--gold);
+      background: rgba(201, 168, 76, 0.12);
+    }
+
+    /* 1.5 porsiyon aktifken kart vurgusu */
+    .menu-item.portion-half .item-bottom {
+      background: linear-gradient(135deg, rgba(201,168,76,0.04), rgba(214,40,40,0.03));
+    }
+    .menu-item.portion-half {
+      border-color: rgba(201, 168, 76, 0.25);
+    }
+
+    .item-price-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      flex-shrink: 0;
+      min-width: 70px;
+      padding-top: 2px;
     }
     .item-price {
       font-family: 'Roboto Mono', monospace;
@@ -308,9 +359,38 @@
       white-space: nowrap;
       letter-spacing: 0.3px;
       line-height: 1.1;
-      flex-shrink: 0;
+      transition: var(--transition);
     }
-
+    .item-price-label {
+      font-size: 0.58rem;
+      color: var(--muted);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-top: 3px;
+      text-align: right;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    .menu-item.portion-half .item-price-label {
+      opacity: 1;
+      color: var(--gold);
+    }
+    .menu-item.portion-half .item-price {
+      color: #b5520a;
+    }
+.kcal-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #FFF3E0;
+  color: #E65100;
+  font-size: 0.65rem;
+  font-weight: 600;
+  border-radius: 20px;
+  padding: 3px 10px;
+  border: 1px solid #FFCC80;
+  margin-top: 6px;
+}
     /* FOOTER */
     .menu-footer {
       text-align: center;
@@ -334,6 +414,7 @@
       .hero { height: 60vh; max-height: 350px; }
       .slide-content { padding: 0.8rem 1rem 2rem; }
       .category-section { padding: 0.8rem; }
+      .portion-btn { padding: 3px 8px; font-size: 0.62rem; }
     }
 
     @media (min-width: 600px) {
@@ -370,27 +451,16 @@
       .menu-item { border-radius: 16px; }
     }
 
-   
-   /* İçecek resimleri — tam görünsün */
-#icecek .item-image {
-  height: 160px !important;
-  object-fit: contain !important;
-  background: #f5f0e8;
-  padding: 12px;
-}
-
-@media (max-width: 480px) {
-  #icecek .item-image { height: 130px !important; }
-}
-@media (min-width: 600px) {
-  #icecek .item-image { height: 150px !important; }
-}
-@media (min-width: 768px) {
-  #icecek .item-image { height: 160px !important; }
-}
-@media (min-width: 1024px) {
-  #icecek .item-image { height: 170px !important; }
-}
+    #icecek .item-image {
+      height: 160px !important;
+      object-fit: contain !important;
+      background: #f5f0e8;
+      padding: 12px;
+    }
+    @media (max-width: 480px) { #icecek .item-image { height: 130px !important; } }
+    @media (min-width: 600px) { #icecek .item-image { height: 150px !important; } }
+    @media (min-width: 768px) { #icecek .item-image { height: 160px !important; } }
+    @media (min-width: 1024px) { #icecek .item-image { height: 170px !important; } }
   </style>
 </head>
 
@@ -462,54 +532,174 @@
   <div class="sub-category">
     <div class="sub-title">Başlangıçlar</div>
     <div class="items-grid">
-      <div class="menu-item">
+      <div class="menu-item" data-prices="110">
         <img src="img/mercimek.jpg" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Mercimek Çorbası</h3></div><span class="item-price">110 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Mercimek Çorbası</h3>
+        
+             <span class="kcal-badge">🔥 180 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">110 TL</span></div>
+        </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" data-prices="135">
         <img src="img/TAVUK SUYU.jpg" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Tavuk Suyu</h3></div><span class="item-price">135 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Tavuk Suyu</h3>
+            <span class="kcal-badge">🔥 120 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+             
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">135 TL</span></div>
+        </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" data-prices="80">
         <img src="img/SALATA.png" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Mevsim Salatası</h3><p>Taze sebzeler, nar ekşisi sos</p></div><span class="item-price">80 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Mevsim Salatası</h3>
+            <p>Taze sebzeler, nar ekşisi sos</p>
+            <span class="kcal-badge">🔥 85 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">80 TL</span></div>
+        </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" data-prices="80">
         <img src="img/yogurt.jpg" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Yoğurt</h3><p>Güveçte yoğurt</p></div><span class="item-price">80 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Yoğurt</h3>
+            <p>Güveçte yoğurt</p>
+            <span class="kcal-badge">🔥 110 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+             
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">80 TL</span></div>
+        </div>
       </div>
     </div>
   </div>
   <div class="sub-category">
     <div class="sub-title">Sıcak Başlangıçlar</div>
     <div class="items-grid">
-      <div class="menu-item">
+      <div class="menu-item" data-prices="50|80|110" data-labels="3'lü|5'li|8'li">
         <img src="img/SOGANHALKASI.png" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Çıtır Soğan Halkası</h3><p>3'lü / 5'li / 8'li</p></div><span class="item-price">50 / 80 / 110 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Çıtır Soğan Halkası</h3>
+            <span class="kcal-badge">🔥 210/340/520 kcal</span>
+            <p>3'lü / 5'li / 8'li</p>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">50 / 80 / 110 TL</span></div>
+        </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" data-prices="120">
         <img src="img/CITIRTAVUK.png" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Çıtır Tavuk</h3><p>3'lü Çıtır Tavuk</p></div><span class="item-price">120 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Çıtır Tavuk</h3>
+            <p>3'lü Çıtır Tavuk</p>
+                <span class="kcal-badge">🔥 280 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+             
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">120 TL</span></div>
+        </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" data-prices="200">
         <img src="img/PEYNIRCUBUGU.png" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Peynir Çubuğu</h3><p>4'lü Peynir Çubuğu</p></div><span class="item-price">200 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Peynir Çubuğu</h3>
+            <p>4'lü Peynir Çubuğu</p>
+                <span class="kcal-badge">🔥 340 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+             
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">200 TL</span></div>
+        </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" data-prices="120">
         <img src="img/TAVUKTOPLARI.png" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Tavuk Topları</h3><p>6'lı Tavuk Topları</p></div><span class="item-price">120 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Tavuk Topları</h3>
+            <p>6'lı Tavuk Topları</p>
+                <span class="kcal-badge">🔥 310 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">120 TL</span></div>
+        </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" data-prices="120">
         <img src="img/FALAFEL.png" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Falafel</h3><p>3'lü falafel</p></div><span class="item-price">120 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Falafel</h3>
+            <p>3'lü falafel</p>
+                <span class="kcal-badge">🔥 220 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+             
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">120 TL</span></div>
+        </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" data-prices="280">
         <img src="img/KOMBOTABAGI.png" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Kombo Tabağı</h3><p>Patates, soğan halkası, çıtır tavuk, peynir çubuğu, tavuk topları, falafel</p></div><span class="item-price">280 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Kombo Tabağı</h3>
+            <p>Patates, soğan halkası, çıtır tavuk, peynir çubuğu, tavuk topları, falafel</p>
+                <span class="kcal-badge">🔥 890 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+             
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">280 TL</span></div>
+        </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" data-prices="80|65" data-labels="Büyük|Küçük">
         <img src="img/makarna.png" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Makarna</h3><p>Büyük / Küçük</p></div><span class="item-price">80 / 65 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Makarna</h3>
+            <p>Büyük / Küçük</p>
+                <span class="kcal-badge">🔥320/220  kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">80 / 65 TL</span></div>
+        </div>
       </div>
     </div>
   </div>
@@ -520,29 +710,96 @@
   <div class="sub-category">
     <div class="sub-title">Dana Etleri</div>
     <div class="items-grid">
-      <div class="menu-item">
+      <div class="menu-item" data-prices="795">
         <img src="img/karisikizgara.jpg" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Karışık Izgara Menü</h3><p>(270gr-280gr) 7 adet çöpşiş, 2 kaşarlı köfte, 2 kasap köfte, 1 şiş sucuk, garnitür, çorba ve içecek</p></div><span class="item-price">795 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Karışık Izgara Menü</h3>
+            <p>(270gr-280gr) 7 adet çöpşiş, 2 kaşarlı köfte, 2 kasap köfte, 1 şiş sucuk, garnitür, çorba ve içecek</p>
+                <span class="kcal-badge">🔥 1450-1550 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              <button class="portion-btn" data-portion="1.5">1.5 Porsiyon</button>
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">795 TL</span><span class="item-price-label">1.5×</span></div>
+        </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" data-prices="485">
         <img src="img/cöpsis.jpeg" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Çöpşiş</h3><p>145g, yanında garnitür ile</p></div><span class="item-price">485 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Çöpşiş</h3>
+            <p>145gr dana eti, yanında garnitür ve patates kızartması ile</p>
+                <span class="kcal-badge">🔥  900-1000 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              <button class="portion-btn" data-portion="1.5">1.5 Porsiyon</button>
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">485 TL</span><span class="item-price-label">1.5×</span></div>
+        </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" data-prices="485">
         <img src="img/cöpsis.jpeg" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Çöpşiş Special</h3><p>145g, yanında garnitür ve baharatlar ile</p></div><span class="item-price">485 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Çöpşiş Special</h3>
+            <p>145gr dana eti, yanında garnitür , baharatlar ve patates kızartması ile</p> 
+             <span class="kcal-badge">🔥 900-1000 kcal</span>
+  
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              <button class="portion-btn" data-portion="1.5">1.5 Porsiyon</button>
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">485 TL</span><span class="item-price-label">1.5×</span></div>
+        </div>
       </div>
-      <div class="menu-item">
-        <img src="img/Adsız_tasarım_(3).jpg" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Dana Şaşlık</h3><p>200gr dana etinden şaşlık, garnitür ile</p></div><span class="item-price">600 TL</span></div>
+      <div class="menu-item" data-prices="600">
+        <img src="img/saslik.jpeg" class="item-image" />
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Dana Şaşlık</h3>
+            <p>200gr dana etinden şaşlık, garnitür ve patates kızartması ile</p>
+                <span class="kcal-badge">🔥 1000-1100 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              <button class="portion-btn" data-portion="1.5">1.5 Porsiyon</button>
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">600 TL</span><span class="item-price-label">1.5×</span></div>
+        </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" data-prices="600">
         <img src="img/Adsız_tasarım_(6).jpg" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Antrekot</h3><p>200gr dana eti antrekot, garnitür ile</p></div><span class="item-price">600 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Antrekot</h3>
+            <p>200gr dana eti antrekot, garnitür ve patates kızartmsı ile</p>
+                <span class="kcal-badge">🔥 1100-1200  kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              <button class="portion-btn" data-portion="1.5">1.5 Porsiyon</button>
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">600 TL</span><span class="item-price-label">1.5×</span></div>
+        </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" data-prices="425">
         <img src="img/Adsız_tasarım_(5).jpg" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Sucuk Tabağı</h3><p>150gr sucuk, garnitür ile</p></div><span class="item-price">425 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Sucuk Tabağı</h3>
+            <p>150gr sucuk, garnitür ve patates kızartması ile</p>
+                <span class="kcal-badge">🔥 1080-1180 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              <button class="portion-btn" data-portion="1.5">1.5 Porsiyon</button>
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">425 TL</span><span class="item-price-label">1.5×</span></div>
+        </div>
       </div>
     </div>
   </div>
@@ -553,54 +810,175 @@
   <div class="sub-category">
     <div class="sub-title">Izgara Tavuk</div>
     <div class="items-grid">
-      <div class="menu-item">
+      <div class="menu-item" data-prices="385">
         <img src="img/Adsız_tasarım_(11).jpg" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Tavuk Şiş</h3><p>200gr tavuk şiş, pesto soslu makarna ve salata ile</p></div><span class="item-price">385 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Tavuk Şiş</h3>
+            <p>200gr tavuk şiş, pesto soslu makarna ve salata ile</p>
+                <span class="kcal-badge">🔥 700-800 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              <button class="portion-btn" data-portion="1.5">1.5 Porsiyon</button>
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">385 TL</span><span class="item-price-label">1.5×</span></div>
+        </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" data-prices="385">
         <img src="img/Adsız_tasarım_(12).jpg" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Light Tavuk</h3><p>200gr light tavuk, yoğurt ve salata ile</p></div><span class="item-price">385 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Light Tavuk</h3>
+            <p> 200gr light tavuk, yoğurt ve salata ile</p>
+                <span class="kcal-badge">🔥 500-600 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              <button class="portion-btn" data-portion="1.5">1.5 Porsiyon</button>
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">385 TL</span><span class="item-price-label">1.5×</span></div>
+        </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" data-prices="545">
         <img src="img/karisiktavuk.jpeg" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Karışık Tavuk Tabağı</h3><p>100gr light tavuk, 100gr tavuk şiş, 100gr soslu tavuk, pesto soslu makarna, salata ile</p></div><span class="item-price">545 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Karışık Tavuk Tabağı</h3>
+            <p> 100gr light tavuk, 100gr tavuk şiş, 100gr soslu tavuk, pesto soslu makarna, salata ile</p>
+                <span class="kcal-badge">🔥 900-1000 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              <button class="portion-btn" data-portion="1.5">1.5 Porsiyon</button>
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">545 TL</span><span class="item-price-label">1.5×</span></div>
+        </div>
       </div>
     </div>
   </div>
   <div class="sub-category">
     <div class="sub-title">Tava</div>
     <div class="items-grid">
-      <div class="menu-item">
+      <div class="menu-item" data-prices="375">
         <img src="img/Adsız_tasarım_(15).jpg" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Soya Soslu Tavuk</h3><p>200gr soya soslu tavuk, pesto soslu makarna ve salata ile</p></div><span class="item-price">375 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Soya Soslu Tavuk</h3>
+            <p>200gr soya soslu tavuk, pesto soslu makarna ve salata ile</p>
+                <span class="kcal-badge">🔥 800-900 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              <button class="portion-btn" data-portion="1.5">1.5 Porsiyon</button>
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">375 TL</span><span class="item-price-label">1.5×</span></div>
+        </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" data-prices="385">
         <img src="img/Adsız_tasarım_(9).jpg" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Kremalı Kaşarlı Mantarlı Tavuk</h3><p>200gr kaşarlı mantarlı soslu tavuk, pesto soslu makarna ve salata ile</p></div><span class="item-price">385 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Kremalı Kaşarlı Mantarlı Tavuk</h3>
+            <p>200gr kaşarlı mantarlı soslu tavuk, pesto soslu makarna ve salata ile</p>
+                <span class="kcal-badge">🔥 900-1000 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              <button class="portion-btn" data-portion="1.5">1.5 Porsiyon</button>
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">385 TL</span><span class="item-price-label">1.5×</span></div>
+        </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" data-prices="385">
         <img src="img/Adsız_tasarım_(10).jpg" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Barbekü Soslu Tavuk</h3><p>200gr barbekü soslu tavuk, yeşil ve kırmızı biberle, pesto soslu makarna ve salata ile</p></div><span class="item-price">385 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Barbekü Soslu Tavuk</h3>
+            <p>200gr barbekü soslu tavuk, yeşil ve kırmızı biberle, pesto soslu makarna ve salata ile</p>
+                <span class="kcal-badge">🔥 900-1000  kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              <button class="portion-btn" data-portion="1.5">1.5 Porsiyon</button>
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">385 TL</span><span class="item-price-label">1.5×</span></div>
+        </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" data-prices="375">
         <img src="img/Adsız_tasarım_(13).jpg" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Kekikli Tavuk</h3><p>200gr kekikli tavuk, pesto soslu makarna ve salata ile</p></div><span class="item-price">375 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Kekikli Tavuk</h3>
+            <p>200gr kekikli tavuk, pesto soslu makarna ve salata ile</p>
+                <span class="kcal-badge">🔥 900-1000  kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              <button class="portion-btn" data-portion="1.5">1.5 Porsiyon</button>
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">375 TL</span><span class="item-price-label">1.5×</span></div>
+        </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" data-prices="375">
         <img src="img/sweatchili.png" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Sweet Chili Soslu Tavuk</h3><p>200gr sweet chili soslu tavuk, pesto soslu makarna ve salata ile</p></div><span class="item-price">375 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Sweet Chili Soslu Tavuk</h3>
+            <p> 200gr sweet chili soslu tavuk, pesto soslu makarna ve salata ile</p>
+                <span class="kcal-badge">🔥 900-1000 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              <button class="portion-btn" data-portion="1.5">1.5 Porsiyon</button>
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">375 TL</span><span class="item-price-label">1.5×</span></div>
+        </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" data-prices="375">
         <img src="img/acilikori.png" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Acılı Körili Tavuk</h3><p>200gr acılı körili tavuk, pesto soslu makarna ve salata ile</p></div><span class="item-price">375 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Acılı Körili Tavuk</h3>
+            <p>200gr acılı körili tavuk, pesto soslu makarna ve salata ile</p>
+                <span class="kcal-badge">🔥 900-1000 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              <button class="portion-btn" data-portion="1.5">1.5 Porsiyon</button>
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">375 TL</span><span class="item-price-label">1.5×</span></div>
+        </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" data-prices="375">
         <img src="img/Adsız_tasarım_(14).jpg" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Köri Soslu Tavuk</h3><p>200gr körili tavuk, pesto soslu makarna ve salata ile</p></div><span class="item-price">375 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Köri Soslu Tavuk</h3>
+            <p> 200gr körili tavuk, pesto soslu makarna ve salata ile</p>
+                <span class="kcal-badge">🔥 900-1000  kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              <button class="portion-btn" data-portion="1.5">1.5 Porsiyon</button>
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">375 TL</span><span class="item-price-label">1.5×</span></div>
+        </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" data-prices="375">
         <img src="img/Adsız_tasarım_(8).jpg" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Acı Soslu Tavuk</h3><p>200gr acılı tavuk, pesto soslu makarna ve salata ile</p></div><span class="item-price">375 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Acı Soslu Tavuk</h3>
+            <p>200gr acılı tavuk, pesto soslu makarna ve salata ile</p>
+                <span class="kcal-badge">🔥 900-1000  kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              <button class="portion-btn" data-portion="1.5">1.5 Porsiyon</button>
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">375 TL</span><span class="item-price-label">1.5×</span></div>
+        </div>
       </div>
     </div>
   </div>
@@ -611,21 +989,65 @@
   <div class="sub-category">
     <div class="sub-title">Köfteler</div>
     <div class="items-grid">
-      <div class="menu-item">
+      <div class="menu-item" data-prices="425">
         <img src="img/Adsız_tasarım_(1).jpg" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Izgara Köfte</h3><p>(130gr - 140gr) 8 adet inegöl köfte, garnitür ile</p></div><span class="item-price">425 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Izgara Köfte</h3>
+            <p>(130gr - 140gr) 8 adet inegöl köfte, garnitür ile</p>
+                <span class="kcal-badge">🔥 900-1000 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              <button class="portion-btn" data-portion="1.5">1.5 Porsiyon</button>
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">425 TL</span><span class="item-price-label">1.5×</span></div>
+        </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" data-prices="445">
         <img src="img/Adsız_tasarım_(2).jpg" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Pideli Köfte</h3><p>(130gr - 140gr) 8 adet inegöl köfte, iskender sos, yoğurt ve garnitür ile</p></div><span class="item-price">445 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Pideli Köfte</h3>
+            <p>(130gr - 140gr) 8 adet inegöl köfte, iskender sos, yoğurt ve garnitür ile</p>
+                <span class="kcal-badge">🔥 950-1100  kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              <button class="portion-btn" data-portion="1.5">1.5 Porsiyon</button>
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">445 TL</span><span class="item-price-label">1.5×</span></div>
+        </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" data-prices="425">
         <img src="img/Adsız_tasarım_(4).jpg" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Kaşarlı Köfte</h3><p>(130gr - 140gr) 4 adet kaşarlı köfte, garnitür ile</p></div><span class="item-price">425 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Kaşarlı Köfte</h3>
+            <p>(130gr - 140gr) 4 adet kaşarlı köfte, garnitür ile</p>
+                <span class="kcal-badge">🔥 1000-1100 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              <button class="portion-btn" data-portion="1.5">1.5 Porsiyon</button>
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">425 TL</span><span class="item-price-label">1.5×</span></div>
+        </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" data-prices="425">
         <img src="img/Adsız_tasarım_(7).jpg" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Kasap Köfte</h3><p>(130gr - 140gr) 4 adet kasap köfte, garnitür ile</p></div><span class="item-price">425 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Kasap Köfte</h3>
+            <p>(130gr - 140gr) 4 adet kasap köfte, garnitür ile</p>
+                <span class="kcal-badge">🔥 900-1000 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              <button class="portion-btn" data-portion="1.5">1.5 Porsiyon</button>
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">425 TL</span><span class="item-price-label">1.5×</span></div>
+        </div>
       </div>
     </div>
   </div>
@@ -636,34 +1058,100 @@
   <div class="sub-category">
     <div class="sub-title">Klasik Burgerler</div>
     <div class="items-grid">
-      <div class="menu-item">
+      <div class="menu-item" data-prices="350">
         <img src="img/burger-cops.jpg" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Çöps Burger</h3><p>100gr dana köfte, özel sos, marul, karamalize soğan, patates ile</p></div><span class="item-price">350 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Çöps Burger</h3>
+            <p>100gr dana köfte, özel sos, marul, karamalize soğan, patates ile</p>
+                <span class="kcal-badge">🔥 1200-1300 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">350 TL</span></div>
+        </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" data-prices="360">
         <img src="img/burger-meksika.jpg" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Mexico Burger</h3><p>100gr dana köfte, acı sos, jalapeño, özel sos, marul, karamalize soğan, patates ile</p></div><span class="item-price">360 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Mexico Burger</h3>
+            <p>100gr dana köfte, acı sos, jalapeño, özel sos, marul, karamalize soğan, patates ile</p>
+                <span class="kcal-badge">🔥 1200-1300 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+             
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">360 TL</span></div>
+        </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" data-prices="360">
         <img src="img/burger-cheese.jpg" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Nefis Cheese Burger</h3><p>100gr dana köfte, burger peyniri, özel sos, marul, karamalize soğan, patates ile</p></div><span class="item-price">360 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Nefis Cheese Burger</h3>
+            <p>100gr dana köfte, burger peyniri, özel sos, marul, karamalize soğan, patates ile</p>
+                <span class="kcal-badge">🔥 1300-1400 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+             
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">360 TL</span></div>
+        </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" data-prices="275">
         <img src="img/burger-tavuk.jpg" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Terbiyeli Tavuk Burger</h3><p>100gr tavuk, özel sos, marul, karamalize soğan, domates, patates ile</p></div><span class="item-price">275 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Terbiyeli Tavuk Burger</h3>
+            <p>100gr tavuk, özel sos, marul, karamalize soğan, domates, patates ile</p>
+                <span class="kcal-badge">🔥 1100-1200  kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+             
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">275 TL</span></div>
+        </div>
       </div>
     </div>
   </div>
   <div class="sub-category">
     <div class="sub-title">Özel Burgerler</div>
     <div class="items-grid">
-      <div class="menu-item">
+      <div class="menu-item" data-prices="480">
         <img src="img/burger-sef.jpg" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Şef Burger</h3><p>100gr dana köfte, burger peyniri, dana jambon, özel sos, marul, karamalize soğan, patates ile</p></div><span class="item-price">480 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Şef Burger</h3>
+            <p>100gr dana köfte, burger peyniri, dana jambon, özel sos, marul, karamalize soğan, patates ile</p>
+                <span class="kcal-badge">🔥 1300-1400 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+             
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">480 TL</span></div>
+        </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" data-prices="600">
         <img src="img/burger-super.png" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Süper Burger</h3><p>200gr dana köfte, çift burger peyniri, dana jambon, özel sos, marul, karamalize soğan, patates ile</p></div><span class="item-price">600 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Süper Burger</h3>
+            <p>200gr dana köfte, çift burger peyniri, dana jambon, özel sos, marul, karamalize soğan, patates ile</p>
+                <span class="kcal-badge">🔥 1600-1700 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">600 TL</span></div>
+        </div>
       </div>
     </div>
   </div>
@@ -674,79 +1162,229 @@
   <div class="sub-category">
     <div class="sub-title">Ana Yemekler</div>
     <div class="items-grid">
-      <div class="menu-item">
+      <div class="menu-item" data-prices="320">
         <img src="img/patateslicocuk.jpeg" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Patatesli Çocuk Tabağı</h3><p>4 adet çöpşiş, 1 adet kasap köfte, patates, oyuncak ve içecek ile</p></div><span class="item-price">320 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Patatesli Çocuk Tabağı</h3>
+            <p>4 adet çöpşiş, 1 adet kasap köfte, patates, oyuncak ve içecek ile</p>
+                <span class="kcal-badge">🔥 600-700 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              <button class="portion-btn" data-portion="1.5">1.5 Porsiyon</button>
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">320 TL</span><span class="item-price-label">1.5×</span></div>
+        </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" data-prices="320">
         <img src="img/makarnalicocuk.jpeg" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Makarnalı Çocuk Menü</h3><p>4 adet çöpşiş, 1 adet kasap köfte, makarna, oyuncak ve içecek ile</p></div><span class="item-price">320 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Makarnalı Çocuk Menü</h3>
+            <p>4 adet çöpşiş, 1 adet kasap köfte, makarna, oyuncak ve içecek ile</p>
+             <span class="kcal-badge">🔥 600-700 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              <button class="portion-btn" data-portion="1.5">1.5 Porsiyon</button>
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">320 TL</span><span class="item-price-label">1.5×</span></div>
+        </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" data-prices="320">
         <img src="img/cöpsiscocuk.jpeg" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Çöpşiş Çocuk Tabağı</h3><p>6 adet çöpşiş, patates kızartması, oyuncak ve içecek ile</p></div><span class="item-price">320 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Çöpşiş Çocuk Tabağı</h3>
+            <p>6 adet çöpşiş, patates kızartması, oyuncak ve içecek ile</p>
+             <span class="kcal-badge">🔥 600-700 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              <button class="portion-btn" data-portion="1.5">1.5 Porsiyon</button>
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">320 TL</span><span class="item-price-label">1.5×</span></div>
+        </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" data-prices="320">
         <img src="img/kasapcocukmakarnali.jpeg" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Makarnalı Kasap Çocuk Menü</h3><p>2 adet kasap köfte, makarna, oyuncak ve içecek ile</p></div><span class="item-price">320 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Makarnalı Kasap Çocuk Menü</h3>
+            <p>2 adet kasap köfte, makarna, oyuncak ve içecek ile</p>
+             <span class="kcal-badge">🔥 600-700 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              <button class="portion-btn" data-portion="1.5">1.5 Porsiyon</button>
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">320 TL</span><span class="item-price-label">1.5×</span></div>
+        </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" data-prices="320">
         <img src="img/kasapcocuk.jpeg" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Patatesli Kasap Çocuk Menü</h3><p>2 adet kasap köfte, patates, oyuncak ve içecek ile</p></div><span class="item-price">320 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Patatesli Kasap Çocuk Menü</h3>
+            <p>2 adet kasap köfte, patates, oyuncak ve içecek ile</p>
+             <span class="kcal-badge">🔥 600-700 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              <button class="portion-btn" data-portion="1.5">1.5 Porsiyon</button>
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">320 TL</span><span class="item-price-label">1.5×</span></div>
+        </div>
       </div>
-       <div class="menu-item">
+      <div class="menu-item" data-prices="320">
         <img src="img/tavuksiscocuk.png" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Tavuk Şişli Çocuk Tabağı</h3><p>2 adet tavuk şiş, pesto soslu makarna, oyuncak ve içecek ile</p></div><span class="item-price">320 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Tavuk Şişli Çocuk Tabağı</h3>
+            <p>2 adet tavuk şiş, pesto soslu makarna, oyuncak ve içecek ile</p>
+             <span class="kcal-badge">🔥 500-600 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              <button class="portion-btn" data-portion="1.5">1.5 Porsiyon</button>
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">320 TL</span><span class="item-price-label">1.5×</span></div>
+        </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" data-prices="320">
         <img src="img/burger-cops.jpg" class="item-image" />
-        <div class="item-bottom"><div class="item-info"><h3>Çocuk Burger</h3><p>Yeşillik ve sos, patates, içecek, oyuncak ile beraber</p></div><span class="item-price">320 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Çocuk Burger</h3>
+            <p>Yeşillik ve sos, patates, içecek, oyuncak ile beraber</p>
+             <span class="kcal-badge">🔥 900-1000 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              <button class="portion-btn" data-portion="1.5">1.5 Porsiyon</button>
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">320 TL</span><span class="item-price-label">1.5×</span></div>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
 
 <!-- İÇECEK -->
 <div id="icecek" class="category-section">
   <div class="sub-category">
     <div class="sub-title">Soğuk İçecekler</div>
     <div class="items-grid">
-      <div class="menu-item">
+      <div class="menu-item" data-prices="90">
         <img src="img/limonata.webp" class="item-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect fill=%22%23f0ece5%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%23aaa%22 font-size=%2212%22%3E🥤%3C/text%3E%3C/svg%3E';" />
-        <div class="item-bottom"><div class="item-info"><h3>Limonata</h3></div><span class="item-price">90 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Limonata</h3>
+             <span class="kcal-badge">🔥 120 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+             
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">90 TL</span></div>
+        </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" data-prices="90">
         <img src="img/i-_6_.jpg" class="item-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect fill=%22%23f0ece5%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%23aaa%22 font-size=%2212%22%3E🥤%3C/text%3E%3C/svg%3E';" />
-        <div class="item-bottom"><div class="item-info"><h3>Ayran</h3></div><span class="item-price">90 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Ayran</h3>
+             <span class="kcal-badge">🔥 65 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">90 TL</span></div>
+        </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" data-prices="90">
         <img src="img/kola.jpg" class="item-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect fill=%22%23f0ece5%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%23aaa%22 font-size=%2212%22%3E🥤%3C/text%3E%3C/svg%3E';" />
-        <div class="item-bottom"><div class="item-info"><h3>Meşrubatlar</h3><p>Cola, Zero, Sprite, Fanta, Fuse Tea</p></div><span class="item-price">90 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Meşrubatlar</h3>
+            <p>Cola, Zero, Sprite, Fanta, Fuse Tea</p>
+                  <span class="kcal-badge">🔥 140 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">90 TL</span></div>
+        </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" data-prices="60">
         <img src="img/şalgam.jpg" class="item-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect fill=%22%23f0ece5%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%23aaa%22 font-size=%2212%22%3E🥤%3C/text%3E%3C/svg%3E';" />
-        <div class="item-bottom"><div class="item-info"><h3>Şalgam</h3><p>acılı, acısız</p></div><span class="item-price">60 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Şalgam</h3>
+            <p>acılı, acısız</p>
+                  <span class="kcal-badge">🔥 25 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">60 TL</span></div>
+        </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" data-prices="45">
         <img src="img/soda.jpg" class="item-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect fill=%22%23f0ece5%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%23aaa%22 font-size=%2212%22%3E🥤%3C/text%3E%3C/svg%3E';" />
-        <div class="item-bottom"><div class="item-info"><h3>Soda</h3></div><span class="item-price">45 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Soda</h3>
+                  <span class="kcal-badge">🔥0 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">45 TL</span></div>
+        </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" data-prices="50">
         <img src="img/limonlusoda.png" class="item-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect fill=%22%23f0ece5%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%23aaa%22 font-size=%2212%22%3E🥤%3C/text%3E%3C/svg%3E';" />
-        <div class="item-bottom"><div class="item-info"><h3>Meyveli Soda</h3></div><span class="item-price">50 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Meyveli Soda</h3>
+                  <span class="kcal-badge">🔥45 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">50 TL</span></div>
+        </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item" data-prices="30">
         <img src="img/su.webp" class="item-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect fill=%22%23f0ece5%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%23aaa%22 font-size=%2212%22%3E🥤%3C/text%3E%3C/svg%3E';" />
-        <div class="item-bottom"><div class="item-info"><h3>Su</h3></div><span class="item-price">30 TL</span></div>
+        <div class="item-bottom">
+          <div class="item-info">
+            <h3>Su</h3>
+                  <span class="kcal-badge">🔥 0 kcal</span>
+            <div class="portion-toggle">
+              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+              
+            </div>
+          </div>
+          <div class="item-price-wrap"><span class="item-price">30 TL</span></div>
+        </div>
       </div>
     </div>
   </div>
 </div>
-
+ 
 <div class="menu-footer">
   <p>Fiyatlara KDV dahildir · Alerjen bilgisi için personelimize sorunuz</p>
 </div>
-
+ 
 <script>
   // MENÜ SEKME GEÇİŞİ
   document.querySelectorAll('.nav-tab').forEach(tab => {
@@ -758,7 +1396,48 @@
       document.getElementById(id).classList.add('active');
     });
   });
-
+ 
+  // PORSIYON HESAPLAMA
+  function roundToNearest5(n) {
+    return Math.round(n / 5) * 5;
+  }
+ 
+  function calcHalfPrice(pricesAttr) {
+    // Birden fazla fiyat varsa (| ile ayrılmış)
+    const parts = pricesAttr.split('|');
+    const halved = parts.map(p => roundToNearest5(parseFloat(p) * 1.5));
+    return halved.join(' / ') + ' TL';
+  }
+ 
+  function getBasePriceText(pricesAttr) {
+    const parts = pricesAttr.split('|');
+    return parts.join(' / ') + ' TL';
+  }
+ 
+  document.querySelectorAll('.menu-item').forEach(item => {
+    const pricesAttr = item.dataset.prices;
+    if (!pricesAttr) return;
+ 
+    const priceEl = item.querySelector('.item-price');
+    const btns = item.querySelectorAll('.portion-btn');
+ 
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        btns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+ 
+        const portion = parseFloat(btn.dataset.portion);
+        if (portion === 1.5) {
+          priceEl.textContent = calcHalfPrice(pricesAttr);
+          item.classList.add('portion-half');
+        } else {
+          priceEl.textContent = getBasePriceText(pricesAttr);
+          item.classList.remove('portion-half');
+        }
+      });
+    });
+  });
+ 
   // CAROUSEL
   (function(){
     const track = document.getElementById('slidesTrack');
@@ -769,7 +1448,7 @@
     const DELAY = 5000;
     let cur = 0, timer = null, rafId = null, rafStart = null;
     let dragging = false, startX = 0, delta = 0;
-
+ 
     const dots = slides.map(function(_, i) {
       var b = document.createElement('button');
       b.className = 'slide-dot' + (i === 0 ? ' active' : '');
@@ -778,24 +1457,24 @@
       dotsWrap.appendChild(b);
       return b;
     });
-
+ 
     function render() {
       track.style.transform = 'translateX(-' + (cur * 100) + '%)';
       dots.forEach(function(d, i){ d.className = 'slide-dot' + (i === cur ? ' active' : ''); });
     }
-
+ 
     function go(i) {
       cur = (i + N) % N;
       render();
       restartAuto();
     }
-
+ 
     function stopAuto() {
       clearInterval(timer);
       cancelAnimationFrame(rafId);
       pbarEl.style.width = '0%';
     }
-
+ 
     function restartAuto() {
       stopAuto();
       rafStart = null;
@@ -808,20 +1487,20 @@
       rafId = requestAnimationFrame(step);
       timer = setInterval(function(){ go(cur + 1); }, DELAY);
     }
-
+ 
     document.getElementById('slidePrev').onclick = function(){ go(cur - 1); };
     document.getElementById('slideNext').onclick = function(){ go(cur + 1); };
-
+ 
     track.addEventListener('touchstart', function(e){
       dragging = true; startX = e.touches[0].clientX; delta = 0; stopAuto();
     }, { passive: true });
-
+ 
     track.addEventListener('touchmove', function(e){
       if (!dragging) return;
       delta = e.touches[0].clientX - startX;
       track.style.transform = 'translateX(calc(-' + (cur * 100) + '% + ' + delta + 'px))';
     }, { passive: true });
-
+ 
     track.addEventListener('touchend', function(){
       if (!dragging) return;
       dragging = false;
@@ -830,15 +1509,15 @@
       else                  render();
       restartAuto();
     });
-
+ 
     document.addEventListener('visibilitychange', function(){
       if (document.hidden) stopAuto(); else restartAuto();
     });
-
+ 
     render();
     restartAuto();
   })();
 </script>
-
+ 
 </body>
 </html>
