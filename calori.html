@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Çöps Restaurant – Besin Değerleri & Alerjen Bilgileri</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1C1C1C;
+    --mid: #4A4A4A;
+    --soft: #8A8A8A;
+    --line: #E2DDD8;
+    --page: #FAF8F5;
+    --warm: #F2EDE6;
+    --ember: #B84A1E;
+    --gold: #C8880A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--page);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 64px 48px 100px;
+  }
+
+  /* ── HEADER ── */
+  .doc-header {
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 28px;
+    margin-bottom: 48px;
+  }
+
+  .doc-header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .doc-title {
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .doc-title em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--ember);
+  }
+
+  .doc-meta {
+    text-align: right;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--soft);
+    line-height: 1.8;
+  }
+
+  .doc-subtitle {
+    margin-top: 10px;
+    font-size: 14px;
+    color: var(--mid);
+    font-weight: 300;
+  }
+
+  /* ── SECTION TITLE ── */
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 56px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .section-title h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--ember);
+    background: #FBF0EB;
+    border: 1px solid #F0CFC0;
+    padding: 2px 8px;
+    border-radius: 3px;
+  }
+
+  .subsection-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--soft);
+    margin-top: 28px;
+    margin-bottom: 10px;
+  }
+
+  /* ── TABLE ── */
+  .table-wrap {
+    overflow-x: auto;
+    margin-bottom: 4px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  thead th {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--soft);
+    padding: 7px 10px;
+    text-align: right;
+    border-bottom: 1px solid var(--line);
+    white-space: nowrap;
+  }
+
+  thead th:first-child { text-align: left; }
+  thead th:nth-child(2) { text-align: left; }
+
+  tbody tr { border-bottom: 1px solid var(--warm); }
+  tbody tr:last-child { border-bottom: 1px solid var(--line); }
+  tbody tr:hover { background: var(--warm); }
+
+  tbody td {
+    padding: 9px 10px;
+    vertical-align: middle;
+    text-align: right;
+  }
+
+  tbody td:first-child {
+    text-align: left;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  tbody td:nth-child(2) {
+    text-align: left;
+    color: var(--soft);
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .cal {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--ember);
+  }
+
+  .num {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--mid);
+  }
+
+  .price {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  /* ── ALLERGEN ROW ── */
+  .allergen-block {
+    margin-bottom: 2px;
+    background: var(--warm);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .allergen-row {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 0;
+    padding: 7px 10px;
+    border-bottom: 1px solid var(--line);
+    font-size: 12.5px;
+    align-items: center;
+  }
+
+  .allergen-row:last-child { border-bottom: none; }
+
+  .allergen-name {
+    font-weight: 500;
+    color: var(--mid);
+    font-size: 12px;
+  }
+
+  .allergen-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .tag {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .tag-yes  { background: #FDECEA; color: #B91C1C; border: 1px solid #F5C6C2; }
+  .tag-warn { background: #FEF3DC; color: #92600A; border: 1px solid #F0D89A; }
+  .tag-no   { background: #EDF7F2; color: #1A6640; border: 1px solid #B8E0C8; }
+
+  /* ── MATRIX ── */
+  .matrix-wrap { overflow-x: auto; margin-top: 12px; }
+
+  .matrix-wrap table thead th { font-size: 9px; padding: 6px 8px; text-align: center; }
+  .matrix-wrap table thead th:first-child { text-align: left; }
+  .matrix-wrap table thead th:nth-child(2) { text-align: left; }
+
+  .matrix-wrap table tbody td { font-size: 13px; text-align: center; padding: 7px 8px; }
+  .matrix-wrap table tbody td:first-child { text-align: left; font-size: 10px; color: var(--soft); }
+  .matrix-wrap table tbody td:nth-child(2) { text-align: left; font-size: 12px; font-weight: 500; color: var(--ink); }
+
+  /* ── STAT ROW ── */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 16px 0;
+  }
+
+  .stat-cell {
+    background: var(--page);
+    padding: 14px 16px;
+  }
+
+  .stat-cell-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--soft);
+    margin-bottom: 4px;
+  }
+
+  .stat-cell-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--ember);
+    line-height: 1.1;
+  }
+
+  .stat-cell-sub {
+    font-size: 11px;
+    color: var(--soft);
+    margin-top: 2px;
+  }
+
+  /* ── TIP GRID ── */
+  .tip-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+  }
+
+  .tip-box {
+    background: var(--warm);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 16px 18px;
+  }
+
+  .tip-box h4 {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ember);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .tip-box ul { list-style: none; padding: 0; }
+  .tip-box li {
+    font-size: 12.5px;
+    color: var(--mid);
+    padding: 4px 0;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    gap: 6px;
+  }
+  .tip-box li:last-child { border-bottom: none; }
+  .tip-box li::before { content: '—'; color: var(--soft); flex-shrink: 0; }
+
+  /* ── NOTICE ── */
+  .notice {
+    border-left: 3px solid var(--gold);
+    background: #FFFBF0;
+    padding: 14px 18px;
+    margin-top: 32px;
+    border-radius: 0 4px 4px 0;
+    font-size: 13px;
+    color: var(--mid);
+    line-height: 1.7;
+  }
+
+  .notice strong { color: var(--ink); }
+
+  /* ── CHANGELOG ── */
+  .changelog {
+    border-left: 3px solid var(--ember);
+    background: #FBF0EB;
+    padding: 14px 18px;
+    margin-top: 16px;
+    border-radius: 0 4px 4px 0;
+    font-size: 12.5px;
+    color: var(--mid);
+    line-height: 1.7;
+  }
+  .changelog strong { color: var(--ink); }
+  .changelog ul { margin: 6px 0 0 18px; }
+  .changelog li { margin-bottom: 4px; }
+
+  /* ── ALERJEN LEGEND ── */
+  .legend-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 8px;
+    margin: 12px 0 24px;
+  }
+
+  .legend-item {
+    font-size: 12.5px;
+    color: var(--mid);
+    display: flex;
+    gap: 6px;
+    align-items: flex-start;
+  }
+
+  .legend-icon { flex-shrink: 0; }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: var(--line);
+    margin: 32px 0;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    margin-top: 64px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  footer span {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--soft);
+  }
+
+  footer strong { color: var(--ember); font-style: normal; }
+
+  @media (max-width: 600px) {
+    .page { padding: 32px 20px 60px; }
+    .doc-title { font-size: 30px; }
+    .doc-meta { text-align: left; }
+    .allergen-row { grid-template-columns: 1fr; gap: 4px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="doc-header">
+    <div class="doc-header-top">
+      <div>
+        <div class="doc-title"><em>Çöps</em> Restaurant</div>
+        <div class="doc-subtitle">Ürün Besin Değeri &amp; Alerjen Bilgileri — Tüm kategoriler</div>
+      </div>
+      <div class="doc-meta">
+        Son güncelleme: Haziran 2026<br>
+        Fiyatlara KDV dahildir<br>
+        Çöps Restaurant © 2026
+      </div>
+    </div>
+  </header>
+
+ 
+
+  <!-- 1. BAŞLANGIÇLAR -->
+  <div class="section-title">
+    <span class="section-num">01</span>
+    <h2>Başlangıçlar</h2>
+  </div>
+
+  <div class="subsection-label">Soğuk Başlangıçlar</div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Ürün</th><th>Porsiyon</th><th>Kalori</th><th>Protein</th><th>Karb.</th><th>Yağ</th><th>Lif</th><th>Şeker</th><th>Tuz</th></tr></thead>
+      <tbody>
+        <tr><td>Mercimek Çorbası</td><td>1 kase</td><td class="cal">180</td><td class="num">12g</td><td class="num">25g</td><td class="num">4g</td><td class="num">8g</td><td class="num">2g</td><td class="num">1.2g</td></tr>
+        <tr><td>Tavuk Suyu</td><td>1 kase</td><td class="cal">120</td><td class="num">10g</td><td class="num">8g</td><td class="num">6g</td><td class="num">1g</td><td class="num">1g</td><td class="num">1.0g</td></tr>
+        <tr><td>Mevsim Salatası</td><td>1 tabak</td><td class="cal">85</td><td class="num">3g</td><td class="num">12g</td><td class="num">3g</td><td class="num">5g</td><td class="num">8g</td><td class="num">0.5g</td></tr>
+        <tr><td>Yoğurt</td><td>1 porsiyon</td><td class="cal">110</td><td class="num">6g</td><td class="num">8g</td><td class="num">5g</td><td class="num">0g</td><td class="num">8g</td><td class="num">0.3g</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="allergen-block">
+    <div class="allergen-row"><span class="allergen-name">Mercimek Çorbası</span><span class="allergen-tags"><span class="tag tag-warn">⚠️ Gluten (un ile koyulaştırma olabilir)</span><span class="tag tag-no">❌ Süt</span><span class="tag tag-warn">⚠️ Yumurta (tarife göre değişebilir)</span><span class="tag tag-warn">⚠️ Soya (kızartma yağı/baharat karışımı)</span><span class="tag tag-no">❌ Fındık</span><span class="tag tag-no">❌ Susam</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Tavuk Suyu</span><span class="allergen-tags"><span class="tag tag-warn">⚠️ Gluten (erişte/un eklenmiş olabilir)</span><span class="tag tag-warn">⚠️ Süt (tereyağı bazlı tarifte)</span><span class="tag tag-warn">⚠️ Yumurta (tarife göre değişebilir)</span><span class="tag tag-warn">⚠️ Soya (hazır et suyu/baharat karışımı)</span><span class="tag tag-no">❌ Fındık</span><span class="tag tag-no">❌ Susam</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Mevsim Salatası</span><span class="allergen-tags"><span class="tag tag-warn">⚠️ Susam (nar ekşisi sosunda olabilir)</span><span class="tag tag-no">❌ Diğerleri</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Yoğurt</span><span class="allergen-tags"><span class="tag tag-yes">✅ Süt</span><span class="tag tag-no">❌ Gluten</span><span class="tag tag-no">❌ Yumurta</span><span class="tag tag-no">❌ Soya</span><span class="tag tag-no">❌ Fındık</span><span class="tag tag-no">❌ Susam</span></span></div>
+  </div>
+
+  <div class="subsection-label">Sıcak Başlangıçlar</div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Ürün</th><th>Porsiyon</th><th>Kalori</th><th>Protein</th><th>Karb.</th><th>Yağ</th><th>Lif</th><th>Şeker</th><th>Tuz</th></tr></thead>
+      <tbody>
+        <tr><td>Çıtır Soğan Halkası</td><td>3'lü / 5'li / 8'li</td><td class="cal">210–520</td><td class="num">3–8g</td><td class="num">25–65g</td><td class="num">12–32g</td><td class="num">2–5g</td><td class="num">2–5g</td><td class="num">0.8–2.0g</td></tr>
+        <tr><td>Çıtır Tavuk</td><td>3'lü</td><td class="cal">280</td><td class="num">20g</td><td class="num">15g</td><td class="num">15g</td><td class="num">1g</td><td class="num">1g</td><td class="num">0.9g</td></tr>
+        <tr><td>Peynir Çubuğu</td><td>4'lü</td><td class="cal">340</td><td class="num">18g</td><td class="num">12g</td><td class="num">22g</td><td class="num">1g</td><td class="num">1g</td><td class="num">1.2g</td></tr>
+        <tr><td>Tavuk Topları</td><td>6'lı</td><td class="cal">310</td><td class="num">25g</td><td class="num">18g</td><td class="num">16g</td><td class="num">1g</td><td class="num">1g</td><td class="num">1.0g</td></tr>
+        <tr><td>Falafel</td><td>3'lü</td><td class="cal">220</td><td class="num">10g</td><td class="num">25g</td><td class="num">10g</td><td class="num">6g</td><td class="num">2g</td><td class="num">0.8g</td></tr>
+        <tr><td>Kombo Tabağı</td><td>1 tabak</td><td class="cal">890</td><td class="num">45g</td><td class="num">65g</td><td class="num">50g</td><td class="num">8g</td><td class="num">5g</td><td class="num">2.5g</td></tr>
+        <tr><td>Makarna</td><td>Büyük / Küçük</td><td class="cal">320–220</td><td class="num">12–8g</td><td class="num">55–40g</td><td class="num">8–6g</td><td class="num">3–2g</td><td class="num">2–1g</td><td class="num">0.5–0.3g</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="allergen-block">
+    <div class="allergen-row"><span class="allergen-name">Çıtır Soğan Halkası</span><span class="allergen-tags"><span class="tag tag-yes">✅ Gluten (un)</span><span class="tag tag-yes">✅ Süt (süt tozu)</span><span class="tag tag-warn">⚠️ Yumurta (kaplama karışımında olabilir)</span><span class="tag tag-no">❌ Soya</span><span class="tag tag-no">❌ Fındık</span><span class="tag tag-no">❌ Susam</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Çıtır Tavuk</span><span class="allergen-tags"><span class="tag tag-yes">✅ Gluten (kaplama)</span><span class="tag tag-yes">✅ Süt (peynir tozu olabilir)</span><span class="tag tag-warn">⚠️ Yumurta (kaplama karışımında olabilir)</span><span class="tag tag-no">❌ Soya</span><span class="tag tag-no">❌ Fındık</span><span class="tag tag-no">❌ Susam</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Peynir Çubuğu</span><span class="allergen-tags"><span class="tag tag-yes">✅ Gluten (kaplama)</span><span class="tag tag-yes">✅ Süt (peynir)</span><span class="tag tag-warn">⚠️ Yumurta (kaplama karışımında olabilir)</span><span class="tag tag-no">❌ Soya</span><span class="tag tag-no">❌ Fındık</span><span class="tag tag-no">❌ Susam</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Tavuk Topları</span><span class="allergen-tags"><span class="tag tag-yes">✅ Gluten (kaplama)</span><span class="tag tag-yes">✅ Süt (peynir tozu olabilir)</span><span class="tag tag-warn">⚠️ Yumurta (kaplama karışımında olabilir)</span><span class="tag tag-no">❌ Soya</span><span class="tag tag-no">❌ Fındık</span><span class="tag tag-no">❌ Susam</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Falafel</span><span class="allergen-tags"><span class="tag tag-no">❌ Gluten</span><span class="tag tag-warn">⚠️ Susam (tahin olabilir)</span><span class="tag tag-warn">⚠️ Soya (kızartma yağı)</span><span class="tag tag-no">❌ Süt</span><span class="tag tag-no">❌ Yumurta</span><span class="tag tag-no">❌ Fındık</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Kombo Tabağı</span><span class="allergen-tags"><span class="tag tag-yes">✅ Gluten</span><span class="tag tag-yes">✅ Süt</span><span class="tag tag-warn">⚠️ Yumurta (kaplamalı ürünler nedeniyle)</span><span class="tag tag-warn">⚠️ Soya</span><span class="tag tag-no">❌ Fındık</span><span class="tag tag-no">❌ Susam</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Makarna</span><span class="allergen-tags"><span class="tag tag-yes">✅ Gluten</span><span class="tag tag-warn">⚠️ Yumurta (makarna hamurunda olabilir)</span><span class="tag tag-no">❌ Süt</span><span class="tag tag-no">❌ Soya</span><span class="tag tag-no">❌ Fındık</span><span class="tag tag-no">❌ Susam</span></span></div>
+  </div>
+
+  <!-- 2. ET -->
+  <div class="section-title">
+    <span class="section-num">02</span>
+    <h2>Et Ürünleri</h2>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Ürün</th><th>Porsiyon</th><th>Kalori</th><th>Protein</th><th>Karb.</th><th>Yağ</th><th>Lif</th><th>Şeker</th><th>Tuz</th></tr></thead>
+      <tbody>
+        <tr><td>Karışık Izgara Menü</td><td>1 tabak</td><td class="cal">1450–1550</td><td class="num">100–110g</td><td class="num">80–90g</td><td class="num">80–90g</td><td class="num">5g</td><td class="num">5g</td><td class="num">3.0g</td></tr>
+        <tr><td>Çöpşiş</td><td>145g</td><td class="cal">900–1000</td><td class="num">65–70g</td><td class="num">10–15g</td><td class="num">60–70g</td><td class="num">1g</td><td class="num">1g</td><td class="num">1.5g</td></tr>
+        <tr><td>Çöpşiş Special</td><td>145g</td><td class="cal">900–1000</td><td class="num">65–70g</td><td class="num">10–15g</td><td class="num">60–70g</td><td class="num">1g</td><td class="num">1g</td><td class="num">1.5g</td></tr>
+        <tr><td>Dana Şaşlık</td><td>200g</td><td class="cal">1000–1100</td><td class="num">80–85g</td><td class="num">10–15g</td><td class="num">70–80g</td><td class="num">1g</td><td class="num">1g</td><td class="num">1.8g</td></tr>
+        <tr><td>Antrekot</td><td>200g</td><td class="cal">1100–1200</td><td class="num">85–90g</td><td class="num">5–10g</td><td class="num">80–90g</td><td class="num">1g</td><td class="num">1g</td><td class="num">2.0g</td></tr>
+        <tr><td>Sucuk Tabağı</td><td>150g</td><td class="cal">1080–1180</td><td class="num">40–45g</td><td class="num">10–15g</td><td class="num">90–100g</td><td class="num">1g</td><td class="num">1g</td><td class="num">2.5g</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="allergen-block">
+    <div class="allergen-row"><span class="allergen-name">Karışık Izgara Menü</span><span class="allergen-tags"><span class="tag tag-no">❌ Gluten</span><span class="tag tag-no">❌ Süt</span><span class="tag tag-no">❌ Yumurta</span><span class="tag tag-warn">⚠️ Soya (garnitürde)</span><span class="tag tag-no">❌ Fındık</span><span class="tag tag-no">❌ Susam</span><span class="tag tag-warn">⚠️ Sülfit (sucukta)</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Çöpşiş</span><span class="allergen-tags"><span class="tag tag-no">❌ Gluten</span><span class="tag tag-no">❌ Süt</span><span class="tag tag-no">❌ Yumurta</span><span class="tag tag-no">❌ Soya</span><span class="tag tag-no">❌ Fındık</span><span class="tag tag-no">❌ Susam</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Çöpşiş Special</span><span class="allergen-tags"><span class="tag tag-no">❌ Gluten</span><span class="tag tag-no">❌ Süt</span><span class="tag tag-no">❌ Yumurta</span><span class="tag tag-no">❌ Soya</span><span class="tag tag-no">❌ Fındık</span><span class="tag tag-warn">⚠️ Susam (baharatlar kontrol edilmeli)</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Dana Şaşlık</span><span class="allergen-tags"><span class="tag tag-no">❌ Gluten</span><span class="tag tag-no">❌ Süt</span><span class="tag tag-no">❌ Yumurta</span><span class="tag tag-no">❌ Soya</span><span class="tag tag-no">❌ Fındık</span><span class="tag tag-no">❌ Susam</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Antrekot</span><span class="allergen-tags"><span class="tag tag-no">❌ Gluten</span><span class="tag tag-no">❌ Süt</span><span class="tag tag-no">❌ Yumurta</span><span class="tag tag-no">❌ Soya</span><span class="tag tag-no">❌ Fındık</span><span class="tag tag-no">❌ Susam</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Sucuk Tabağı</span><span class="allergen-tags"><span class="tag tag-no">❌ Gluten</span><span class="tag tag-no">❌ Süt</span><span class="tag tag-no">❌ Yumurta</span><span class="tag tag-warn">⚠️ Soya</span><span class="tag tag-no">❌ Fındık</span><span class="tag tag-no">❌ Susam</span><span class="tag tag-yes">✅ Sülfit</span></span></div>
+  </div>
+
+  <!-- 3. TAVUK -->
+  <div class="section-title">
+    <span class="section-num">03</span>
+    <h2>Tavuk Ürünleri</h2>
+  </div>
+
+  <div class="subsection-label">Izgara Tavuk</div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Ürün</th><th>Porsiyon</th><th>Kalori</th><th>Protein</th><th>Karb.</th><th>Yağ</th><th>Lif</th><th>Şeker</th><th>Tuz</th></tr></thead>
+      <tbody>
+        <tr><td>Tavuk Şiş</td><td>200g</td><td class="cal">700–800</td><td class="num">55–60g</td><td class="num">40–45g</td><td class="num">35–40g</td><td class="num">3g</td><td class="num">3g</td><td class="num">1.2g</td></tr>
+        <tr><td>Light Tavuk</td><td>200g</td><td class="cal">500–600</td><td class="num">55–60g</td><td class="num">20–25g</td><td class="num">20–25g</td><td class="num">3g</td><td class="num">2g</td><td class="num">1.0g</td></tr>
+        <tr><td>Karışık Tavuk Tabağı</td><td>300g</td><td class="cal">900–1000</td><td class="num">80–90g</td><td class="num">50–60g</td><td class="num">40–45g</td><td class="num">5g</td><td class="num">4g</td><td class="num">1.5g</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="allergen-block">
+    <div class="allergen-row"><span class="allergen-name">Tavuk Şiş</span><span class="allergen-tags"><span class="tag tag-no">❌ Gluten</span><span class="tag tag-yes">✅ Süt (pesto sos)</span><span class="tag tag-no">❌ Yumurta</span><span class="tag tag-no">❌ Soya</span><span class="tag tag-no">❌ Fındık</span><span class="tag tag-no">❌ Susam</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Light Tavuk</span><span class="allergen-tags"><span class="tag tag-no">❌ Gluten</span><span class="tag tag-yes">✅ Süt (yoğurt)</span><span class="tag tag-no">❌ Yumurta</span><span class="tag tag-no">❌ Soya</span><span class="tag tag-no">❌ Fındık</span><span class="tag tag-no">❌ Susam</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Karışık Tavuk Tabağı</span><span class="allergen-tags"><span class="tag tag-no">❌ Gluten</span><span class="tag tag-yes">✅ Süt (pesto sos)</span><span class="tag tag-no">❌ Yumurta</span><span class="tag tag-no">❌ Soya</span><span class="tag tag-no">❌ Fındık</span><span class="tag tag-no">❌ Susam</span></span></div>
+  </div>
+
+  <div class="subsection-label">Tava Tavuk</div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Ürün</th><th>Porsiyon</th><th>Kalori</th><th>Protein</th><th>Karb.</th><th>Yağ</th><th>Lif</th><th>Şeker</th><th>Tuz</th></tr></thead>
+      <tbody>
+        <tr><td>Soya Soslu Tavuk</td><td>200g</td><td class="cal">800–900</td><td class="num">50–55g</td><td class="num">45–50g</td><td class="num">40–45g</td><td class="num">3g</td><td class="num">5g</td><td class="num">1.8g</td></tr>
+        <tr><td>Kremalı Kaşarlı Mantarlı Tavuk</td><td>200g</td><td class="cal">900–1000</td><td class="num">55–60g</td><td class="num">45–50g</td><td class="num">45–50g</td><td class="num">3g</td><td class="num">4g</td><td class="num">1.5g</td></tr>
+        <tr><td>Barbekü Soslu Tavuk</td><td>200g</td><td class="cal">900–1000</td><td class="num">55–60g</td><td class="num">45–50g</td><td class="num">45–50g</td><td class="num">4g</td><td class="num">8g</td><td class="num">1.8g</td></tr>
+        <tr><td>Kekikli Tavuk</td><td>200g</td><td class="cal">900–1000</td><td class="num">55–60g</td><td class="num">45–50g</td><td class="num">45–50g</td><td class="num">3g</td><td class="num">3g</td><td class="num">1.5g</td></tr>
+        <tr><td>Sweet Chili Soslu Tavuk</td><td>200g</td><td class="cal">900–1000</td><td class="num">55–60g</td><td class="num">50–55g</td><td class="num">40–45g</td><td class="num">3g</td><td class="num">15g</td><td class="num">1.5g</td></tr>
+        <tr><td>Acılı Körili Tavuk</td><td>200g</td><td class="cal">900–1000</td><td class="num">55–60g</td><td class="num">45–50g</td><td class="num">45–50g</td><td class="num">3g</td><td class="num">5g</td><td class="num">1.8g</td></tr>
+        <tr><td>Köri Soslu Tavuk</td><td>200g</td><td class="cal">900–1000</td><td class="num">55–60g</td><td class="num">45–50g</td><td class="num">45–50g</td><td class="num">3g</td><td class="num">5g</td><td class="num">1.5g</td></tr>
+        <tr><td>Acı Soslu Tavuk</td><td>200g</td><td class="cal">900–1000</td><td class="num">55–60g</td><td class="num">45–50g</td><td class="num">45–50g</td><td class="num">3g</td><td class="num">3g</td><td class="num">1.8g</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="allergen-block">
+    <div class="allergen-row"><span class="allergen-name">Soya Soslu Tavuk</span><span class="allergen-tags"><span class="tag tag-no">❌ Gluten</span><span class="tag tag-yes">✅ Süt (pesto sos)</span><span class="tag tag-no">❌ Yumurta</span><span class="tag tag-yes">✅ Soya</span><span class="tag tag-no">❌ Fındık</span><span class="tag tag-no">❌ Susam</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Kremalı Kaşarlı Mantarlı</span><span class="allergen-tags"><span class="tag tag-no">❌ Gluten</span><span class="tag tag-yes">✅ Süt (krema, kaşar)</span><span class="tag tag-no">❌ Yumurta</span><span class="tag tag-no">❌ Soya</span><span class="tag tag-no">❌ Fındık</span><span class="tag tag-no">❌ Susam</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Diğer Tava Tavuklar (Barbekü, Kekikli, Sweet Chili, Acılı Köri, Köri, Acı Soslu)</span><span class="allergen-tags"><span class="tag tag-no">❌ Gluten</span><span class="tag tag-yes">✅ Süt (pesto sos)</span><span class="tag tag-no">❌ Yumurta</span><span class="tag tag-no">❌ Soya</span><span class="tag tag-no">❌ Fındık</span><span class="tag tag-no">❌ Susam</span></span></div>
+  </div>
+
+  <!-- 4. KÖFTE -->
+  <div class="section-title">
+    <span class="section-num">04</span>
+    <h2>Köfteler</h2>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Ürün</th><th>Porsiyon</th><th>Kalori</th><th>Protein</th><th>Karb.</th><th>Yağ</th><th>Lif</th><th>Şeker</th><th>Tuz</th></tr></thead>
+      <tbody>
+        <tr><td>Izgara Köfte</td><td>130–140g</td><td class="cal">900–1000</td><td class="num">60–65g</td><td class="num">15–20g</td><td class="num">65–75g</td><td class="num">2g</td><td class="num">2g</td><td class="num">1.8g</td></tr>
+        <tr><td>Pideli Köfte</td><td>130–140g</td><td class="cal">950–1100</td><td class="num">60–65g</td><td class="num">20–25g</td><td class="num">70–80g</td><td class="num">2g</td><td class="num">3g</td><td class="num">2.0g</td></tr>
+        <tr><td>Kaşarlı Köfte</td><td>130–140g</td><td class="cal">1000–1100</td><td class="num">65–70g</td><td class="num">15–20g</td><td class="num">75–85g</td><td class="num">2g</td><td class="num">2g</td><td class="num">2.0g</td></tr>
+        <tr><td>Kasap Köfte</td><td>130–140g</td><td class="cal">900–1000</td><td class="num">60–65g</td><td class="num">15–20g</td><td class="num">65–75g</td><td class="num">2g</td><td class="num">2g</td><td class="num">1.8g</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="allergen-block">
+    <div class="allergen-row"><span class="allergen-name">Izgara Köfte</span><span class="allergen-tags"><span class="tag tag-no">❌ Gluten</span><span class="tag tag-no">❌ Süt</span><span class="tag tag-no">❌ Yumurta</span><span class="tag tag-no">❌ Soya</span><span class="tag tag-no">❌ Fındık</span><span class="tag tag-no">❌ Susam</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Pideli Köfte</span><span class="allergen-tags"><span class="tag tag-yes">✅ Gluten (pide)</span><span class="tag tag-no">❌ Süt</span><span class="tag tag-no">❌ Yumurta</span><span class="tag tag-no">❌ Soya</span><span class="tag tag-no">❌ Fındık</span><span class="tag tag-no">❌ Susam</span><span class="tag tag-warn">⚠️ Sülfit (iskender sos)</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Kaşarlı Köfte</span><span class="allergen-tags"><span class="tag tag-no">❌ Gluten</span><span class="tag tag-yes">✅ Süt (kaşar)</span><span class="tag tag-no">❌ Yumurta</span><span class="tag tag-no">❌ Soya</span><span class="tag tag-no">❌ Fındık</span><span class="tag tag-no">❌ Susam</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Kasap Köfte</span><span class="allergen-tags"><span class="tag tag-no">❌ Gluten</span><span class="tag tag-no">❌ Süt</span><span class="tag tag-no">❌ Yumurta</span><span class="tag tag-no">❌ Soya</span><span class="tag tag-no">❌ Fındık</span><span class="tag tag-no">❌ Susam</span></span></div>
+  </div>
+
+  <!-- 5. BURGER -->
+  <div class="section-title">
+    <span class="section-num">05</span>
+    <h2>Burgerler</h2>
+  </div>
+
+  <div class="subsection-label">Klasik Burgerler</div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Ürün</th><th>Porsiyon</th><th>Kalori</th><th>Protein</th><th>Karb.</th><th>Yağ</th><th>Lif</th><th>Şeker</th><th>Tuz</th></tr></thead>
+      <tbody>
+        <tr><td>Çöps Burger</td><td>100g</td><td class="cal">1200–1300</td><td class="num">45–50g</td><td class="num">80–90g</td><td class="num">70–80g</td><td class="num">5g</td><td class="num">5g</td><td class="num">2.0g</td></tr>
+        <tr><td>Mexico Burger</td><td>100g</td><td class="cal">1200–1300</td><td class="num">45–50g</td><td class="num">80–90g</td><td class="num">70–80g</td><td class="num">5g</td><td class="num">5g</td><td class="num">2.2g</td></tr>
+        <tr><td>Nefis Cheese Burger</td><td>100g</td><td class="cal">1300–1400</td><td class="num">50–55g</td><td class="num">80–90g</td><td class="num">75–85g</td><td class="num">5g</td><td class="num">5g</td><td class="num">2.2g</td></tr>
+        <tr><td>Terbiyeli Tavuk Burger</td><td>100g</td><td class="cal">1100–1200</td><td class="num">45–50g</td><td class="num">80–90g</td><td class="num">60–70g</td><td class="num">5g</td><td class="num">5g</td><td class="num">2.0g</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="allergen-block">
+    <div class="allergen-row"><span class="allergen-name">Çöps Burger</span><span class="allergen-tags"><span class="tag tag-yes">✅ Gluten (ekmek)</span><span class="tag tag-yes">✅ Süt (sos)</span><span class="tag tag-warn">⚠️ Yumurta (ekmek hamurunda olabilir)</span><span class="tag tag-warn">⚠️ Soya</span><span class="tag tag-no">❌ Fındık</span><span class="tag tag-yes">✅ Susam (ekmek)</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Mexico Burger</span><span class="allergen-tags"><span class="tag tag-yes">✅ Gluten (ekmek)</span><span class="tag tag-yes">✅ Süt (sos)</span><span class="tag tag-warn">⚠️ Yumurta (ekmek hamurunda olabilir)</span><span class="tag tag-warn">⚠️ Soya</span><span class="tag tag-no">❌ Fındık</span><span class="tag tag-yes">✅ Susam</span><span class="tag tag-warn">⚠️ Hardal (jalapeño sosu)</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Nefis Cheese Burger</span><span class="allergen-tags"><span class="tag tag-yes">✅ Gluten (ekmek)</span><span class="tag tag-yes">✅ Süt (burger peyniri)</span><span class="tag tag-warn">⚠️ Yumurta (ekmek hamurunda olabilir)</span><span class="tag tag-warn">⚠️ Soya</span><span class="tag tag-no">❌ Fındık</span><span class="tag tag-yes">✅ Susam</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Terbiyeli Tavuk Burger</span><span class="allergen-tags"><span class="tag tag-yes">✅ Gluten (ekmek)</span><span class="tag tag-yes">✅ Süt (sos)</span><span class="tag tag-warn">⚠️ Yumurta (ekmek hamurunda olabilir)</span><span class="tag tag-warn">⚠️ Soya</span><span class="tag tag-no">❌ Fındık</span><span class="tag tag-yes">✅ Susam</span></span></div>
+  </div>
+
+  <div class="subsection-label">Özel Burgerler</div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Ürün</th><th>Porsiyon</th><th>Kalori</th><th>Protein</th><th>Karb.</th><th>Yağ</th><th>Lif</th><th>Şeker</th><th>Tuz</th></tr></thead>
+      <tbody>
+        <tr><td>Şef Burger</td><td>100g</td><td class="cal">1300–1400</td><td class="num">55–60g</td><td class="num">80–90g</td><td class="num">80–90g</td><td class="num">5g</td><td class="num">5g</td><td class="num">2.5g</td></tr>
+        <tr><td>Süper Burger</td><td>200g</td><td class="cal">1600–1700</td><td class="num">90–100g</td><td class="num">100–110g</td><td class="num">90–100g</td><td class="num">6g</td><td class="num">6g</td><td class="num">3.0g</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="allergen-block">
+    <div class="allergen-row"><span class="allergen-name">Şef Burger</span><span class="allergen-tags"><span class="tag tag-yes">✅ Gluten (ekmek)</span><span class="tag tag-yes">✅ Süt (peynir, dana jambon)</span><span class="tag tag-warn">⚠️ Yumurta (ekmek hamurunda olabilir)</span><span class="tag tag-warn">⚠️ Soya</span><span class="tag tag-no">❌ Fındık</span><span class="tag tag-yes">✅ Susam</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Süper Burger</span><span class="allergen-tags"><span class="tag tag-yes">✅ Gluten (ekmek)</span><span class="tag tag-yes">✅ Süt (çift peynir, dana jambon)</span><span class="tag tag-warn">⚠️ Yumurta (ekmek hamurunda olabilir)</span><span class="tag tag-warn">⚠️ Soya</span><span class="tag tag-no">❌ Fındık</span><span class="tag tag-yes">✅ Susam</span></span></div>
+  </div>
+
+  <!-- 6. ÇOCUK -->
+  <div class="section-title">
+    <span class="section-num">06</span>
+    <h2>Çocuk Menüleri</h2>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Ürün</th><th>Porsiyon</th><th>Kalori</th><th>Protein</th><th>Karb.</th><th>Yağ</th><th>Lif</th><th>Şeker</th><th>Tuz</th></tr></thead>
+      <tbody>
+        <tr><td>Patatesli Çocuk Tabağı</td><td>1 tabak</td><td class="cal">600–700</td><td class="num">35–40g</td><td class="num">50–60g</td><td class="num">30–35g</td><td class="num">4g</td><td class="num">3g</td><td class="num">1.2g</td></tr>
+        <tr><td>Makarnalı Çocuk Menü</td><td>1 tabak</td><td class="cal">600–700</td><td class="num">35–40g</td><td class="num">60–70g</td><td class="num">25–30g</td><td class="num">4g</td><td class="num">3g</td><td class="num">1.2g</td></tr>
+        <tr><td>Çöpşiş Çocuk Tabağı</td><td>1 tabak</td><td class="cal">600–700</td><td class="num">40–45g</td><td class="num">50–60g</td><td class="num">30–35g</td><td class="num">3g</td><td class="num">2g</td><td class="num">1.0g</td></tr>
+        <tr><td>Makarnalı Kasap Çocuk Menü</td><td>1 tabak</td><td class="cal">600–700</td><td class="num">40–45g</td><td class="num">60–70g</td><td class="num">25–30g</td><td class="num">4g</td><td class="num">3g</td><td class="num">1.2g</td></tr>
+        <tr><td>Patatesli Kasap Çocuk Menü</td><td>1 tabak</td><td class="cal">600–700</td><td class="num">40–45g</td><td class="num">50–60g</td><td class="num">30–35g</td><td class="num">3g</td><td class="num">2g</td><td class="num">1.2g</td></tr>
+        <tr><td>Tavuk Şişli Çocuk Tabağı</td><td>1 tabak</td><td class="cal">500–600</td><td class="num">35–40g</td><td class="num">45–55g</td><td class="num">20–25g</td><td class="num">3g</td><td class="num">2g</td><td class="num">1.0g</td></tr>
+        <tr><td>Çocuk Burger</td><td>1 adet</td><td class="cal">900–1000</td><td class="num">30–35g</td><td class="num">70–80g</td><td class="num">50–60g</td><td class="num">4g</td><td class="num">4g</td><td class="num">1.5g</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="allergen-block">
+    <div class="allergen-row"><span class="allergen-name">Patatesli Çocuk Tabağı</span><span class="allergen-tags"><span class="tag tag-no">❌ Gluten</span><span class="tag tag-no">❌ Süt</span><span class="tag tag-no">❌ Yumurta</span><span class="tag tag-no">❌ Soya</span><span class="tag tag-no">❌ Fındık</span><span class="tag tag-no">❌ Susam</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Makarnalı Çocuk Menü</span><span class="allergen-tags"><span class="tag tag-yes">✅ Gluten (makarna)</span><span class="tag tag-warn">⚠️ Yumurta (makarna hamurunda olabilir)</span><span class="tag tag-no">❌ Süt</span><span class="tag tag-no">❌ Soya</span><span class="tag tag-no">❌ Fındık</span><span class="tag tag-no">❌ Susam</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Çöpşiş Çocuk Tabağı</span><span class="allergen-tags"><span class="tag tag-no">❌ Gluten</span><span class="tag tag-no">❌ Süt</span><span class="tag tag-no">❌ Yumurta</span><span class="tag tag-no">❌ Soya</span><span class="tag tag-no">❌ Fındık</span><span class="tag tag-no">❌ Susam</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Makarnalı Kasap Çocuk</span><span class="allergen-tags"><span class="tag tag-yes">✅ Gluten (makarna)</span><span class="tag tag-warn">⚠️ Yumurta (makarna hamurunda olabilir)</span><span class="tag tag-no">❌ Süt</span><span class="tag tag-no">❌ Soya</span><span class="tag tag-no">❌ Fındık</span><span class="tag tag-no">❌ Susam</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Patatesli Kasap Çocuk</span><span class="allergen-tags"><span class="tag tag-no">❌ Gluten</span><span class="tag tag-no">❌ Süt</span><span class="tag tag-no">❌ Yumurta</span><span class="tag tag-no">❌ Soya</span><span class="tag tag-no">❌ Fındık</span><span class="tag tag-no">❌ Susam</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Tavuk Şişli Çocuk</span><span class="allergen-tags"><span class="tag tag-no">❌ Gluten</span><span class="tag tag-yes">✅ Süt (pesto sos)</span><span class="tag tag-no">❌ Yumurta</span><span class="tag tag-no">❌ Soya</span><span class="tag tag-no">❌ Fındık</span><span class="tag tag-no">❌ Susam</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Çocuk Burger</span><span class="allergen-tags"><span class="tag tag-yes">✅ Gluten (ekmek)</span><span class="tag tag-yes">✅ Süt (sos)</span><span class="tag tag-warn">⚠️ Yumurta (ekmek hamurunda olabilir)</span><span class="tag tag-warn">⚠️ Soya</span><span class="tag tag-no">❌ Fındık</span><span class="tag tag-yes">✅ Susam</span></span></div>
+  </div>
+
+  <!-- 7. İÇECEKLER -->
+  <div class="section-title">
+    <span class="section-num">07</span>
+    <h2>İçecekler</h2>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Ürün</th><th>Porsiyon</th><th>Kalori</th><th>Protein</th><th>Karb.</th><th>Yağ</th><th>Şeker</th><th>Tuz</th></tr></thead>
+      <tbody>
+        <tr><td>Limonata</td><td>1 bardak</td><td class="cal">120</td><td class="num">0g</td><td class="num">30g</td><td class="num">0g</td><td class="num">30g</td><td class="num">0.1g</td></tr>
+        <tr><td>Ayran / Açık Ayran</td><td>1 bardak</td><td class="cal">65</td><td class="num">2g</td><td class="num">4g</td><td class="num">3g</td><td class="num">4g</td><td class="num">0.3g</td></tr>
+        <tr><td>Meşrubatlar (Cola, Sprite, Fanta, Fuse Tea)</td><td>1 şişe</td><td class="cal">140</td><td class="num">0g</td><td class="num">35g</td><td class="num">0g</td><td class="num">35g</td><td class="num">0.1g</td></tr>
+        <tr><td>Şalgam (Acılı / Acısız)</td><td>1 bardak</td><td class="cal">25</td><td class="num">0g</td><td class="num">5g</td><td class="num">0g</td><td class="num">3g</td><td class="num">0.5g</td></tr>
+        <tr><td>Soda</td><td>1 bardak</td><td class="cal">0</td><td class="num">0g</td><td class="num">0g</td><td class="num">0g</td><td class="num">0g</td><td class="num">0.1g</td></tr>
+        <tr><td>Meyveli Soda</td><td>1 bardak</td><td class="cal">45</td><td class="num">0g</td><td class="num">12g</td><td class="num">0g</td><td class="num">10g</td><td class="num">0.1g</td></tr>
+        <tr><td>Cam Su / Su</td><td>1 bardak / şişe</td><td class="cal">0</td><td class="num">0g</td><td class="num">0g</td><td class="num">0g</td><td class="num">0g</td><td class="num">0g</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="allergen-block">
+    <div class="allergen-row"><span class="allergen-name">Ayran / Açık Ayran</span><span class="allergen-tags"><span class="tag tag-yes">✅ Süt</span><span class="tag tag-no">❌ Diğerleri</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Tüm Diğer İçecekler</span><span class="allergen-tags"><span class="tag tag-no">❌ Tüm alerjenlerden arındırılmış</span></span></div>
+  </div>
+
+  <!-- 8. ALERJEN MATRİSİ -->
+  <div class="section-title">
+    <span class="section-num">08</span>
+    <h2>Alerjen Matrisi</h2>
+  </div>
+
+  <div class="legend-grid">
+    <div class="legend-item"><span class="legend-icon">🌾</span><span><strong>Gluten</strong> — Buğday, arpa, çavdar</span></div>
+    <div class="legend-item"><span class="legend-icon">🥛</span><span><strong>Süt</strong> — Peynir, yoğurt, krema</span></div>
+    <div class="legend-item"><span class="legend-icon">🥚</span><span><strong>Yumurta</strong> — Tavuk yumurtası</span></div>
+    <div class="legend-item"><span class="legend-icon">🌱</span><span><strong>Soya</strong> — Soya fasulyesi, soya yağı</span></div>
+    <div class="legend-item"><span class="legend-icon">🌰</span><span><strong>Fındık</strong> — Kabuklu yemişler</span></div>
+    <div class="legend-item"><span class="legend-icon">🍲</span><span><strong>Susam</strong> — Tohum ve yağı</span></div>
+    <div class="legend-item"><span class="legend-icon">⚗️</span><span><strong>Sülfit</strong> — Koruyucu sülfür dioksit</span></div>
+    <div class="legend-item"><span class="legend-icon">🟡</span><span><strong>Hardal</strong> — Hardal tohumu ve ürünleri</span></div>
+  </div>
+  <div style="font-size:11.5px; color:var(--soft); margin-bottom:14px;">✅ = İçerir &nbsp;|&nbsp; ⚠️ = İçerebilir / olası çapraz bulaşma &nbsp;|&nbsp; ❌ = İçermez</div>
+
+  <div class="matrix-wrap">
+    <table>
+      <thead><tr><th>Kategori</th><th>Ürün</th><th>🌾 Gluten</th><th>🥛 Süt</th><th>🥚 Yumurta</th><th>🌱 Soya</th><th>🌰 Fındık</th><th>🍲 Susam</th><th>⚗️ Sülfit</th><th>🟡 Hardal</th></tr></thead>
+      <tbody>
+        <tr><td>Başlangıç</td><td>Mercimek Çorbası</td><td>⚠️</td><td>❌</td><td>⚠️</td><td>⚠️</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+        <tr><td>Başlangıç</td><td>Tavuk Suyu</td><td>⚠️</td><td>⚠️</td><td>⚠️</td><td>⚠️</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+        <tr><td>Başlangıç</td><td>Mevsim Salatası</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>⚠️</td><td>❌</td><td>❌</td></tr>
+        <tr><td>Başlangıç</td><td>Yoğurt</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+        <tr><td>Başlangıç</td><td>Çıtır Soğan Halkası</td><td>✅</td><td>✅</td><td>⚠️</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+        <tr><td>Başlangıç</td><td>Çıtır Tavuk</td><td>✅</td><td>✅</td><td>⚠️</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+        <tr><td>Başlangıç</td><td>Peynir Çubuğu</td><td>✅</td><td>✅</td><td>⚠️</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+        <tr><td>Başlangıç</td><td>Tavuk Topları</td><td>✅</td><td>✅</td><td>⚠️</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+        <tr><td>Başlangıç</td><td>Falafel</td><td>❌</td><td>❌</td><td>❌</td><td>⚠️</td><td>❌</td><td>⚠️</td><td>❌</td><td>❌</td></tr>
+        <tr><td>Başlangıç</td><td>Kombo Tabağı</td><td>✅</td><td>✅</td><td>⚠️</td><td>⚠️</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+        <tr><td>Başlangıç</td><td>Makarna</td><td>✅</td><td>❌</td><td>⚠️</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+        <tr><td>Et</td><td>Karışık Izgara Menü</td><td>❌</td><td>❌</td><td>❌</td><td>⚠️</td><td>❌</td><td>❌</td><td>⚠️</td><td>❌</td></tr>
+        <tr><td>Et</td><td>Çöpşiş</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+        <tr><td>Et</td><td>Çöpşiş Special</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>⚠️</td><td>❌</td><td>❌</td></tr>
+        <tr><td>Et</td><td>Dana Şaşlık</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+        <tr><td>Et</td><td>Antrekot</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+        <tr><td>Et</td><td>Sucuk Tabağı</td><td>❌</td><td>❌</td><td>❌</td><td>⚠️</td><td>❌</td><td>❌</td><td>✅</td><td>❌</td></tr>
+        <tr><td>Tavuk</td><td>Tavuk Şiş</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+        <tr><td>Tavuk</td><td>Light Tavuk</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+        <tr><td>Tavuk</td><td>Karışık Tavuk Tabağı</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+        <tr><td>Tavuk</td><td>Soya Soslu Tavuk</td><td>❌</td><td>✅</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+        <tr><td>Tavuk</td><td>Kremalı Kaşarlı Mantarlı</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+        <tr><td>Tavuk</td><td>Diğer Tava Tavuklar</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+        <tr><td>Köfte</td><td>Izgara Köfte</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+        <tr><td>Köfte</td><td>Pideli Köfte</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>⚠️</td><td>❌</td></tr>
+        <tr><td>Köfte</td><td>Kaşarlı Köfte</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+        <tr><td>Köfte</td><td>Kasap Köfte</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+        <tr><td>Burger</td><td>Çöps Burger</td><td>✅</td><td>✅</td><td>⚠️</td><td>⚠️</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td></tr>
+        <tr><td>Burger</td><td>Mexico Burger</td><td>✅</td><td>✅</td><td>⚠️</td><td>⚠️</td><td>❌</td><td>✅</td><td>❌</td><td>⚠️</td></tr>
+        <tr><td>Burger</td><td>Nefis Cheese Burger</td><td>✅</td><td>✅</td><td>⚠️</td><td>⚠️</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td></tr>
+        <tr><td>Burger</td><td>Terbiyeli Tavuk Burger</td><td>✅</td><td>✅</td><td>⚠️</td><td>⚠️</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td></tr>
+        <tr><td>Burger</td><td>Şef Burger</td><td>✅</td><td>✅</td><td>⚠️</td><td>⚠️</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td></tr>
+        <tr><td>Burger</td><td>Süper Burger</td><td>✅</td><td>✅</td><td>⚠️</td><td>⚠️</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td></tr>
+        <tr><td>Çocuk</td><td>Patatesli Çocuk Tabağı</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+        <tr><td>Çocuk</td><td>Makarnalı Çocuk Menü</td><td>✅</td><td>❌</td><td>⚠️</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+        <tr><td>Çocuk</td><td>Çöpşiş Çocuk Tabağı</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+        <tr><td>Çocuk</td><td>Makarnalı Kasap Çocuk</td><td>✅</td><td>❌</td><td>⚠️</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+        <tr><td>Çocuk</td><td>Patatesli Kasap Çocuk</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+        <tr><td>Çocuk</td><td>Tavuk Şişli Çocuk</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+        <tr><td>Çocuk</td><td>Çocuk Burger</td><td>✅</td><td>✅</td><td>⚠️</td><td>⚠️</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td></tr>
+        <tr><td>İçecek</td><td>Limonata</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+        <tr><td>İçecek</td><td>Ayran / Açık Ayran</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+        <tr><td>İçecek</td><td>Meşrubatlar</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+        <tr><td>İçecek</td><td>Şalgam</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+        <tr><td>İçecek</td><td>Soda / Meyveli Soda / Su</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 9. ÖZET -->
+  <div class="section-title">
+    <span class="section-num">09</span>
+    <h2>Özet İstatistikler &amp; Tavsiyeler</h2>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-cell"><div class="stat-cell-label">En Düşük Kalori</div><div class="stat-cell-value">0</div><div class="stat-cell-sub">Su, Soda (kcal)</div></div>
+    <div class="stat-cell"><div class="stat-cell-label">En Yüksek Kalori</div><div class="stat-cell-value">1700</div><div class="stat-cell-sub">Süper Burger (kcal)</div></div>
+    <div class="stat-cell"><div class="stat-cell-label">Ort. Ana Yemek</div><div class="stat-cell-value">800–1000</div><div class="stat-cell-sub">kcal / porsiyon</div></div>
+    <div class="stat-cell"><div class="stat-cell-label">Gluten İçeren</div><div class="stat-cell-value">%40</div><div class="stat-cell-sub">Burgerler, makarna, kızartmalar</div></div>
+    <div class="stat-cell"><div class="stat-cell-label">Süt İçeren</div><div class="stat-cell-value">%35</div><div class="stat-cell-sub">Pesto soslu, peynirli ürünler</div></div>
+  </div>
+
+  <div class="tip-grid">
+    <div class="tip-box">
+      <h4>Düşük Kalori</h4>
+      <ul>
+        <li>Light Tavuk (500–600 kcal)</li>
+        <li>Mevsim Salatası (85 kcal)</li>
+        <li>Yoğurt (110 kcal)</li>
+        <li>Tavuk Suyu (120 kcal)</li>
+        <li>Mercimek Çorbası (180 kcal)</li>
+      </ul>
+    </div>
+    <div class="tip-box">
+      <h4>Yüksek Protein</h4>
+      <ul>
+        <li>Karışık Izgara Menü (100–110g)</li>
+        <li>Dana Şaşlık (80–85g)</li>
+        <li>Antrekot (85–90g)</li>
+        <li>Izgara Köfte (60–65g)</li>
+        <li>Karışık Tavuk Tabağı (80–90g)</li>
+      </ul>
+    </div>
+    <div class="tip-box">
+      <h4>Glutensiz Seçenekler</h4>
+      <ul>
+        <li>Tüm et ürünleri</li>
+        <li>Izgara &amp; Kasap Köfte</li>
+        <li>Salatalar (genellikle)</li>
+        <li>Falafel</li>
+        <li>Izgara &amp; tava tavuk çeşitleri</li>
+      </ul>
+    </div>
+    <div class="tip-box">
+      <h4>Sütsüz Seçenekler</h4>
+      <ul>
+        <li>Tüm et ürünleri</li>
+        <li>Izgara &amp; Kasap Köfte</li>
+        <li>Falafel</li>
+        <li>Mevsim Salatası</li>
+        <li>Çöpşiş &amp; Dana Şaşlık</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="notice">
+    <strong>⚠️ Önemli Uyarı:</strong> Tüm ürünler aynı mutfak ortamında hazırlanmaktadır; çapraz bulaşma riski bulunabilir. Besin değerleri tahmini olup porsiyon ve hazırlama yöntemine göre değişebilir. "⚠️" işareti, ürünün tarif/marka değişikliğine veya çapraz bulaşmaya bağlı olarak ilgili alerjeni içerebileceğini gösterir; kesin bilgi için sipariş vermeden önce personelimize danışınız. Alerjen duyarlılığınız varsa lütfen mutlaka önceden bildiriniz.
+  </div>
+
+  <footer>
+    <span>Son güncelleme: Haziran 2026</span>
+    <span><strong>Çöps Restaurant</strong> © 2026</span>
+  </footer>
+
+</div>
+</body>
+</html>
