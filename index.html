@@ -402,6 +402,17 @@
       line-height: 1.6;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
+    .menu-footer a {
+  color: var(--gold); /* Altın rengi */
+  text-decoration: none; /* Alt çizgiyi kaldır */
+  font-weight: 600; /* Kalınlaştır */
+  transition: var(--transition); /* Yumuşak geçiş efekti */
+}
+
+.menu-footer a:hover {
+  color: var(--red); /* Fareyle üzerine gelindiğinde kırmızı olsun */
+  text-decoration: underline; /* Alt çizgi ekle */
+}
 
     /* RESPONSIVE */
     @media (max-width: 480px) {
@@ -624,21 +635,6 @@
           <div class="item-price-wrap"><span class="item-price">120 TL</span></div>
         </div>
       </div>
-       <div class="menu-item" data-prices="120">
-        <img src="img/iclikofte.png" class="item-image" />
-        <div class="item-bottom">
-          <div class="item-info">
-            <h3>İçli Köfte</h3>
-            <p>2'li İçli Köfte</p>
-                <span class="kcal-badge">🔥 300-400 kcal</span>
-            <div class="portion-toggle">
-              <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
-             
-            </div>
-          </div>
-          <div class="item-price-wrap"><span class="item-price">200 TL</span></div>
-        </div>
-      </div>
       <div class="menu-item" data-prices="200">
         <img src="img/PEYNIRCUBUGU.png" class="item-image" />
         <div class="item-bottom">
@@ -724,7 +720,7 @@
     <div class="sub-title">Dana Etleri</div>
     <div class="items-grid">
       <div class="menu-item" data-prices="795">
-        <img src="img/karisikmenu.jpg" class="item-image" />
+        <img src="img/karisikizgaramenu.png" class="item-image" />
         <div class="item-bottom">
           <div class="item-info">
             <h3>Karışık Izgara Menü</h3>
@@ -854,7 +850,7 @@
         </div>
       </div>
       <div class="menu-item" data-prices="545">
-        <img src="img/karisiktavuk.jpeg" class="item-image" />
+        <img src="img/karisiktavuktabagi.png" class="item-image" />
         <div class="item-bottom">
           <div class="item-info">
             <h3>Karışık Tavuk Tabağı</h3>
@@ -1416,7 +1412,6 @@
 <div class="menu-footer">
   <p>Fiyatlara KDV dahildir · Ürünlerimiz alerjen bileşenler içerebilir ve aynı mutfak ortamında hazırlanır. Detaylı alerjen bilgisi için lütfen <a href="calori.html">tıklayınız</a></p>
 </div>
- 
 <script>
   // MENÜ SEKME GEÇİŞİ
   document.querySelectorAll('.nav-tab').forEach(tab => {
@@ -1430,45 +1425,50 @@
   });
  
   // PORSIYON HESAPLAMA
-  function roundToNearest5(n) {
-    return Math.round(n / 5) * 5;
-  }
- 
-  function calcHalfPrice(pricesAttr) {
-    // Birden fazla fiyat varsa (| ile ayrılmış)
-    const parts = pricesAttr.split('|');
-    const halved = parts.map(p => roundToNearest5(parseFloat(p) * 1.5));
-    return halved.join(' / ') + ' TL';
-  }
- 
-  function getBasePriceText(pricesAttr) {
-    const parts = pricesAttr.split('|');
-    return parts.join(' / ') + ' TL';
-  }
- 
-  document.querySelectorAll('.menu-item').forEach(item => {
-    const pricesAttr = item.dataset.prices;
-    if (!pricesAttr) return;
- 
-    const priceEl = item.querySelector('.item-price');
-    const btns = item.querySelectorAll('.portion-btn');
- 
-    btns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        btns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
- 
-        const portion = parseFloat(btn.dataset.portion);
-        if (portion === 1.5) {
-          priceEl.textContent = calcHalfPrice(pricesAttr);
-          item.classList.add('portion-half');
-        } else {
-          priceEl.textContent = getBasePriceText(pricesAttr);
-          item.classList.remove('portion-half');
-        }
-      });
+function roundToNearest5(n) {
+  return Math.round(n / 5) * 5;
+}
+
+// (Base Price × 1.5) - 40 TL
+function calcHalfPrice(pricesAttr) {
+  const parts = pricesAttr.split('|');
+  const discounted = parts.map(p => {
+    const basePrice = parseFloat(p);
+    const halfPrice = basePrice * 1.5;
+    const finalPrice = halfPrice - 40;
+    return roundToNearest5(finalPrice);
+  });
+  return discounted.join(' / ') + ' TL';
+}
+
+function getBasePriceText(pricesAttr) {
+  const parts = pricesAttr.split('|');
+  return parts.join(' / ') + ' TL';
+}
+
+document.querySelectorAll('.menu-item').forEach(item => {
+  const pricesAttr = item.dataset.prices;
+  if (!pricesAttr) return;
+
+  const priceEl = item.querySelector('.item-price');
+  const btns = item.querySelectorAll('.portion-btn');
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const portion = parseFloat(btn.dataset.portion);
+      if (portion === 1.5) {
+        priceEl.textContent = calcHalfPrice(pricesAttr);
+        item.classList.add('portion-half');
+      } else {
+        priceEl.textContent = getBasePriceText(pricesAttr);
+        item.classList.remove('portion-half');
+      }
     });
   });
+});
  
   // CAROUSEL
   (function(){
