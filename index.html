@@ -262,7 +262,22 @@
       cursor: default;
       border: 1px solid rgba(0, 0, 0, 0.05);
       overflow: hidden;
+      position: relative;
     }
+     .new-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #e63946; /* istediğin renge göre değiştirebilirsin */
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  z-index: 2;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
     .menu-item:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: rgba(201, 168, 76, 0.3); }
     .menu-item:active { transform: scale(0.99); box-shadow: var(--shadow-sm); }
 
@@ -930,6 +945,7 @@
         </div>
       </div>
       <div class="menu-item" data-prices="375">
+          <div class="new-badge">Yeni Lezzet !</div>
         <img src="img/sweatchili.png" class="item-image" />
         <div class="item-bottom">
           <div class="item-info">
@@ -945,6 +961,7 @@
         </div>
       </div>
       <div class="menu-item" data-prices="375">
+          <div class="new-badge">Yeni Lezzet !</div>
         <img src="img/acilikori.png" class="item-image" />
         <div class="item-bottom">
           <div class="item-info">
@@ -1068,7 +1085,7 @@
     <div class="sub-title">Klasik Burgerler</div>
     <div class="items-grid">
       <div class="menu-item" data-prices="350">
-        <img src="img/burger-cops.jpg" class="item-image" />
+        <img src="img/copsburger.png" class="item-image" />
         <div class="item-bottom">
           <div class="item-info">
             <h3>Çöps Burger</h3>
@@ -1083,7 +1100,7 @@
         </div>
       </div>
       <div class="menu-item" data-prices="360">
-        <img src="img/burger-meksika.jpg" class="item-image" />
+        <img src="img/mexicoburger.png" class="item-image" />
         <div class="item-bottom">
           <div class="item-info">
             <h3>Mexico Burger</h3>
@@ -1098,7 +1115,7 @@
         </div>
       </div>
       <div class="menu-item" data-prices="360">
-        <img src="img/burger-cheese.jpg" class="item-image" />
+        <img src="img/cheeseburger.png" class="item-image" />
         <div class="item-bottom">
           <div class="item-info">
             <h3>Nefis Cheese Burger</h3>
@@ -1113,7 +1130,7 @@
         </div>
       </div>
       <div class="menu-item" data-prices="275">
-        <img src="img/burger-tavuk.jpg" class="item-image" />
+        <img src="img/tavukburger.png" class="item-image" />
         <div class="item-bottom">
           <div class="item-info">
             <h3>Terbiyeli Tavuk Burger</h3>
@@ -1133,7 +1150,7 @@
     <div class="sub-title">Özel Burgerler</div>
     <div class="items-grid">
       <div class="menu-item" data-prices="480">
-        <img src="img/burger-sef.jpg" class="item-image" />
+        <img src="img/sefburger.png" class="item-image" />
         <div class="item-bottom">
           <div class="item-info">
             <h3>Şef Burger</h3>
@@ -1148,7 +1165,7 @@
         </div>
       </div>
       <div class="menu-item" data-prices="600">
-        <img src="img/burger-super.png" class="item-image" />
+        <img src="img/superburger.png" class="item-image" />
         <div class="item-bottom">
           <div class="item-info">
             <h3>Süper Burger</h3>
@@ -1247,6 +1264,7 @@
         </div>
       </div>
       <div class="menu-item" data-prices="320">
+          <div class="new-badge">Yeni Lezzet !</div>
         <img src="img/tavuksiscocuk.png" class="item-image" />
         <div class="item-bottom">
           <div class="item-info">
@@ -1262,7 +1280,7 @@
         </div>
       </div>
       <div class="menu-item" data-prices="320">
-        <img src="img/burger-cops.jpg" class="item-image" />
+        <img src="img/cocukburger.png" class="item-image" />
         <div class="item-bottom">
           <div class="item-info">
             <h3>Çocuk Burger</h3>
