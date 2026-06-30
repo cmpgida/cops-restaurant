@@ -277,6 +277,93 @@
   z-index: 2;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+   animation: badgePulse 1.8s ease-in-out infinite;
+}
+    /* NEW BADGE PULSE */
+@keyframes badgePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(230, 57, 70, 0.5); }
+  50% { box-shadow: 0 0 0 6px rgba(230, 57, 70, 0); }
+}
+
+
+/* YENİ LEZZETLER ŞERİDİ */
+.new-strip-wrap {
+  background: var(--coal);
+  padding: 0.9rem 0 1.1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.new-strip-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: 0 1.2rem 0.7rem;
+}
+.new-strip-title::before { content: '✨'; font-size: 0.85rem; }
+.new-strip {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 1.2rem;
+}
+.new-strip::-webkit-scrollbar { display: none; }
+.new-strip-card {
+  flex: 0 0 auto;
+  width: 140px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+}
+.new-strip-card:active { transform: scale(0.97); }
+.new-strip-card img {
+  width: 100%;
+  height: 90px;
+  object-fit: cover;
+  display: block;
+}
+.new-strip-card .nsc-tag {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  background: #e63946;
+  color: #fff;
+  font-size: 0.55rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+.new-strip-card .nsc-info {
+  padding: 8px 9px 10px;
+}
+.new-strip-card h4 {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.25;
+  margin-bottom: 3px;
+}
+.new-strip-card .nsc-price {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+@media (min-width: 768px) {
+  .new-strip-card { width: 170px; }
+  .new-strip-card img { height: 110px; }
 }
     .menu-item:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: rgba(201, 168, 76, 0.3); }
     .menu-item:active { transform: scale(0.99); box-shadow: var(--shadow-sm); }
@@ -550,7 +637,11 @@
     <button class="nav-tab" data-tab="icecek"><div class="tab-icon-wrap"><img src="img/icon-icecek.png" alt="" onerror="this.outerHTML='🥤'"></div>İçecek</button>
   </nav>
 </div>
-
+<!-- YENİ LEZZETLER ŞERİDİ -->
+<div class="new-strip-wrap" id="newStripWrap" style="display:none;">
+  <div class="new-strip-title">Yeni Lezzetler</div>
+  <div class="new-strip" id="newStrip"></div>
+</div>
 <!-- BAŞLANGIÇLAR -->
 <div id="baslangic" class="category-section active">
   <div class="sub-category">
@@ -1461,6 +1552,49 @@
   <p>Son Fiyat Değişim Tarihi 23.06.2026  · Fiyatlara KDV dahildir · Ürünlerimiz alerjen bileşenler içerebilir ve aynı mutfak ortamında hazırlanır. Detaylı alerjen bilgisi için lütfen <a href="calori.html">tıklayınız</a></p>
 </div>
 <script>
+  // YENİ LEZZETLER ŞERİDİNİ OTOMATİK DOLDUR
+  (function(){
+    const items = Array.from(document.querySelectorAll('.menu-item')).filter(
+      item => item.querySelector('.new-badge')
+    );
+    if (!items.length) return;
+
+    const stripWrap = document.getElementById('newStripWrap');
+    const strip = document.getElementById('newStrip');
+
+    items.forEach(item => {
+      const img = item.querySelector('.item-image');
+      const title = item.querySelector('.item-info h3');
+      const price = item.querySelector('.item-price');
+      const section = item.closest('.category-section');
+      if (!img || !title || !price || !section) return;
+
+      const card = document.createElement('div');
+      card.className = 'new-strip-card';
+      card.innerHTML =
+        '<div class="nsc-tag">Yeni</div>' +
+        '<img src="' + img.src + '" alt="">' +
+        '<div class="nsc-info">' +
+          '<h4>' + title.textContent + '</h4>' +
+          '<span class="nsc-price">' + price.textContent + '</span>' +
+        '</div>';
+
+      card.addEventListener('click', () => {
+        const tabId = section.id;
+        const tabBtn = document.querySelector('.nav-tab[data-tab="' + tabId + '"]');
+        if (tabBtn) tabBtn.click();
+        setTimeout(() => {
+          item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          item.style.outline = '2px solid #C9A84C';
+          setTimeout(() => { item.style.outline = ''; }, 1500);
+        }, 150);
+      });
+
+      strip.appendChild(card);
+    });
+
+    stripWrap.style.display = 'block';
+  })();
   // MENÜ SEKME GEÇİŞİ
   document.querySelectorAll('.nav-tab').forEach(tab => {
     tab.addEventListener('click', () => {
