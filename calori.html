@@ -188,17 +188,18 @@
 
   /* ── ALLERGEN ROW ── */
   .allergen-block {
-    margin-bottom: 2px;
+    margin-bottom: 10px;
     background: var(--warm);
-    border-radius: 4px;
+    border-radius: 6px;
     overflow: hidden;
+    border: 1px solid var(--line);
   }
 
   .allergen-row {
     display: grid;
-    grid-template-columns: 180px 1fr;
-    gap: 0;
-    padding: 7px 10px;
+    grid-template-columns: 200px 1fr;
+    gap: 10px;
+    padding: 9px 14px;
     border-bottom: 1px solid var(--line);
     font-size: 12.5px;
     align-items: center;
@@ -208,8 +209,8 @@
 
   .allergen-name {
     font-weight: 500;
-    color: var(--mid);
-    font-size: 12px;
+    color: var(--ink);
+    font-size: 12.5px;
   }
 
   .allergen-tags {
@@ -220,7 +221,7 @@
 
   .tag {
     font-size: 11px;
-    padding: 2px 8px;
+    padding: 3px 9px;
     border-radius: 20px;
     white-space: nowrap;
   }
@@ -604,10 +605,10 @@
   </div>
   
 
-  <!-- 8. ALERJEN MATRİSİ -->
+  <!-- 8. ALERJEN LİSTESİ -->
   <div class="section-title">
     <span class="section-num">08</span>
-    <h2>Alerjen Matrisi</h2>
+    <h2>Alerjen Bilgileri</h2>
   </div>
 
   <div class="legend-grid">
@@ -620,67 +621,84 @@
     <div class="legend-item"><span class="legend-icon">⚗️</span><span><strong>Sülfit</strong> — Koruyucu sülfür dioksit</span></div>
     <div class="legend-item"><span class="legend-icon">🟡</span><span><strong>Hardal</strong> — Hardal tohumu ve ürünleri</span></div>
   </div>
-  <div style="font-size:11.5px; color:var(--soft); margin-bottom:14px;">✅ = İçerir &nbsp;|&nbsp; ⚠️ = İçerebilir / olası çapraz bulaşma &nbsp;|&nbsp; ❌ = İçermez</div>
+  <div style="font-size:11.5px; color:var(--soft); margin-bottom:14px;">Sadece ürünün <strong>içerdiği</strong> alerjenler listelenmiştir. Listede olmayan alerjenler bu üründe bulunmamaktadır.</div>
 
-  <div class="matrix-wrap">
-    <table>
-      <thead><tr><th>Kategori</th><th>Ürün</th><th>🌾 Gluten</th><th>🥛 Süt</th><th>🥚 Yumurta</th><th>🌱 Soya</th><th>🌰 Fındık</th><th>🍲 Susam</th><th>⚗️ Sülfit</th><th>🟡 Hardal</th></tr></thead>
-      <tbody>
-        <tr><td>Başlangıç</td><td>Mercimek Çorbası</td><td>⚠️</td><td>❌</td><td>⚠️</td><td>⚠️</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-        <tr><td>Başlangıç</td><td>Tavuk Suyu</td><td>⚠️</td><td>⚠️</td><td>⚠️</td><td>⚠️</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-        <tr><td>Başlangıç</td><td>Mevsim Salatası</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>⚠️</td><td>❌</td><td>❌</td></tr>
-        <tr><td>Başlangıç</td><td>Yoğurt</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-        <tr><td>Başlangıç</td><td>Çıtır Soğan Halkası</td><td>✅</td><td>✅</td><td>⚠️</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-        <tr><td>Başlangıç</td><td>Çıtır Tavuk</td><td>✅</td><td>✅</td><td>⚠️</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-        <tr><td>Başlangıç</td><td>Peynir Çubuğu</td><td>✅</td><td>✅</td><td>⚠️</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-        <tr><td>Başlangıç</td><td>Tavuk Topları</td><td>✅</td><td>✅</td><td>⚠️</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-        <tr><td>Başlangıç</td><td>Falafel</td><td>❌</td><td>❌</td><td>❌</td><td>⚠️</td><td>❌</td><td>⚠️</td><td>❌</td><td>❌</td></tr>
-        <tr><td>Başlangıç</td><td>Kombo Tabağı</td><td>✅</td><td>✅</td><td>⚠️</td><td>⚠️</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-        <tr><td>Başlangıç</td><td>Makarna</td><td>✅</td><td>❌</td><td>⚠️</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-        <tr><td>Et</td><td>Karışık Izgara Menü</td><td>❌</td><td>❌</td><td>❌</td><td>⚠️</td><td>❌</td><td>❌</td><td>⚠️</td><td>❌</td></tr>
-        <tr><td>Et</td><td>Çöpşiş</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-        <tr><td>Et</td><td>Çöpşiş Special</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>⚠️</td><td>❌</td><td>❌</td></tr>
-        <tr><td>Et</td><td>Dana Şaşlık</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-        <tr><td>Et</td><td>Antrekot</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-        <tr><td>Et</td><td>Sucuk Tabağı</td><td>❌</td><td>❌</td><td>❌</td><td>⚠️</td><td>❌</td><td>❌</td><td>✅</td><td>❌</td></tr>
-        <tr><td>Tavuk</td><td>Tavuk Şiş</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-        <tr><td>Tavuk</td><td>Light Tavuk</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-        <tr><td>Tavuk</td><td>Karışık Tavuk Tabağı</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-        <tr><td>Tavuk</td><td>Soya Soslu Tavuk</td><td>❌</td><td>✅</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-        <tr><td>Tavuk</td><td>Kremalı Kaşarlı Mantarlı</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-        <tr><td>Tavuk</td><td>Diğer Tava Tavuklar</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-        <tr><td>Köfte</td><td>Izgara Köfte</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-        <tr><td>Köfte</td><td>Pideli Köfte</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>⚠️</td><td>❌</td></tr>
-        <tr><td>Köfte</td><td>Kaşarlı Köfte</td><td>✅</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-        <tr><td>Köfte</td><td>Kasap Köfte</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-        <tr><td>Burger</td><td>Çöps Burger</td><td>✅</td><td>✅</td><td>⚠️</td><td>⚠️</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td></tr>
-        <tr><td>Burger</td><td>Mexico Burger</td><td>✅</td><td>✅</td><td>⚠️</td><td>⚠️</td><td>❌</td><td>✅</td><td>❌</td><td>⚠️</td></tr>
-        <tr><td>Burger</td><td>Nefis Cheese Burger</td><td>✅</td><td>✅</td><td>⚠️</td><td>⚠️</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td></tr>
-        <tr><td>Burger</td><td>Terbiyeli Tavuk Burger</td><td>✅</td><td>✅</td><td>⚠️</td><td>⚠️</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td></tr>
-        <tr><td>Burger</td><td>Şef Burger</td><td>✅</td><td>✅</td><td>⚠️</td><td>⚠️</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td></tr>
-        <tr><td>Burger</td><td>Süper Burger</td><td>✅</td><td>✅</td><td>⚠️</td><td>⚠️</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td></tr>
-        <tr><td>Çocuk</td><td>Patatesli Çocuk Tabağı</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-        <tr><td>Çocuk</td><td>Makarnalı Çocuk Menü</td><td>✅</td><td>❌</td><td>⚠️</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-        <tr><td>Çocuk</td><td>Çöpşiş Çocuk Tabağı</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-        <tr><td>Çocuk</td><td>Makarnalı Kasap Çocuk</td><td>✅</td><td>❌</td><td>⚠️</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-        <tr><td>Çocuk</td><td>Patatesli Kasap Çocuk</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-        <tr><td>Çocuk</td><td>Tavuk Şişli Çocuk</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-        <tr><td>Çocuk</td><td>Çocuk Burger</td><td>✅</td><td>✅</td><td>⚠️</td><td>⚠️</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td></tr>
-        <tr><td>İçecek</td><td>Limonata</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-        <tr><td>İçecek</td><td>Ayran / Açık Ayran</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-        <tr><td>İçecek</td><td>Meşrubatlar</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-        <tr><td>İçecek</td><td>Şalgam</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-        <tr><td>İçecek</td><td>Soda / Meyveli Soda / Su</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-      </tbody>
-    </table>
+  <div class="subsection-label">Başlangıçlar</div>
+  <div class="allergen-block">
+    <div class="allergen-row"><span class="allergen-name">Mercimek Çorbası</span><span class="allergen-tags"><span class="tag tag-yes">🌾 Gluten</span><span class="tag tag-yes">🌽 Nişasta</span><span class="tag tag-yes">🥛 Süt</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Tavuk Suyu</span><span class="allergen-tags"><span class="tag tag-yes">🌾 Gluten</span><span class="tag tag-yes">🥚 Yumurta</span><span class="tag tag-yes">🥛 Süt</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Mevsim Salatası</span><span class="allergen-tags"><span class="tag tag-yes">🥛 Süt</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Yoğurt</span><span class="allergen-tags"><span class="tag tag-yes">🥛 Süt</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Çıtır Soğan Halkası</span><span class="allergen-tags"><span class="tag tag-yes">🌾 Gluten</span><span class="tag tag-yes">🌽 Nişasta</span><span class="tag tag-yes">🥚 Yumurta</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Çıtır Tavuk</span><span class="allergen-tags"><span class="tag tag-yes">🌾 Gluten</span><span class="tag tag-yes">🌽 Nişasta</span><span class="tag tag-yes">🥚 Yumurta</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Peynir Çubuğu</span><span class="allergen-tags"><span class="tag tag-yes">🌾 Gluten</span><span class="tag tag-yes">🌽 Nişasta</span><span class="tag tag-yes">🥚 Yumurta</span><span class="tag tag-yes">🥛 Süt</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Tavuk Topları</span><span class="allergen-tags"><span class="tag tag-yes">🌾 Gluten</span><span class="tag tag-yes">🌽 Nişasta</span><span class="tag tag-yes">🥚 Yumurta</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Falafel</span><span class="allergen-tags"><span class="tag tag-yes">🌾 Gluten</span><span class="tag tag-yes">🌽 Nişasta</span><span class="tag tag-yes">🥚 Yumurta</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Kombo Tabağı</span><span class="allergen-tags"><span class="tag tag-yes">🌾 Gluten</span><span class="tag tag-yes">🌽 Nişasta</span><span class="tag tag-yes">🥛 Süt</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Makarna</span><span class="allergen-tags"><span class="tag tag-yes">🌾 Gluten</span><span class="tag tag-yes">🌽 Nişasta</span><span class="tag tag-yes">🥛 Süt</span></span></div>
   </div>
 
-  
-
-  <div class="notice">
-    <strong>⚠️ Önemli Uyarı:</strong> Tüm ürünler aynı mutfak ortamında hazırlanmaktadır; çapraz bulaşma riski bulunabilir. Besin değerleri tahmini olup porsiyon ve hazırlama yöntemine göre değişebilir. "⚠️" işareti, ürünün tarif/marka değişikliğine veya çapraz bulaşmaya bağlı olarak ilgili alerjeni içerebileceğini gösterir; kesin bilgi için sipariş vermeden önce personelimize danışınız. Alerjen duyarlılığınız varsa lütfen mutlaka önceden bildiriniz.
+  <div class="subsection-label">Et Ürünleri</div>
+  <div class="allergen-block">
+    <div class="allergen-row"><span class="allergen-name">Karışık Izgara Menü</span><span class="allergen-tags"><span class="tag tag-yes">🌾 Gluten</span><span class="tag tag-yes">🌽 Nişasta</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Çöpşiş</span><span class="allergen-tags"><span class="tag tag-yes">🌽 Nişasta</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Çöpşiş Special</span><span class="allergen-tags"><span class="tag tag-yes">🌽 Nişasta</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Dana Şaşlık</span><span class="allergen-tags"><span class="tag tag-yes">🌽 Nişasta</span><span class="tag tag-yes">🥛 Süt</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Antrekot</span><span class="allergen-tags"><span class="tag tag-yes">🌽 Nişasta</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Sucuk Tabağı</span><span class="allergen-tags"><span class="tag tag-yes">🌾 Gluten</span><span class="tag tag-yes">🌽 Nişasta</span></span></div>
   </div>
 
+  <div class="subsection-label">Tavuk Ürünleri</div>
+  <div class="allergen-block">
+    <div class="allergen-row"><span class="allergen-name">Tavuk Şiş</span><span class="allergen-tags"><span class="tag tag-yes">🌽 Nişasta</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Light Tavuk</span><span class="allergen-tags"><span class="tag tag-yes">🥛 Süt</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Karışık Tavuk Tabağı</span><span class="allergen-tags"><span class="tag tag-yes">🌾 Gluten</span><span class="tag tag-yes">🌽 Nişasta</span><span class="tag tag-yes">🌱 Soya</span><span class="tag tag-yes">🥛 Süt</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Soya Soslu Tavuk</span><span class="allergen-tags"><span class="tag tag-yes">🌾 Gluten</span><span class="tag tag-yes">🌽 Nişasta</span><span class="tag tag-yes">🥚 Yumurta</span><span class="tag tag-yes">🌱 Soya</span><span class="tag tag-yes">🥛 Süt</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Kremalı Kaşarlı Mantarlı</span><span class="allergen-tags"><span class="tag tag-yes">🌾 Gluten</span><span class="tag tag-yes">🌽 Nişasta</span><span class="tag tag-yes">🥚 Yumurta</span><span class="tag tag-yes">🌱 Soya</span><span class="tag tag-yes">🥛 Süt</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Diğer Tava Tavuklar</span><span class="allergen-tags"><span class="tag tag-yes">🌾 Gluten</span><span class="tag tag-yes">🌽 Nişasta</span><span class="tag tag-yes">🥚 Yumurta</span><span class="tag tag-yes">🥛 Süt</span><span class="tag tag-yes">🌱 Soya</span><span class="tag tag-yes">🍲 Susam</span></span></div>
+  </div>
+
+  <div class="subsection-label">Köfteler</div>
+  <div class="allergen-block">
+    <div class="allergen-row"><span class="allergen-name">Izgara Köfte</span><span class="allergen-tags"><span class="tag tag-yes">🌾 Gluten</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Pideli Köfte</span><span class="allergen-tags"><span class="tag tag-yes">🌾 Gluten</span><span class="tag tag-yes">🌽 Nişasta</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Kaşarlı Köfte</span><span class="allergen-tags"><span class="tag tag-yes">🌾 Gluten</span><span class="tag tag-yes">🥛 Süt</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Kasap Köfte</span><span class="allergen-tags"><span class="tag tag-yes">🌾 Gluten</span></span></div>
+  </div>
+
+  <div class="subsection-label">Burgerler</div>
+  <div class="allergen-block">
+    <div class="allergen-row"><span class="allergen-name">Çöps Burger</span><span class="allergen-tags"><span class="tag tag-yes">🌾 Gluten</span><span class="tag tag-yes">🌽 Nişasta</span><span class="tag tag-yes">🟡 Hardal</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Mexico Burger</span><span class="allergen-tags"><span class="tag tag-yes">🌾 Gluten</span><span class="tag tag-yes">🌽 Nişasta</span><span class="tag tag-yes">🟡 Hardal</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Nefis Cheese Burger</span><span class="allergen-tags"><span class="tag tag-yes">🌾 Gluten</span><span class="tag tag-yes">🌽 Nişasta</span><span class="tag tag-yes">🥛 Süt</span><span class="tag tag-yes">🟡 Hardal</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Terbiyeli Tavuk Burger</span><span class="allergen-tags"><span class="tag tag-yes">🌾 Gluten</span><span class="tag tag-yes">🌽 Nişasta</span><span class="tag tag-yes">🥛 Süt</span><span class="tag tag-yes">🟡 Hardal</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Şef Burger</span><span class="allergen-tags"><span class="tag tag-yes">🌾 Gluten</span><span class="tag tag-yes">🌽 Nişasta</span><span class="tag tag-yes">🥛 Süt</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Süper Burger</span><span class="allergen-tags"><span class="tag tag-yes">🌾 Gluten</span><span class="tag tag-yes">🌽 Nişasta</span><span class="tag tag-yes">🥛 Süt</span></span></div>
+  </div>
+
+  <div class="subsection-label">Çocuk Menüleri</div>
+  <div class="allergen-block">
+    <div class="allergen-row"><span class="allergen-name">Patatesli Çocuk Tabağı</span><span class="allergen-tags"><span class="tag tag-yes">🌾 Gluten</span><span class="tag tag-yes">🌽 Nişasta</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Makarnalı Çocuk Menü</span><span class="allergen-tags"><span class="tag tag-yes">🌾 Gluten</span><span class="tag tag-yes">🥛 Süt</span><span class="tag tag-yes">🌽 Nişasta</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Çöpşiş Çocuk Tabağı</span><span class="allergen-tags"><span class="tag tag-yes">🌾 Gluten</span><span class="tag tag-yes">🌽 Nişasta</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Makarnalı Kasap Çocuk</span><span class="allergen-tags"><span class="tag tag-yes">🌾 Gluten</span><span class="tag tag-yes">🥛 Süt</span><span class="tag tag-yes">🌽 Nişasta</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Patatesli Kasap Çocuk</span><span class="allergen-tags"><span class="tag tag-yes">🌾 Gluten</span><span class="tag tag-yes">🌽 Nişasta</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Tavuk Şişli Çocuk</span><span class="allergen-tags"><span class="tag tag-yes">🌾 Gluten</span><span class="tag tag-yes">🌽 Nişasta</span><span class="tag tag-yes">🟡 Hardal</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Çocuk Burger</span><span class="allergen-tags"><span class="tag tag-yes">🌾 Gluten</span><span class="tag tag-yes">🌽 Nişasta</span></span></div>
+  </div>
+
+  <div class="subsection-label">İçecekler</div>
+  <div class="allergen-block">
+    <div class="allergen-row"><span class="allergen-name">Limonata</span><span class="allergen-tags"><span class="tag tag-no">Alerjen içermez</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Ayran / Açık Ayran</span><span class="allergen-tags"><span class="tag tag-yes">🌽 Nişasta</span><span class="tag tag-yes">🥛 Süt</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Meşrubatlar</span><span class="allergen-tags"><span class="tag tag-no">Alerjen içermez</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Şalgam</span><span class="allergen-tags"><span class="tag tag-yes">🥛 Süt</span></span></div>
+    <div class="allergen-row"><span class="allergen-name">Soda / Meyveli Soda / Su</span><span class="allergen-tags"><span class="tag tag-no">Alerjen içermez</span></span></div>
+  </div>
+
+<div class="notice">
+  <strong>⚠️ Önemli Uyarı:</strong> Tüm ürünler aynı mutfak ortamında hazırlanmaktadır; çapraz bulaşma riski bulunabilir. Besin değerleri tahmini olup porsiyon ve hazırlama yöntemine göre değişebilir. Kesin bilgi için sipariş vermeden önce personelimize danışınız. Alerjen duyarlılığınız varsa lütfen mutlaka önceden bildiriniz.
+</div>
   <footer>
     <span>Son güncelleme: Haziran 2026</span>
     <span><strong>Çöps Restaurant</strong> © 2026</span>
