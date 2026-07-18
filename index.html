@@ -35,6 +35,7 @@
       position: relative;
       width: 100%;
       height: 70vh;
+      height: 70dvh;
       max-height: 420px;
       overflow: hidden;
       background: var(--coal);
@@ -53,15 +54,36 @@
       position: relative;
       overflow: hidden;
       flex-shrink: 0;
+      background: var(--coal);
+    }
+    .slide-bg {
+      position: absolute;
+      inset: -20px;
+      width: calc(100% + 40px);
+      height: calc(100% + 40px);
+      background-size: cover;
+      background-position: center;
+      filter: blur(25px) brightness(0.55) saturate(1.2);
+      transform: scale(1.15);
+      z-index: 0;
     }
     .slide-img {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
+      object-position: center;
       display: block;
-      filter: brightness(0.95) contrast(1.05);
+      z-index: 1;
+      filter: contrast(1.05);
+    }
+    /* İlk slayt (kare logo görseli) banner'ı tam kaplasın diye eski davranışa (cover) döner */
+    .slide-img.slide-img-cover {
+      object-fit: cover;
+    }
+    .slide.slide-nobg .slide-bg {
+      display: none;
     }
     .slide-fallback {
       position: absolute;
@@ -76,15 +98,16 @@
     .slide-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 50%, transparent 100%);
-      z-index: 1;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.15) 55%, transparent 100%);
+      z-index: 2;
+      pointer-events: none;
     }
     .slide-content {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      z-index: 2;
+      z-index: 3;
       padding: 1rem 1.2rem 2.5rem;
       text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     }
@@ -524,7 +547,7 @@
       .item-info p { font-size: 0.74rem; }
       .item-price { font-size: 0.95rem; }
       .nav-tab { padding: 8px 10px; font-size: 0.65rem; min-width: 60px; }
-      .hero { height: 60vh; max-height: 350px; }
+      .hero { height: 60vh; height: 60dvh; max-height: 380px; min-height: 260px; }
       .slide-content { padding: 0.8rem 1rem 2rem; }
       .category-section { padding: 0.8rem; }
       .portion-btn { padding: 3px 8px; font-size: 0.62rem; }
@@ -541,7 +564,7 @@
     }
 
     @media (min-width: 768px) {
-      .hero { height: 75vh; max-height: 480px; }
+      .hero { height: 75vh; height: 75dvh; max-height: 480px; }
       .slide-content { padding: 1.5rem 1.8rem 3.5rem; }
       .hero-logo { padding: 1.2rem 1.8rem; }
       .hero-logo-text { font-size: 1.5rem; }
@@ -553,7 +576,7 @@
     }
 
     @media (min-width: 1024px) {
-      .hero { height: 80vh; max-height: 560px; }
+      .hero { height: 80vh; height: 80dvh; max-height: 560px; }
       .category-section { padding: 2rem 2rem 4rem; max-width: 1100px; }
       .items-grid { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
       .item-image { height: 220px; }
@@ -583,8 +606,8 @@
     <div class="hero-logo-restaurant">Restaurant</div>
   </div>
   <div class="slides-track" id="slidesTrack">
-    <div class="slide">
-      <img src="img/logo.jpg" alt="Çöpşiş" class="slide-img" onerror="this.style.display='none'">
+    <div class="slide slide-nobg">
+      <img src="img/logo.jpg" alt="Çöpşiş" class="slide-img slide-img-cover" onerror="this.style.display='none'">
       <div class="slide-overlay"></div>
       <div class="slide-content">
         <div class="slide-eyebrow">Ege'nin Lezzeti</div>
@@ -592,7 +615,8 @@
       </div>
     </div>
     <div class="slide">
-      <div class="slide-fallback"></div>
+      <div class="slide-bg" style="background-image:url('img/1.png')"></div>
+      <img src="img/1.png" alt="Çöpşiş" class="slide-img" onerror="this.style.display='none'">
       <div class="slide-overlay"></div>
       <div class="slide-content">
         <div class="slide-eyebrow">Özel Menüler</div>
@@ -601,7 +625,8 @@
       </div>
     </div>
     <div class="slide">
-      <div class="slide-fallback"></div>
+      <div class="slide-bg" style="background-image:url('img/12.png')"></div>
+      <img src="img/12.png" alt="Çöpşiş" class="slide-img" onerror="this.style.display='none'">
       <div class="slide-overlay"></div>
       <div class="slide-content">
         <div class="slide-eyebrow">En Çok Sevilen</div>
