@@ -598,7 +598,48 @@
     @media (min-width: 768px) { #icecek .item-image { height: 160px !important; } }
     @media (min-width: 1024px) { #icecek .item-image { height: 170px !important; } }
     
-   
+   /* KAMPANYA ROZETİ */
+.campaign-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: linear-gradient(135deg, #FF6B00, #FF3D00);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  z-index: 2;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(255, 61, 0, 0.4);
+  animation: campaignPulse 1.6s ease-in-out infinite;
+}
+@keyframes campaignPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+
+/* Kampanyalı kartın çerçevesi */
+.menu-item.campaign-item {
+  border: 1.5px solid #FF6B00;
+  box-shadow: 0 4px 16px rgba(255, 107, 0, 0.18);
+}
+
+/* Eski fiyat (üstü çizili) */
+.old-price {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--muted);
+  text-decoration: line-through;
+  text-decoration-color: #FF3D00;
+  margin-bottom: 2px;
+}
+
+/* Kampanyalı yeni fiyat rengi */
+.campaign-item .item-price {
+  color: #FF3D00;
+}
   </style>
 </head>
 <!-- HERO CAROUSEL -->
@@ -616,7 +657,15 @@
       <div class="slide-sub">Taze Malzeme · Geleneksel Tarif · Modern Sunum</div>
     </div>
   </div>
-
+  <div class="slide slide-nobg">
+    <img src="img/kampanya.png" alt="Çöpşiş" class="slide-img slide-img-cover" onerror="this.style.display='none'">
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <div class="slide-eyebrow">Acıktıysan Doğru Yerdesin! </div>
+      <div class="slide-sub">Lezzet Dolu Fırsat!</div>
+    </div>
+    
+  </div>
   <div class="slide slide-nobg">
     <img src="img/çöps-görsel.jpg" alt="Çöpşiş" class="slide-img slide-img-cover" onerror="this.style.display='none'">
     <div class="slide-overlay"></div>
@@ -1072,6 +1121,27 @@
   <div class="sub-category">
     <div class="sub-title">Tava</div>
     <div class="items-grid">
+      <div class="menu-item campaign-item" data-prices="299">
+  <div class="campaign-badge">🔥 Kampanya</div>
+  <img src="img/barbekusoslu.png" class="item-image" />
+  <div class="item-bottom">
+    <div class="item-info">
+      <h3>Tavuk Tabakları</h3>
+      <p>Bütün Tavuk Tabaklarında Geçerli Limonata ya da Ayran Seçeneğiyle Beraber. İstediğin Sosu Seç!
+      </p>
+      <span class="kcal-badge">🔥900-1000 kcal</span>
+      <div class="portion-toggle">
+        <button class="portion-btn active" data-portion="1">1 Porsiyon</button>
+        <button class="portion-btn" data-portion="1.5">1.5 Porsiyon</button>
+      </div>
+    </div>
+    <div class="item-price-wrap">
+      <span class="old-price">465 TL</span>
+      <span class="item-price">325 TL</span>
+      <span class="item-price-label">1.5×</span>
+    </div>
+  </div>
+</div>
       <div class="menu-item" data-prices="375">
         <img src="img/Adsız_tasarım_(15).jpg" class="item-image" />
         <div class="item-bottom">
